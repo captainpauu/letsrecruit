@@ -1,2 +1,7 @@
 /vendor
 .idea
+/public/templates_c
+/public/assets/bootstrap
+/public/assets/datatables
+/public/assets/fontawesome
+/public/assets/jQuery
