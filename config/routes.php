@@ -10,5 +10,5 @@ $app->get('/', function(Request $request, Response $response) {
 
 $app->get('/hello/{name}', function (Request $request, Response $response, $args) {
 
-    return $this->smarty->render($response, 'login.tpl', ['name' => $args['name']]);
-})->setName('login');
+    return $this->smarty->render($response, 'header.tpl', ['name' => $args['name']]);
+})->setName('header');
