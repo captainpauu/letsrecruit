@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "../fonts/Poppins-Regular.ttf";
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -275,15 +275,4 @@ a[data-toggle="collapse"] {
 #content .main-header {
 	margin: 20px 10px;
 	padding-top: 10px;
-}
-#content .main-content {
-	margin: 10px;
-	padding: 20px;
-	font-size: 14px;
-	background-color: #fff;
-	-webkit-box-shadow: 0 2px 4px 0 rgba(43,43,43,0.2);
-    box-shadow: 0 2px 4px 0 rgba(43,43,43,0.2)
-}
-#content .main-content .table {
-	font-size: 14px;
 }
