@@ -1,96 +1,37 @@
+<!DOCTYPE html>
 <html>
-<head title="{$name}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-
-    <link rel="stylesheet" type="text/css" href="/assets/css/login.css">
-    {*<style>
-        .wrapper {
-            display: flex;
-            width: 100%;
-            align-items: stretch;
-        }
-
-        #sidebar {
-            min-width: 250px;
-            max-width: 250px;
-        }
-
-        #sidebar.active {
-            margin-left: -250px;
-        }
-    </style>*}
-
-    <script type="application/javascript" src=""></script>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
-<div>
-    <div class="wrapper">
-
-        <!-- Sidebar -->
-        <nav id="sidebar">
-           <div class="sidebar-header">
-               <h3>{$name}</h3>
-           </div>
-
-            <ul class="list-unstyled components">
-                <p>Heading 1</p>
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Portfolio</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </nav>
-
-        <!-- Page Content -->
-        <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
-                    </button>
-
-                </div>
-            </nav>
+<div class="container col-md-4 justify-content-md-center">
+    <form action="header.html">
+        <div class="form-group">
+            <label>User Name</label>
+            <input class="form-control" type="text" placeholder="Enter your username"/>
         </div>
-
-    </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input class="form-control" type="text" placeholder="Enter your password"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="checkbox"/>
+            <span>Remember me</span>
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary col-md-12" type="submit" value="Login"/>
+        </div>
+        <div class="form-group" id="forget_pass">
+            <span>forgot passwod? <a href="header.html">click here</a></span>
+        </div>
+    </form>
 </div>
 </body>
 </html>
