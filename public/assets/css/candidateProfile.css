@@ -1,0 +1,41 @@
+.card {
+	border: none;
+	border-radius: 0;
+	margin: 20px 15px;
+	-webkit-box-shadow: 0 2px 4px 0 rgba(43,43,43,0.3);
+    box-shadow: 0 2px 4px 0 rgba(43,43,43,0.3);
+}
+
+.table-responsive {
+	font-size: 13px;
+	padding: 15px;
+}
+
+.table {
+	margin: 0;
+}
+
+.table tr{
+	border-bottom: 1px solid #dee2e6;
+}
+
+.table tr:last-child {
+	border-bottom: none;
+}
+
+.table td, .table th {
+	border-top: none;
+}
+
+#information .card-header {
+	padding-bottom: 0px;
+}
+
+#information #informationTab {
+	border-bottom: none;
+}
+
+#interview .badge {
+	font-size: 12px;
+	font-weight: 500;
+}

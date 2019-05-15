@@ -45,3 +45,6 @@ $container['db'] = function (Container $container) {
 
     return $pdo;
 };
+
+// Add dependencies
+require __DIR__ . '/dependencies.php';
