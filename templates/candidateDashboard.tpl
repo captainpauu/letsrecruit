@@ -40,14 +40,16 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {foreach $allCandidates as $c}
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>{$c.id}</td>
+                        <td>{$c.fname} {$c.lname}</td>
+                        <td>{$c.cand_email}</td>
+                        <td>{$c.cand_mobile}</td>
+                        <td>{$c.cand_technology}</td>
+                        <td>{$c.cand_resume}</td>
                     </tr>
+                    {/foreach}
                     <tr>
                         <td>Garrett Winters</td>
                         <td>Accountant</td>

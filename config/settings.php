@@ -21,10 +21,11 @@ $settings['smarty'] = [
 // Database settings
 $settings['db'] = [
     'driver' => 'mysql',
-    'host' => 'localhost',
-    'username' => 'root',
-    'database' => 'projectdb',
-    'password' => '',
+    'host' => '127.0.0.1',
+    'port' => '3306',
+    'username' => 'pauu',
+    'database' => 'test',
+    'password' => 'Abcd@1234',
     'charset' => 'utf8',
     'options' => [
         PDO::ATTR_PERSISTENT => false,

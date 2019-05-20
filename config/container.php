@@ -38,10 +38,13 @@ $container['smarty'] = function (Container $container) {
 // PDO database library
 $container['db'] = function (Container $container) {
     $settings = $container->get('settings')['db'];
-    $dsn = 'mysql:host=' . $settings['host'] . ';dbname=' . $settings['databse'] . ';charset=' . $settings['charset'];
+    $dsn = 'mysql:host=' . $settings['host'] . ';dbname=' . $settings['database'] . ';charset=' . $settings['charset'];
 
     //Creating PDO connection
     $pdo = new PDO($dsn, $settings['username'], $settings['password'],$settings['options']);
 
     return $pdo;
 };
+
+// Add dependencies
+require __DIR__ . '/dependencies.php';
