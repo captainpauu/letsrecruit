@@ -130,7 +130,7 @@ a[data-toggle="collapse"] {
     right: 0;
     -webkit-transition: width 0.2s linear;
     transition: width 0.2s linear;
-	color: #727677;
+	color: #000;
 }
 
 #content.active {
@@ -148,8 +148,8 @@ a[data-toggle="collapse"] {
     display: block;
     width: inherit;
     z-index: 2;
-	-webkit-box-shadow: 0 2px 4px 0 rgba(43,43,43,0.1);
-    box-shadow: 0 2px 4px 0 rgba(43,43,43,0.1)
+	-webkit-box-shadow: 0 2px 4px 0 rgba(43,43,43,0.4);
+    box-shadow: 0 2px 4px 0 rgba(43,43,43,0.4)
 }
 
 #content .navbar .container-fluid {
@@ -157,12 +157,12 @@ a[data-toggle="collapse"] {
 }
 
 #content #sidebarCollapse {
-	background-color: #263544;
+	background-color: #10cbf1;
 	border: none;
 }
 
 #content #sidebarCollapse:hover {
-	background-color: #1D2531;
+	background-color: #1b1b37;
 	border: none;
 }
 
