@@ -24,7 +24,7 @@ class CandidateDao
     {
         $query = $this->db->prepare("SELECT * FROM candidates
                                               WHERE email = :em");
-        $query->execute(array(':em' => $email));
+        $query->execute([':em' => $email]);
         return $query->fetch();
     }
 
@@ -78,8 +78,8 @@ class CandidateDao
                                  :consultId,
                                  :referredBy,
                                  :reference
-                       )
-                ";
+                       )";
+
         $query = $this->db->prepare($stmt);
         $result = $query->execute([
              ':fname' => $data['fname'],
@@ -115,6 +115,14 @@ class CandidateDao
                                                 SET resume = :fileName 
                                                 WHERE email = :email");
         return $query->execute([$fileName, $email]);
+    }
+
+    public function getCandidateById($id)
+    {
+        $query = $this->db->prepare("SELECT * FROM candidates 
+                                                WHERE id = :id");
+        $query->execute([':id' => $id]);
+        return $query->fetch();
     }
 
     public function deleteCandidate()

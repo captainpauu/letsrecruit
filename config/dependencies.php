@@ -2,8 +2,10 @@
 
 use App\Controllers\CandidateController;
 use App\Controllers\UserController;
+use App\Controllers\JobsController;
 use App\Dao\CandidateDao;
 use App\Dao\UserDao;
+use App\Dao\JobsDao;
 
 $container['CandidateController'] = function($c) {
     return new CandidateController(
@@ -27,6 +29,19 @@ $container['UserController'] = function($c) {
 
 $container['UserDao'] = function($c) {
     return new UserDao(
+        $c->get('db')
+    );
+};
+
+$container['JobsController'] = function($c) {
+    return new JobsController(
+        $c->get('smarty'),
+        $c->get('JobsDao')
+    );
+};
+
+$container['JobsDao'] = function($c) {
+    return new JobsDao(
         $c->get('db')
     );
 };

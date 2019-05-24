@@ -27,6 +27,10 @@
 	border-top: none;
 }
 
+#information {
+	padding: 0;
+}
+
 #information .card-header {
 	padding-bottom: 0px;
 }

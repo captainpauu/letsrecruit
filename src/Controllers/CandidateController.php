@@ -26,6 +26,20 @@ class CandidateController extends BaseController
             ['allCandidates' => $allCandidates]);
     }
 
+    public function viewProfile(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        if (!empty($args['id'])) {
+            $data = $this->dao->getCandidateById($args['id']);
+            $data['gender'] = self::GENDER[$data['gender']];
+            $data['marital_status'] = self::MARITAL_STATUS[$data['marital_status']];
+            $data['offer_in_hand'] = self::OFFER_IN_HAND[$data['offer_in_hand']];
+            $data['reference'] = self::REFERENCE_TYPE[$data['reference']];
+            return $this->smarty->render($response, 'candidateProfile.tpl', ['candidate' => $data]);
+        } else {
+            return false;
+        }
+    }
+
     public function addCandidate(RequestInterface $request, ResponseInterface $response)
     {
         if ($request->isPost()) {
