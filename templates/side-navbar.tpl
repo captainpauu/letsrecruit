@@ -24,7 +24,7 @@
             </ul>
         </li>
         <li>
-            <a href="addCandidate.html">
+            <a href="{path_for name='addCandidate'}">
                 <i class="fas fa-briefcase"></i>
                 <span>Add Candidate</span>
             </a>

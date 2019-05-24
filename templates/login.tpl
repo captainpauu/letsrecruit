@@ -12,14 +12,15 @@
 </head>
 <body>
 <div class="container col-md-4 justify-content-md-center">
-    <form action="header.html">
+    <form action="{path_for name='login'}" method="post">
+        <label class="text-danger">{$errorMsg}</label>
         <div class="form-group">
             <label>User Name</label>
-            <input class="form-control" type="text" placeholder="Enter your username"/>
+            <input class="form-control" type="text" name="username" placeholder="Enter your username"/>
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input class="form-control" type="text" placeholder="Enter your password"/>
+            <input class="form-control" type="password" name="password" placeholder="Enter your password"/>
         </div>
         <div class="form-group">
             <input class="form-control" type="checkbox"/>
@@ -29,7 +30,7 @@
             <input class="btn btn-primary col-md-12" type="submit" value="Login"/>
         </div>
         <div class="form-group" id="forget_pass">
-            <span>forgot passwod? <a href="header.html">click here</a></span>
+            <span>forgot passwod? <a href="">click here</a></span>
         </div>
     </form>
 </div>

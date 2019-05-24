@@ -27,7 +27,8 @@
                 <h3>Candidate Registration Form</h3>
             </div>
             <div class="main-content">
-                <form>
+                <label class="text-danger">{$error}</label>
+                <form action="{path_for name='addCandidate'}" method="post">
                     <div class="row col-md-12">
                         <div class="col-md-4">
                             <h5>1. Personal detailes</h5>
@@ -35,48 +36,74 @@
                         <div class="col-md-8">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputFname">First Name</label>
-                                    <input type="text" class="form-control" id="inputFname" placeholder="First Name">
+                                    <label for="fname">First Name</label>
+                                    <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputLname">Last Name</label>
-                                    <input type="text" class="form-control" id="inputLname" placeholder="Last Name">
+                                    <label for="lname">Last Name</label>
+                                    <input type="text" class="form-control" id="lname"  name="lname"placeholder="Last Name">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="email@id.com">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="email@id.com">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputMobile">Mobile Number</label>
-                                    <input type="text" class="form-control" id="inputMobile" placeholder="9876543210">
+                                    <label for="mobile">Mobile Number</label>
+                                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="9876543210">
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress">Address</label>
-                                <input type="text" class="form-control" id="inputAddress"
-                                       placeholder="Apartment, studio, or floor">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress2">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2" placeholder="1234 Main St">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputCity">City</label>
-                                    <input type="text" class="form-control" id="inputCity">
+                                    <label for="birthDate">Date of Birth</label>
+                                    <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="currentCity">Current City</label>
+                                    <input type="text" class="form-control" id="currentCity" name="currentCity" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Gender</label>
+                                    <div class="row col-md-12">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender1" value="0">
+                                            <span>Male</span>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender2" value="1">
+                                            <span>Female</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Marital Status</label>
+                                    <div class="row col-md-12">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="marital" id="marital1" value="1">
+                                            <span>Married</span>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="marital" id="marital2" value="0">
+                                            <span>Unmarried</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="permanentCity">Permanent City</label>
+                                    <input type="text" class="form-control" id="permanentCity" name="permanentCity">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputState">State</label>
-                                    <select id="inputState" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-control" id="state" name="state">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputZip">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip">
+                                    <input type="text" class="form-control" id="zipCode" name="zipCode">
                                 </div>
                             </div>
                         </div>
@@ -89,40 +116,56 @@
                         <div class="col-md-8">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                    <label for="experience">Experience</label>
+                                    <input type="text" class="form-control" id="experience" name="experience" placeholder="ex. 1y 3m">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Password</label>
-                                    <input type="password" class="form-control" id="inputPassword4"
-                                           placeholder="Password">
+                                    <label for="currentCompany">Current Company</label>
+                                    <input type="text" class="form-control" id="currentCompany" name="currentCompany" >
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress">Address</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress2">Address 2</label>
-                                <input type="text" class="form-control" id="inputAddress2"
-                                       placeholder="Apartment, studio, or floor">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputCity">City</label>
-                                    <input type="text" class="form-control" id="inputCity">
+                                    <label for="currentCTC">Current CTC</label>
+                                    <input type="text" class="form-control" id="currentCtc" name="currentCtc" >
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputState">State</label>
-                                    <select id="inputState" class="form-control">
-                                        <option selected>Choose...</option>
-                                        <option>...</option>
-                                    </select>
+                                <div class="form-group col-md-6">
+                                    <label for="expectedCTC">Expected CTC</label>
+                                    <input type="text" class="form-control" id="expectedCTC" name="expectedCTC" >
                                 </div>
-                                <div class="form-group col-md-2">
-                                    <label for="inputZip">Zip</label>
-                                    <input type="text" class="form-control" id="inputZip">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="skills">Skills</label>
+                                    <input type="text" class="form-control" id="skills"  name="skills" placeholder="ex. Php, .Net">
                                 </div>
+                                <div class="form-group col-md-6">
+                                    <label for="linkedIn">LinkedIn URL</label>
+                                    <input type="text" class="form-control" id="linkedIn" name="linkedIn" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="noticePeriod">Notice Period</label>
+                                    <input type="text" class="form-control" id="noticePeriod" name="noticePeriod" >
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Offer In Hand?</label>
+                                    <div class="row col-md-12">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="offerInHand" id="offerYes" value="1">
+                                            <span>Yes</span>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="offerInHand" id="offerNo" value="0">
+                                            <span>No</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="changeReason">Reason For Change</label>
+                                <input type="text" class="form-control" id="changeReason" name="changeReason" >
                             </div>
                         </div>
                     </div>
@@ -132,15 +175,9 @@
                             <h5>3. Upload Documents</h5>
                         </div>
                         <div class="col-md-8">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Resume</label>
-                                    <input type="file" class="form-control" id="inputResume" placeholder="">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Photo</label>
-                                    <input type="file" class="form-control" id="inputPhoto" placeholder="">
-                                </div>
+                            <div class="form-group col-md-6">
+                                <label for="resume">Resume</label>
+                                <input type="file" class="form-control" id="resume" name="resume"  placeholder="">
                             </div>
                         </div>
                     </div>
