@@ -87,8 +87,8 @@ class CandidateDao
              ':email' => $data['email'],
              ':mobile' => $data['mobile'],
              ':birthDate' => $data['birthDate'],
-             ':gender' => $data['gender'],
-             ':maritalStatus' => $data['maritalStatus'],
+             ':gender' => (int)$data['gender'],
+             ':maritalStatus' => (int)$data['maritalStatus'],
              ':currentCity' => $data['currentCity'],
              ':permanentCity' => $data['permanentCity'],
              ':state' => $data['state'],
@@ -100,11 +100,11 @@ class CandidateDao
              ':skills' => $data['skills'],
              ':linkedIn' => $data['linkedIn'],
              ':noticePeriod' => $data['noticePeriod'],
-             ':offerInHand' => $data['offerInHand'],
+             ':offerInHand' => (int)$data['offerInHand'],
              ':changeReason' => $data['changeReason'],
-             ':consultId' => $data['consultId'],
+             ':consultId' => (int)$data['consultancyId'],
              ':referredBy' => $data['referredBy'],
-             ':reference' => $data['reference']
+             ':reference' => (int)$data['reference']
         ]);
         return $result;
     }

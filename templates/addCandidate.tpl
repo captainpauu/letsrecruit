@@ -9,6 +9,7 @@
 
     <title>Candidate Registration Form</title>
     <link rel="stylesheet" href="/assets/css/addCandidate.css">
+    <script src="/assets/js/addCandidate.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,7 @@
             </div>
             <div class="main-content">
                 <label class="text-danger">{$error}</label>
-                <form action="{path_for name='addCandidate'}" method="post">
+                <form action="{path_for name='addCandidate'}" method="post" enctype="multipart/form-data">
                     <div class="row col-md-12">
                         <div class="col-md-4">
                             <h5>1. Personal detailes</h5>
@@ -146,10 +147,6 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="noticePeriod">Notice Period</label>
-                                    <input type="text" class="form-control" id="noticePeriod" name="noticePeriod" >
-                                </div>
-                                <div class="form-group col-md-6">
                                     <label>Offer In Hand?</label>
                                     <div class="row col-md-12">
                                         <div class="form-check form-check-inline">
@@ -161,6 +158,39 @@
                                             <span>No</span>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="noticePeriod">Notice Period</label>
+                                    <input type="text" class="form-control" id="noticePeriod" name="noticePeriod" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Reference Type</label>
+                                    <div class="row col-md-12" id="reference-type">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="reference" value="0">
+                                            <span>consultancy</span>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="reference" value="1">
+                                            <span>Office Employee</span>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="reference" value="2">
+                                            <span>Self</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 hidden" id="consultancyDropdown">
+                                    <label for="noticePeriod">Consultancy</label>
+                                    <select class="form-control"  name="consultancyId">
+                                        <option value="0">Select...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6 hidden" id="referredBy">
+                                    <label for="noticePeriod">Referred By</label>
+                                    <input type="text" class="form-control"  name="referredBy">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -175,9 +205,11 @@
                             <h5>3. Upload Documents</h5>
                         </div>
                         <div class="col-md-8">
-                            <div class="form-group col-md-6">
-                                <label for="resume">Resume</label>
-                                <input type="file" class="form-control" id="resume" name="resume"  placeholder="">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="resume">Resume</label>
+                                    <input type="file" class="form-control" id="resume" name="resume"  placeholder="">
+                                </div>
                             </div>
                         </div>
                     </div>

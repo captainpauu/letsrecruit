@@ -33,13 +33,17 @@ class CandidateController extends BaseController
             $status = false;
 
             $data = $request->getParsedBody();
+            $uploadedFiles = $request->getUploadedFiles();
+            $this->uploadResume($uploadedFiles, $data);
+            exit;
             $check = $this->dao->isCandidateEmailExists($data['email']);
             if (count($check) > 1) {
                 $error = "Email already Exists";
             } else {
-                if ($this->dao->insertCandidate($data)) {
+                if ($this->insertCandidate($data)) {
+
                     $uploadedFiles = $request->getUploadedFiles();
-                    if ($this->uploadResume($uploadedFiles, $data)){
+                    if ($this->uploadResume($uploadedFiles, $data)) {
                         $status = true;
                     } else {
                         $error = "Resume upload failed";
@@ -49,13 +53,27 @@ class CandidateController extends BaseController
                 }
             }
 
-            if ($status)
+            if ($status) {
                 return $response->withRedirect('/candidate/dashboard');
-            else
+            } else {
                 return $this->smarty->render($response, 'addCandidate.tpl', ['error' => $error]);
+            }
         } else {
             return $this->smarty->render($response, 'addCandidate.tpl');
         }
+    }
+
+    public function insertCandidate($data)
+    {
+        if ((int)$data['reference'] === 0) {
+            $data['referredBy'] = '';
+        } elseif ((int)$data['reference'] === 1) {
+            $data['consultancyId'] = 0;
+        } else {
+            $data['referredBy'] = '';
+            $data['consultancyId'] = 0;
+        }
+        return $this->dao->insertCandidate($data);
     }
 
     public function uploadResume($uploadedFiles, $data)
@@ -63,8 +81,8 @@ class CandidateController extends BaseController
         $uploadFile = $uploadedFiles['resume'];
         if ($uploadFile->getError() === UPLOAD_ERR_OK) {
             $filename = $uploadFile->getClientFilename();
-            $newFileName = $data['firstName'] . "_resume_" . $filename;
-            $uploadFile->moveTo(__DIR__ . "/assets/resumes/$newFileName");
+            $newFileName = $data['fname'] . "_resume_" . $filename;
+            $uploadFile->moveTo("../../public/assets/resumes/" . $newFileName);
 
             return $this->dao->insertResumeName($data['email'], $newFileName);
         }
