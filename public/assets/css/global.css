@@ -15,6 +15,10 @@ body .wrapper *:focus {
 	box-shadow: none;
 }
 
+.hidden {
+	display: none;
+}
+
 #sidebar {
 	position: fixed;
 	min-width: 18%;
@@ -56,7 +60,7 @@ body .wrapper *:focus {
 #sidebar.active .sidebar-header span,
 #sidebar.active ul li a span,
 #sidebar.active #homeSubmenu,
-#sidebar.active #homeSubmenu {
+#sidebar.active #interviewSubmenu {
     display: none;
 }
 

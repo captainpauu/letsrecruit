@@ -13,10 +13,10 @@
             </a>
             <ul class="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                    <a href="#">Candidate Dashboard</a>
+                    <a href="{path_for name='candidateDashboard'}">Candidate Dashboard</a>
                 </li>
                 <li>
-                    <a href="#">User Dashboard</a>
+                    <a href="{path_for name='userDashboard'}">User Dashboard</a>
                 </li>
                 <li>
                     <a href="#">Consultancy Dashboard</a>
@@ -24,8 +24,8 @@
             </ul>
         </li>
         <li>
-            <a href="addCandidate.html">
-                <i class="fas fa-briefcase"></i>
+            <a href="{path_for name='addCandidate'}">
+                <i class="fas fa-user"></i>
                 <span>Add Candidate</span>
             </a>
         </li>
@@ -44,9 +44,9 @@
             </ul>
         </li>
         <li>
-            <a href="#">
-                <i class="fas fa-image"></i>
-                <span>Portfolio</span>
+            <a href="{path_for name='jobOpening'}">
+                <i class="fas fa-briefcase"></i>
+                <span>Job Openings</span>
             </a>
         </li>
         <li>
