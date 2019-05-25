@@ -4,6 +4,7 @@
 namespace App\Controllers;
 
 
+use App\Dao\TechnologyDao;
 use App\Dao\UserDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -11,11 +12,13 @@ use Psr\Http\Message\ResponseInterface;
 class UserController extends BaseController
 {
     protected $dao;
+    protected $techDao;
 
-    public function __construct($smarty, UserDao $dao)
+    public function __construct($smarty, UserDao $dao, TechnologyDao $techDao)
     {
         parent::__construct($smarty);
         $this->dao = $dao;
+        $this->techDao = $techDao;
     }
 
     public function loginUser(RequestInterface $request, ResponseInterface $response)
@@ -53,5 +56,25 @@ class UserController extends BaseController
             }
         }
         return ['status' => $status, 'message' => $message];
+    }
+
+    public function getAllusers(RequestInterface $request, ResponseInterface $response)
+    {
+        $allUsers = $this->dao->getAllUsers();
+        $allTechs = $this->techDao->getAllTechnologies();
+
+        return $this->smarty->render($response, 'userDashboard.tpl', [
+            'users' => $allUsers,
+            'techs' => $allTechs
+        ]);
+    }
+
+    public function candidateShortlisting(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        $data['userId'] = $_SESSION['loggedinUser']['id'];
+        $data['candidateId'] = $args['id'];
+        $data['status'] = $args['status'];
+        $this->dao->candidateShortlisting($data);
+        return $response->withRedirect('/candidate/profile/' . $args['id']);
     }
 }

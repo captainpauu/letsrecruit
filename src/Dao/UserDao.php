@@ -24,7 +24,42 @@ class UserDao
 
     public function getAllUsers()
     {
-        return '';
+        $stmt = "SELECT 
+                        u.id,
+                        u.name,
+                        u.email,
+                        u.role,
+                        t.tech_name
+                     FROM users as u 
+                     JOIN technology t on u.technology = t.id";
+
+        $query = $this->db->query($stmt);
+        $result = $query->fetchAll();
+        return $result;
+    }
+
+    public function candidateShortlisting($data)
+    {
+        $stmt = "INSERT INTO shortlisting(
+                         candidate_id,
+                         user_id, 
+                         is_shortlisted, 
+                         shortlist_date
+                         ) values (
+                                  :candidateId,
+                                  :userId,
+                                  :isShortlisted,
+                                  :shortlistDate
+                         )";
+
+        $query = $this->db->prepare($stmt);
+        $result = $query->execute([
+            ':candidateId' => (int)$data['candidateId'],
+            ':userId' => (int)$data['userId'],
+            ':isShortlisted' => (int)$data['status'],
+            ':shortlistDate' => date("Y/m/d")
+        ]);
+        return $result;
     }
 
     public function getUserById()

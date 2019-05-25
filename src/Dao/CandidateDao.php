@@ -15,7 +15,20 @@ class CandidateDao
 
     public function getAllCandidates()
     {
-        $query = $this->db->query('select * from candidates');
+        $stmt = "SELECT 
+                        c.id,
+                        c.fname,
+                        c.lname,
+                        c.experience,
+                        c.current_ctc,
+                        c.expected_ctc,
+                        c.notice_period,
+                        c.offer_in_hand,
+                        j.name as job_profile
+                  FROM candidates AS c
+                  JOIN jobs j on c.job_profile_id = j.id";
+
+        $query = $this->db->query($stmt);
         $result = $query->fetchAll();
         return $result;
     }
@@ -53,7 +66,8 @@ class CandidateDao
                        change_reason,
                        consult_id,
                        referred_by,
-                       reference
+                       reference,
+                       job_profile_id
                        ) values (
                                  :fname,
                                  :lname,
@@ -77,7 +91,8 @@ class CandidateDao
                                  :changeReason, 
                                  :consultId,
                                  :referredBy,
-                                 :reference
+                                 :reference,
+                                 :jobProfileId
                        )";
 
         $query = $this->db->prepare($stmt);
@@ -104,7 +119,8 @@ class CandidateDao
              ':changeReason' => $data['changeReason'],
              ':consultId' => (int)$data['consultancyId'],
              ':referredBy' => $data['referredBy'],
-             ':reference' => (int)$data['reference']
+             ':reference' => (int)$data['reference'],
+             ':jobProfileId' => (int)$data['jobProfileId']
         ]);
         return $result;
     }
@@ -114,13 +130,15 @@ class CandidateDao
         $query = $this->db->prepare("UPDATE candidates 
                                                 SET resume = :fileName 
                                                 WHERE email = :email");
-        return $query->execute([$fileName, $email]);
+        return $query->execute([':fileName' => $fileName, ':email' => $email]);
     }
 
     public function getCandidateById($id)
     {
-        $query = $this->db->prepare("SELECT * FROM candidates 
-                                                WHERE id = :id");
+        $query = $this->db->prepare("SELECT * FROM candidates as c 
+                                                    LEFT JOIN shortlisting s on c.id = s.candidate_id
+                                                    LEFT JOIN users u on s.user_id = u.id
+                                                    WHERE c.id = :id");
         $query->execute([':id' => $id]);
         return $query->fetch();
     }

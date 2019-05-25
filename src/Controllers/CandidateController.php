@@ -4,17 +4,23 @@
 namespace App\Controllers;
 
 use App\Dao\CandidateDao;
+use App\Dao\JobsDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class CandidateController extends BaseController
 {
     protected $dao;
+    protected $jobsDao;
 
-    public function __construct($smarty, CandidateDao $dao)
-    {
+    public function __construct(
+        $smarty,
+        CandidateDao $dao,
+        JobsDao $jobsDao
+    ) {
         parent::__construct($smarty);
         $this->dao = $dao;
+        $this->jobsDao = $jobsDao;
     }
 
     public function getAllCandidates(RequestInterface $request, ResponseInterface $response)
@@ -42,14 +48,13 @@ class CandidateController extends BaseController
 
     public function addCandidate(RequestInterface $request, ResponseInterface $response)
     {
+        $allJobs = $this->jobsDao->getAllJobs();
         if ($request->isPost()) {
             $error = '';
             $status = false;
 
             $data = $request->getParsedBody();
-            $uploadedFiles = $request->getUploadedFiles();
-            $this->uploadResume($uploadedFiles, $data);
-            exit;
+
             $check = $this->dao->isCandidateEmailExists($data['email']);
             if (count($check) > 1) {
                 $error = "Email already Exists";
@@ -70,10 +75,13 @@ class CandidateController extends BaseController
             if ($status) {
                 return $response->withRedirect('/candidate/dashboard');
             } else {
-                return $this->smarty->render($response, 'addCandidate.tpl', ['error' => $error]);
+                return $this->smarty->render($response, 'addCandidate.tpl', [
+                    'error' => $error,
+                    'jobs' => $allJobs
+                ]);
             }
         } else {
-            return $this->smarty->render($response, 'addCandidate.tpl');
+            return $this->smarty->render($response, 'addCandidate.tpl',['jobs' => $allJobs]);
         }
     }
 
@@ -96,7 +104,7 @@ class CandidateController extends BaseController
         if ($uploadFile->getError() === UPLOAD_ERR_OK) {
             $filename = $uploadFile->getClientFilename();
             $newFileName = $data['fname'] . "_resume_" . $filename;
-            $uploadFile->moveTo("../../public/assets/resumes/" . $newFileName);
+            $uploadFile->moveTo("assets/resumes/$newFileName");
 
             return $this->dao->insertResumeName($data['email'], $newFileName);
         }

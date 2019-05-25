@@ -116,6 +116,21 @@
                         </div>
                         <div class="col-md-8">
                             <div class="form-row">
+                                <div class="form-group col-md-6" id="jobProfileDropdown">
+                                    <label>Job Profile</label>
+                                    <select class="form-control"  name="jobProfileId">
+                                        <option value="0">Select...</option>
+                                        {foreach $jobs as $job}
+                                            <option value="{$job.id}">{$job.name}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="linkedIn">LinkedIn URL</label>
+                                    <input type="text" class="form-control" id="linkedIn" name="linkedIn" >
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="experience">Experience</label>
                                     <input type="text" class="form-control" id="experience" name="experience" placeholder="ex. 1y 3m">
@@ -133,16 +148,6 @@
                                 <div class="form-group col-md-6">
                                     <label for="expectedCTC">Expected CTC</label>
                                     <input type="text" class="form-control" id="expectedCTC" name="expectedCTC" >
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="skills">Skills</label>
-                                    <input type="text" class="form-control" id="skills"  name="skills" placeholder="ex. Php, .Net">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="linkedIn">LinkedIn URL</label>
-                                    <input type="text" class="form-control" id="linkedIn" name="linkedIn" >
                                 </div>
                             </div>
                             <div class="form-row">
@@ -183,7 +188,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6 hidden" id="consultancyDropdown">
-                                    <label for="noticePeriod">Consultancy</label>
+                                    <label>Consultancy</label>
                                     <select class="form-control"  name="consultancyId">
                                         <option value="0">Select...</option>
                                     </select>
@@ -193,10 +198,17 @@
                                     <input type="text" class="form-control"  name="referredBy">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="changeReason">Reason For Change</label>
-                                <input type="text" class="form-control" id="changeReason" name="changeReason" >
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="skills">Skills</label>
+                                    <input type="text" class="form-control" id="skills"  name="skills" placeholder="ex. Php, .Net">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="changeReason">Reason For Change</label>
+                                    <input type="text" class="form-control" id="changeReason" name="changeReason" >
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="formDivider"></div>

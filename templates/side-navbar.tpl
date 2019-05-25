@@ -16,7 +16,7 @@
                     <a href="{path_for name='candidateDashboard'}">Candidate Dashboard</a>
                 </li>
                 <li>
-                    <a href="#">User Dashboard</a>
+                    <a href="{path_for name='userDashboard'}">User Dashboard</a>
                 </li>
                 <li>
                     <a href="#">Consultancy Dashboard</a>

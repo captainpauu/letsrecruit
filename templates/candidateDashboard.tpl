@@ -32,22 +32,28 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Job Profile</th>
+                        <th>Experience</th>
+                        <th>Current CTC</th>
+                        <th>Expected CTC</th>
+                        <th>Notice Period</th>
+                        <th>Offer In Hand?</th>
+                        <th>Interview Round</th>
                     </tr>
                     </thead>
                     <tbody>
                         {foreach $allCandidates as $c}
                             <tr>
-                                <td>{$c.id}</td>
-                                <td>{$c.fname} {$c.lname}</td>
-                                <td>{$c.cand_email}</td>
-                                <td>{$c.cand_mobile}</td>
-                                <td>{$c.cand_technology}</td>
-                                <td>{$c.cand_resume}</td>
+                                <td>
+                                    <a href="{path_for name='candidateProfile' data=['id' => {$c.id}]}">{$c.fname} {$c.lname}</a>
+                                </td>
+                                <td>{$c.job_profile}</td>
+                                <td>{$c.experience}</td>
+                                <td>{$c.current_ctc}</td>
+                                <td>{$c.expected_ctc}</td>
+                                <td>{$c.notice_period}</td>
+                                <td>{$c.offer_in_hand}</td>
+                                <td></td>
                             </tr>
                         {/foreach}
                     </tbody>
