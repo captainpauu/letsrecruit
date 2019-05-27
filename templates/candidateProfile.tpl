@@ -34,7 +34,8 @@
                         <div class="card-header">
                             <ul class="nav nav-tabs" id="informationTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="personal-tab" data-toggle="tab" href="#personal" role="tab"
+                                    <a class="nav-link active" id="personal-tab" data-toggle="tab" href="#personal"
+                                       role="tab"
                                        aria-controls="personal" aria-selected="true">Personal Info</a>
                                 </li>
                                 <li class="nav-item">
@@ -190,13 +191,13 @@
                         <div class="card-header">Shortlist Status</div>
                         <div class="card-body">
                             {if $candidate.is_shortlisted == 1}
-                                <h3>Shortlisted by <strong>{$candidate.name}</strong> on <strong>{$candidate.shortlist_date}</strong>.</h3>
-
+                                <h5>Shortlisted by <strong>{$candidate.name}</strong> on
+                                    <strong>{$candidate.shortlist_date}</strong>.</h5>
                             {elseif $candidate.is_shortlisted == 2}
-                                <h3>Rejected by <strong>{$candidate.name}</strong> on <strong>{$candidate.shortlist_date}</strong>.</h3>
-
+                                <h5>Rejected by <strong>{$candidate.name}</strong> on
+                                    <strong>{$candidate.shortlist_date}</strong>.</h5>
                             {else}
-                                <h4 class="card-title">Not shortlisted yet. Want to shortlist?</h4>
+                                <h5 class="card-title">Not shortlisted yet. Want to shortlist?</h5>
                                 <a href="{path_for name='shortlisting' data=['status' => 1, 'id' => {$candidate.id}]}">
                                     <i class="fas fa-check-circle"></i> Yes
                                 </a>
@@ -206,12 +207,38 @@
                             {/if}
                         </div>
                     </div>
-                    <div id="interview-schedule" class="card text-white bg-secondary">
-                        <div class="card-header">Schedule Interview</div>
+                    <div id="interview-schedule"
+                         class="card text-white
+                        {if $schedule.schedule_status == 1 || $schedule.schedule_status == 0}
+                            bg-secondary">
+                            <div class="card-header">Schedule Interview</div>
+                        {elseif $schedule.schedule_status == 2}
+                            bg-success">
+                            <div class="card-header">Interview Round *</div>
+                        {elseif $schedule.schedule_status == 3}
+                            bg-danger">
+                            <div class="card-header">Interview Round *</div>
+                        {/if}
+
                         <div class="card-body">
-                            <h4 class="card-title">Interview Round 2</h4>
-                            <button class="btn btn-light btn-sm">Schedule Interview</button>
-                            <button class="btn btn-success btn-sm">Offer Job</button>
+                            {if $schedule.schedule_status == 1}
+                                <h6>
+                                    Interview scheduled on {$schedule.scheduled_date} at {$schedule.scheduled_time} by {$schedule.scheduled_by}.
+                                    Waiting for interviewers acceptance.
+                                </h6>
+                            {elseif $schedule.schedule_status == 2}
+                                <h6>{$schedule.interviewer_name} has accepted interview request.
+                                    Interview scheduled on {$schedule.scheduled_date} at {$scheduled.schedule_time}</h6>
+                            {else}
+                                {if $schedule.schedule_status == 3}
+                                    <h6>{$schedule.interviewer_name} has rejected interview request.
+                                        Interview was scheduled on {$schedule.scheduled_date} at {$schedule.scheduled_time}</h6>
+                                {/if}
+                                <button class="btn btn-light btn-sm" data-toggle="modal"
+                                        data-target="#scheduleModal">Schedule Interview
+                                </button>
+                                <button class="btn btn-success btn-sm">Offer Job</button>
+                            {/if}
                         </div>
                     </div>
                 </div>
@@ -281,6 +308,8 @@
         </div>
 
     </div>
+
+    {include 'interviewSchedule.tpl'}
 </div>
 </body>
 

@@ -69,6 +69,22 @@ class UserController extends BaseController
         ]);
     }
 
+    public function addUser(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        $error = '';
+        $data = $request->getParsedBody();
+
+        $check = $this->dao->isUserEmailExists($data['email']);
+        if (count($check) > 1) {
+            $error = "Email already Exists";
+        } else {
+            if (!$this->dao->insertUser($data)) {
+                $error = "User registration failed";
+            }
+        }
+        return $response->withRedirect('/user/dashboard');
+    }
+
     public function candidateShortlisting(RequestInterface $request, ResponseInterface $response, $args)
     {
         $data['userId'] = $_SESSION['loggedinUser']['id'];

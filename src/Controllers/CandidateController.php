@@ -4,23 +4,31 @@
 namespace App\Controllers;
 
 use App\Dao\CandidateDao;
+use App\Dao\InterviewDao;
 use App\Dao\JobsDao;
+use App\Dao\UserDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class CandidateController extends BaseController
 {
     protected $dao;
+    protected $userDao;
     protected $jobsDao;
+    protected $interviewDao;
 
     public function __construct(
         $smarty,
         CandidateDao $dao,
-        JobsDao $jobsDao
+        UserDao $userDao,
+        JobsDao $jobsDao,
+        InterviewDao $interviewDao
     ) {
         parent::__construct($smarty);
         $this->dao = $dao;
+        $this->userDao = $userDao;
         $this->jobsDao = $jobsDao;
+        $this->interviewDao = $interviewDao;
     }
 
     public function getAllCandidates(RequestInterface $request, ResponseInterface $response)
@@ -35,15 +43,29 @@ class CandidateController extends BaseController
     public function viewProfile(RequestInterface $request, ResponseInterface $response, $args)
     {
         if (!empty($args['id'])) {
-            $data = $this->dao->getCandidateById($args['id']);
-            $data['gender'] = self::GENDER[$data['gender']];
-            $data['marital_status'] = self::MARITAL_STATUS[$data['marital_status']];
-            $data['offer_in_hand'] = self::OFFER_IN_HAND[$data['offer_in_hand']];
-            $data['reference'] = self::REFERENCE_TYPE[$data['reference']];
-            return $this->smarty->render($response, 'candidateProfile.tpl', ['candidate' => $data]);
+            $data = $this->getCandidateData($args['id']);
+            $allUsers = $this->userDao->getAllUsers();
+            $scheduleStatus = $this->interviewDao->currentInterviewStatus($args['id']);
+
+            return $this->smarty->render($response, 'candidateProfile.tpl', [
+                'candidate' => $data,
+                'users' => $allUsers,
+                'schedule' => $scheduleStatus
+                ]);
+
         } else {
             return false;
         }
+    }
+
+    public function getCandidateData($candidateId)
+    {
+        $data = $this->dao->getCandidateById($candidateId);
+        $data['gender'] = self::GENDER[$data['gender']];
+        $data['marital_status'] = self::MARITAL_STATUS[$data['marital_status']];
+        $data['offer_in_hand'] = self::OFFER_IN_HAND[$data['offer_in_hand']];
+        $data['reference'] = self::REFERENCE_TYPE[$data['reference']];
+        return $data;
     }
 
     public function addCandidate(RequestInterface $request, ResponseInterface $response)

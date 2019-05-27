@@ -30,6 +30,18 @@ class BaseController
         2 => 'Self'
     ];
 
+    const INTERVIEW_MODE = [
+        1 => 'Face to Face',
+        2 => 'Skype',
+        3 => 'Phone Call'
+    ];
+
+    const INTERVIEW_SCHEDULE_STATUS = [
+        1 => 'Pending',
+        2 => 'Accepted',
+        3 => 'Rejected'
+    ];
+
     public function __construct(Smarty $smarty) {
         $this->smarty = $smarty;
     }

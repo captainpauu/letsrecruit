@@ -10,9 +10,9 @@ body {
     width: 100%;
 }
 
-body .wrapper *:focus {
-	outline: none;
-	box-shadow: none;
+body *:focus {
+	outline: none !important;
+	box-shadow: none !important;
 }
 
 .hidden {
@@ -58,9 +58,7 @@ body .wrapper *:focus {
 }
 
 #sidebar.active .sidebar-header span,
-#sidebar.active ul li a span,
-#sidebar.active #homeSubmenu,
-#sidebar.active #interviewSubmenu {
+#sidebar.active ul li a span {
     display: none;
 }
 

@@ -60,3 +60,7 @@
 	font-size: 12px;
 	font-weight: 500;
 }
+
+#scheduleModal .form-row {
+	margin-bottom: 5px;
+}
