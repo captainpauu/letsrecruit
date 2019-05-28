@@ -46,16 +46,31 @@ $app->group('/user',
     });
 
 
+$app->group('/interview',
+    function () use ($app) {
+
+        $app->post(
+            '/schedule/{candidateId}',
+            'InterviewController:scheduleInterview'
+        )->setName('scheduleInterview');
+
+        $app->get(
+            '/request/{id}/{candidateId}/{action}',
+            'InterviewController:interviewRequestAction'
+        )->setName('interviewRequest');
+
+        $app->get(
+            '/request/dashboard',
+            'InterviewController:getAllInterviewRequests'
+        )->setName('interviewRequest');
+
+    });
+
+
 $app->get(
     '/shortlist/{id}/{status}',
     'UserController:candidateShortlisting'
 )->setName('shortlisting');
-
-
-$app->post(
-    '/interview/schedule/{candidateId}',
-    'InterviewController:scheduleInterview'
-)->setName('scheduleInterview');
 
 
 $app->get(

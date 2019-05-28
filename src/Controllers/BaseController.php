@@ -9,6 +9,12 @@ class BaseController
 {
     protected $smarty;
 
+    const ROLE = [
+        1 => '1st Round Panel',
+        2 => '2nd Round Panel',
+        3 => 'Admin'
+    ];
+
     const GENDER = [
         0 => 'Male',
         1 => 'Female'

@@ -253,42 +253,25 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th>Full Name</th>
-                                        <th>Josephine Villa</th>
-                                        <th>Full Name</th>
-                                        <th>Josephine Villa</th>
-                                        <th>Status</th>
+                                        <th>Round Number</th>
+                                        <th>Interviewer Name</th>
+                                        <th>Interview Date</th>
+                                        <th>Feedback</th>
+                                        <th>Round Status</th>
+                                        <th>Feedback By</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Gender</td>
-                                        <td>Female</td>
-                                        <td>Full Name</td>
-                                        <td>Josephine Villa</td>
-                                        <td><span class="badge badge-success">Accepted</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gender</td>
-                                        <td>Female</td>
-                                        <td>Full Name</td>
-                                        <td>Josephine Villa</td>
-                                        <td><span class="badge badge-success">Accepted</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gender</td>
-                                        <td>Female</td>
-                                        <td>Full Name</td>
-                                        <td>Josephine Villa</td>
-                                        <td><span class="badge badge-danger">Rejected</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gender</td>
-                                        <td>Female</td>
-                                        <td>Full Name</td>
-                                        <td>Josephine Villa</td>
-                                        <td><span class="badge badge-danger">Rejected</span></td>
-                                    </tr>
+                                    {foreach $rounds as $r}
+                                        <tr>
+                                            <td>{$r.round_number}</td>
+                                            <td>{$r.interviewer_name}</td>
+                                            <td>{$r.schedule_date} {$r.schedule_time}</td>
+                                            <td>{$r.feedback}</td>
+                                            <td><span class="badge badge-primary">Pending</span></td>
+                                            <td>{$r.feedback_by_name}</td>
+                                        </tr>
+                                    {/foreach}
                                     </tbody>
                                 </table>
                             </div>

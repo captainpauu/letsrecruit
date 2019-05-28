@@ -29,7 +29,11 @@ class UserController extends BaseController
             $data = $request->getParsedBody();
             $valid = $this->validateUser($data);
             if ($valid['status']) {
-                return $response->withRedirect('/candidate/dashboard');
+                if ((int)$valid['user']['role'] === 3) {
+                    return $response->withRedirect('/candidate/dashboard');
+                } else {
+                    return $response->withRedirect('/interview/request/dashboard');
+                }
             } else {
                 return $this->smarty->render($response, 'login.tpl' , ['errorMsg' => $valid['message']]);
             }
@@ -40,22 +44,21 @@ class UserController extends BaseController
     {
         $userName = $data['username'];
         $password = $data['password'];
-        $status = true;
+        $status = false;
         $message = '';
+        $valid = [];
         if(empty($userName) && empty($password)){
-            $status = false;
             $message = "Invalid Username or password";
         } else {
-            $result = $this->dao->validateUser($userName, $password);
-            if (isset($result['id'])) {
-                $_SESSION['loggedinUser'] = $result;
+            $valid = $this->dao->validateUser($userName, $password);
+            if (isset($valid['id'])) {
+                $_SESSION['loggedinUser'] = $valid;
                 $status = true;
             } else {
-                $status = false;
                 $message = "Invalid Username or password";
             }
         }
-        return ['status' => $status, 'message' => $message];
+        return ['status' => $status, 'message' => $message, 'user' => $valid];
     }
 
     public function getAllusers(RequestInterface $request, ResponseInterface $response)

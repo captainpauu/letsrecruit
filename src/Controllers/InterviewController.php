@@ -19,6 +19,16 @@ class InterviewController extends BaseController
         $this->dao = $dao;
     }
 
+    public function getAllInterviewRequests(RequestInterface $request, ResponseInterface $response)
+    {
+        $id = $_SESSION['loggedinUser']['id'];
+        $allInterviews = $this->dao->getAllInterviewsByUser($id);
+        return $this->smarty->render(
+            $response,
+            'interviewRequests.tpl',
+            ['interviews' => $allInterviews]);
+    }
+
     public function scheduleInterview(RequestInterface $request, ResponseInterface $response, $args)
     {
         $data = $request->getParsedBody();
@@ -27,5 +37,19 @@ class InterviewController extends BaseController
         $this->dao->scheduleInterview($candidateId, $userId, $data);
         return $response->withRedirect('/candidate/profile/' . $candidateId);
 
+    }
+
+    public function interviewRequestAction(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        $interviewId = $args['id'];
+        $candidateId = $args['candidateId'];
+        $action = (int)$args['action'];
+        $result = $this->dao->updateScheduleStatus($interviewId, $action);
+        if ($result) {
+            $rounds = $this->dao->getAllCandidateRounds($candidateId);
+            $roundNum = count($rounds) + 1;
+            $this->dao->insertNewRound($interviewId, $roundNum);
+        }
+        return $response->withRedirect('/interview/request/dashboard');
     }
 }

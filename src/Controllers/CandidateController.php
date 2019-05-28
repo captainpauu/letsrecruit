@@ -42,15 +42,18 @@ class CandidateController extends BaseController
 
     public function viewProfile(RequestInterface $request, ResponseInterface $response, $args)
     {
-        if (!empty($args['id'])) {
-            $data = $this->getCandidateData($args['id']);
+        $id = $args['id'];
+        if (!empty($id)) {
+            $data = $this->getCandidateData($id);
             $allUsers = $this->userDao->getAllUsers();
-            $scheduleStatus = $this->interviewDao->currentInterviewStatus($args['id']);
+            $scheduleStatus = $this->interviewDao->currentInterviewStatus($id);
+            $interviewRounds = $this->interviewDao->getAllCandidateRounds($id);
 
             return $this->smarty->render($response, 'candidateProfile.tpl', [
                 'candidate' => $data,
                 'users' => $allUsers,
-                'schedule' => $scheduleStatus
+                'schedule' => $scheduleStatus,
+                'rounds' => $interviewRounds
                 ]);
 
         } else {
