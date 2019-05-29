@@ -49,7 +49,8 @@ $container['TechnologyDao'] = function($c) {
 $container['JobsController'] = function($c) {
     return new JobsController(
         $c->get('smarty'),
-        $c->get('JobsDao')
+        $c->get('JobsDao'),
+        $c->get('TechnologyDao')
     );
 };
 

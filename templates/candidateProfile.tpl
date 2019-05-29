@@ -117,6 +117,10 @@
                                                 <table class="table">
                                                     <tbody>
                                                     <tr>
+                                                        <th scope="row">Job Profile</th>
+                                                        <td>{$candidate.job_profile}</td>
+                                                    </tr>
+                                                    <tr>
                                                         <th scope="row">Experience</th>
                                                         <td>{$candidate.experience}</td>
                                                     </tr>
@@ -150,12 +154,12 @@
                                                         <td>{$candidate.current_company}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">Expected CTC</th>
-                                                        <td>{$candidate.expected_ctc}</td>
-                                                    </tr>
-                                                    <tr>
                                                         <th scope="row">LinkedIn URL</th>
                                                         <td>{$candidate.linkedin}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Expected CTC</th>
+                                                        <td>{$candidate.expected_ctc}</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">Notice Period</th>
@@ -209,15 +213,18 @@
                     </div>
                     <div id="interview-schedule"
                          class="card text-white
-                        {if $schedule.schedule_status == 1 || $schedule.schedule_status == 0}
+                        {if $schedule.schedule_status == 1}
                             bg-secondary">
-                            <div class="card-header">Schedule Interview</div>
+                            <div class="card-header">Interview Round Status</div>
                         {elseif $schedule.schedule_status == 2}
                             bg-success">
-                            <div class="card-header">Interview Round *</div>
+                            <div class="card-header">Interview Round Status</div>
                         {elseif $schedule.schedule_status == 3}
                             bg-danger">
-                            <div class="card-header">Interview Round *</div>
+                            <div class="card-header">Interview Round Status</div>
+                        {elseif $schedule.schedule_status == 0}
+                            bg-secondary">
+                            <div class="card-header">Schedule Interview</div>
                         {/if}
 
                         <div class="card-body">
@@ -265,10 +272,20 @@
                                     {foreach $rounds as $r}
                                         <tr>
                                             <td>{$r.round_number}</td>
-                                            <td>{$r.interviewer_name}</td>
-                                            <td>{$r.schedule_date} {$r.schedule_time}</td>
-                                            <td>{$r.feedback}</td>
-                                            <td><span class="badge badge-primary">Pending</span></td>
+                                            <td>{$r.name}</td>
+                                            <td>{$r.scheduled_date} {$r.scheduled_time}</td>
+                                            {if $r.round_status == 0}
+                                                {assign var=feedbackId value=$r.interview_id}
+                                                <td><button data-toggle="modal" data-target="#feedbackFormModal"
+                                                       class="btn btn-info btn-sm">Submit Feedback</button></td>
+                                                <td><span class="badge badge-primary">Pending</span></td>
+                                            {elseif $r.round_status == 1}
+                                                <td>{$r.feedback}</td>
+                                                <td><span class="badge badge-success">Accepted</span></td>
+                                            {elseif $r.round_status == 2}
+                                                <td>{$r.feedback}</td>
+                                                <td><span class="badge badge-danger">Rejected</span></td>
+                                            {/if}
                                             <td>{$r.feedback_by_name}</td>
                                         </tr>
                                     {/foreach}
@@ -293,6 +310,8 @@
     </div>
 
     {include 'interviewSchedule.tpl'}
+
+    {include 'feedbackForm.tpl'}
 </div>
 </body>
 

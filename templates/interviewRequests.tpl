@@ -72,6 +72,8 @@
                                     <span class="badge badge-success">Accepted</span>
                                 {elseif $i.schedule_status == 3}
                                     <span class="badge badge-danger">Rejected</span>
+                                {elseif $i.schedule_status == 0}
+                                    <span class="badge badge-info">Done</span>
                                 {/if}
                             </td>
                         </tr>

@@ -40,9 +40,9 @@
                                             <div class="job-row">
                                                 <h6>{$job.name}</h6>
                                                 <div class="row job-info">
-                                                    <label class="col-md-4"><i class="fas fa-calendar-alt"></i> {$job.req_experience} years</label>
-                                                    <label class="col-md-4"><i class="fas fa-map-marker-alt"></i> {$job.location}</label>
-                                                    <label class="col-md-4"><i class="fas fa-rupee-sign"></i> {$job.salary}</label>
+                                                    <label class="col-md-3"><i class="fas fa-calendar-alt"></i> {$job.req_experience} years</label>
+                                                    <label class="col-md-3"><i class="fas fa-map-marker-alt"></i> {$job.location}</label>
+                                                    <label class="col-md-3"><i class="fas fa-rupee-sign"></i> {$job.salary}</label>
                                                 </div>
                                                 <div>
                                                     <p>{$job.description}</p>
@@ -63,7 +63,15 @@
                         </div>
                         <div class="card-block">
                             <form action="{path_for name='addJob'}" method="post">
-                                <label class="text-danger">{$error}</label>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Select Technology</label>
+                                    <select class="form-control" name="technology">
+                                        <option value="0">Select...</option>
+                                        {foreach $techs as $tech}
+                                            <option value="{$tech.id}">{$tech.tech_name}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Job Profile</label>
                                     <input type="text" class="form-control" id="name" name="name" placeholder="">

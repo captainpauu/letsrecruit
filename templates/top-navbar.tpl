@@ -1,10 +1,42 @@
+{*<div id="addTechModal" class="modal fade" role="dialog" tabindex="-1"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <form action="{path_for name='addTech'}" method="post">
+                <input type="text" class="form-control" name="newTech" placeholder="Technology">
+                <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                <button type="reset" data-dismiss="modal" class="btn btn-secondary btn-sm">
+                    Cancel
+                </button>
+            </form>
+        </div>
+    </div>
+</div>*}
+
 <nav class="navbar navbar-default navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <button type="button" id="sidebarCollapse" class="btn btn-info">
             <i class="fas fa-bars"></i>
         </button>
         <ul class="nav navbar-nav navbar-right">
-            <div id="notification" class="dropdown">
+            <div id="technology" class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" id="techDropdown" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Technologies
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-lebelledby="techDropdown">
+                    {foreach $smarty.session.technologies as $tech}
+                    <li>
+                        <a>{$tech.tech_name}</a>
+                    </li>
+                    {/foreach}
+                    {*<div class="dropdown-divider"></div>
+                    <li>
+                        <a data-toggle="modal" data-target="#addTechModal" href="">Add Technology</a>
+                    </li>*}
+                </div>
+            </div>
+            <div id="notification" class="dropdown hidden">
                 <span class="counter">3</span>
                 <a class="dropdown-toggle" href="#" role="button" id="notificationDropdown" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -40,7 +72,7 @@
             <div id="profile" class="dropdown">
                 <a class="dropdown-toggle" href="#" role="button" id="profileDropdown" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Pravin Dhange
+                    {$smarty.session.loggedinUser.name}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-lebelledby="profileDropdown">
                     <li>

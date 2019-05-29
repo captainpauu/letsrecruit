@@ -12,6 +12,13 @@ $app->map(
 )->setName('login');
 
 
+$app->map(
+    ['GET'],
+    '/logout',
+    'UserController:logoutUser'
+)->setName('logout');
+
+
 $app->group('/candidate',
     function () use ($app) {
         $app->get(
@@ -64,6 +71,11 @@ $app->group('/interview',
             'InterviewController:getAllInterviewRequests'
         )->setName('interviewRequest');
 
+        $app->post(
+            '/feedback/{id}/{candidateId}',
+            'InterviewController:submitFeedback'
+        )->setName('submitFeedback');
+
     });
 
 
@@ -83,3 +95,8 @@ $app->post(
     '/jobOpening',
     'JobsController:addJob'
 )->setName('addJob');
+/*
+$app->post(
+    '/add/technology',
+    'UserController:addTechnology'
+)->setName('addTech');*/

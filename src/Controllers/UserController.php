@@ -52,7 +52,9 @@ class UserController extends BaseController
         } else {
             $valid = $this->dao->validateUser($userName, $password);
             if (isset($valid['id'])) {
+                $allTechs = $this->techDao->getAllTechnologies();
                 $_SESSION['loggedinUser'] = $valid;
+                $_SESSION['technologies'] = $allTechs;
                 $status = true;
             } else {
                 $message = "Invalid Username or password";
@@ -95,5 +97,12 @@ class UserController extends BaseController
         $data['status'] = $args['status'];
         $this->dao->candidateShortlisting($data);
         return $response->withRedirect('/candidate/profile/' . $args['id']);
+    }
+
+    public function addTechnology(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        $data = $request->getParsedBody();
+        $this->techDao->insertTechnology($data);
+        return $this->smarty->render($response, '');
     }
 }
