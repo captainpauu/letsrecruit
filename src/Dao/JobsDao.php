@@ -15,7 +15,7 @@ class JobsDao
 
     public function getAllJobs()
     {
-        $query = $this->db->query('select * from jobs');
+        $query = $this->db->query('select j.*, t.tech_name from jobs j JOIN technology t on j.job_technology = t.id');
         $result = $query->fetchAll();
         return $result;
     }
@@ -27,13 +27,15 @@ class JobsDao
                   req_experience, 
                   location, 
                   salary, 
-                  description
+                  description,
+                  job_technology
                   ) values(
                            :name,
                            :reqExp,
                            :location,
                            :salary,
-                           :description
+                           :description,
+                           :tech
                   )";
 
         $query = $this->db->prepare($stmt);
@@ -42,7 +44,8 @@ class JobsDao
             ':reqExp' => $data['experience'],
             ':location' => $data['location'],
             ':salary' => $data['salary'],
-            ':description' => $data['description']
+            ':description' => $data['description'],
+            ':tech' => (int)$data['technology']
         ]);
         return $result;
     }

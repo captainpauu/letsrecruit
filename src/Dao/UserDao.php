@@ -67,9 +67,42 @@ class UserDao
         return '';
     }
 
-    public function addUser()
+    public function insertUser($data)
     {
-        return '';
+        $stmt = "INSERT INTO users (
+                   name, 
+                   email, 
+                   user_name, 
+                   password, 
+                   role, 
+                   technology
+                   ) values (
+                             :name,
+                             :email,
+                             :userName,
+                             :password,
+                             :role,
+                             :technology
+                   )";
+
+        $query = $this->db->prepare($stmt);
+        $result = $query->execute([
+            ':name' => $data['name'],
+            ':email' => $data['email'],
+            ':userName' => $data['userName'],
+            ':password' => $data['password'],
+            ':role' => $data['role'],
+            ':technology' => $data['technology']
+        ]);
+        return $result;
+    }
+
+    public function isUserEmailExists($email)
+    {
+        $query = $this->db->prepare("SELECT * FROM users
+                                              WHERE email = :em");
+        $query->execute([':em' => $email]);
+        return $query->fetch();
     }
 
     public function updateUser()

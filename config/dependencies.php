@@ -3,16 +3,20 @@
 use App\Controllers\CandidateController;
 use App\Controllers\UserController;
 use App\Controllers\JobsController;
+use App\Controllers\InterviewController;
 use App\Dao\CandidateDao;
 use App\Dao\UserDao;
 use App\Dao\JobsDao;
 use App\Dao\TechnologyDao;
+use App\Dao\InterviewDao;
 
 $container['CandidateController'] = function($c) {
     return new CandidateController(
         $c->get('smarty'),
         $c->get('CandidateDao'),
-        $c->get('JobsDao')
+        $c->get('UserDao'),
+        $c->get('JobsDao'),
+        $c->get('InterviewDao')
     );
 };
 
@@ -45,12 +49,26 @@ $container['TechnologyDao'] = function($c) {
 $container['JobsController'] = function($c) {
     return new JobsController(
         $c->get('smarty'),
-        $c->get('JobsDao')
+        $c->get('JobsDao'),
+        $c->get('TechnologyDao')
     );
 };
 
 $container['JobsDao'] = function($c) {
     return new JobsDao(
+        $c->get('db')
+    );
+};
+
+$container['InterviewController'] = function($c) {
+    return new InterviewController(
+        $c->get('smarty'),
+        $c->get('InterviewDao')
+    );
+};
+
+$container['InterviewDao'] = function($c) {
+    return new InterviewDao(
         $c->get('db')
     );
 };

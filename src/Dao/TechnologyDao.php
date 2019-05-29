@@ -24,4 +24,11 @@ class TechnologyDao
         $result = $query->fetchAll();
         return $result;
     }
+
+    public function insertTechnology($data)
+    {
+        $query = $this->db->prepare('INSERT INTO technology(tech_name) values(:techName)');
+        $result = $query->execute([':techName' => $data['newTech']]);
+        return $result;
+    }
 }

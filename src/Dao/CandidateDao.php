@@ -135,9 +135,15 @@ class CandidateDao
 
     public function getCandidateById($id)
     {
-        $query = $this->db->prepare("SELECT * FROM candidates as c 
+        $query = $this->db->prepare("SELECT c.*,
+                                                      s.is_shortlisted,
+                                                      s.shortlist_date,
+                                                      u.name,
+                                                      j.name as job_profile
+                                                    FROM candidates as c 
                                                     LEFT JOIN shortlisting s on c.id = s.candidate_id
                                                     LEFT JOIN users u on s.user_id = u.id
+                                                    LEFT JOIN jobs j on c.job_profile_id = j.id
                                                     WHERE c.id = :id");
         $query->execute([':id' => $id]);
         return $query->fetch();

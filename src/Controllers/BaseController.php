@@ -9,6 +9,12 @@ class BaseController
 {
     protected $smarty;
 
+    const ROLE = [
+        1 => '1st Round Panel',
+        2 => '2nd Round Panel',
+        3 => 'Admin'
+    ];
+
     const GENDER = [
         0 => 'Male',
         1 => 'Female'
@@ -28,6 +34,18 @@ class BaseController
         0 => 'Consultancy',
         1 => 'Office Employee',
         2 => 'Self'
+    ];
+
+    const INTERVIEW_MODE = [
+        1 => 'Face to Face',
+        2 => 'Skype',
+        3 => 'Phone Call'
+    ];
+
+    const INTERVIEW_SCHEDULE_STATUS = [
+        1 => 'Pending',
+        2 => 'Accepted',
+        3 => 'Rejected'
     ];
 
     public function __construct(Smarty $smarty) {

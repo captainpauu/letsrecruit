@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 
 use App\Dao\JobsDao;
+use App\Dao\TechnologyDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Views\Smarty;
@@ -12,17 +13,23 @@ use Slim\Views\Smarty;
 class JobsController extends BaseController
 {
     private $dao;
+    private $techDao;
 
-    public function __construct(Smarty $smarty, JobsDao $dao)
+    public function __construct(Smarty $smarty, JobsDao $dao, TechnologyDao $techDao)
     {
         parent::__construct($smarty);
         $this->dao = $dao;
+        $this->techDao = $techDao;
     }
 
     public function getAllJobs(RequestInterface $request, ResponseInterface $response)
     {
         $allJobs = $this->dao->getAllJobs();
-        return $this->smarty->render($response, 'jobOpening.tpl', ['jobs' => $allJobs]);
+        $allTechs = $this->techDao->getAllTechnologies();
+        return $this->smarty->render($response, 'jobOpening.tpl', [
+            'jobs' => $allJobs,
+            'techs' => $allTechs
+        ]);
     }
 
     public function addJob(RequestInterface $request, ResponseInterface $response)

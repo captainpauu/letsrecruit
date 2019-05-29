@@ -29,7 +29,11 @@ class UserController extends BaseController
             $data = $request->getParsedBody();
             $valid = $this->validateUser($data);
             if ($valid['status']) {
-                return $response->withRedirect('/candidate/dashboard');
+                if ((int)$valid['user']['role'] === 3) {
+                    return $response->withRedirect('/candidate/dashboard');
+                } else {
+                    return $response->withRedirect('/interview/request/dashboard');
+                }
             } else {
                 return $this->smarty->render($response, 'login.tpl' , ['errorMsg' => $valid['message']]);
             }
@@ -40,22 +44,23 @@ class UserController extends BaseController
     {
         $userName = $data['username'];
         $password = $data['password'];
-        $status = true;
+        $status = false;
         $message = '';
+        $valid = [];
         if(empty($userName) && empty($password)){
-            $status = false;
             $message = "Invalid Username or password";
         } else {
-            $result = $this->dao->validateUser($userName, $password);
-            if (isset($result['id'])) {
-                $_SESSION['loggedinUser'] = $result;
+            $valid = $this->dao->validateUser($userName, $password);
+            if (isset($valid['id'])) {
+                $allTechs = $this->techDao->getAllTechnologies();
+                $_SESSION['loggedinUser'] = $valid;
+                $_SESSION['technologies'] = $allTechs;
                 $status = true;
             } else {
-                $status = false;
                 $message = "Invalid Username or password";
             }
         }
-        return ['status' => $status, 'message' => $message];
+        return ['status' => $status, 'message' => $message, 'user' => $valid];
     }
 
     public function getAllusers(RequestInterface $request, ResponseInterface $response)
@@ -69,6 +74,22 @@ class UserController extends BaseController
         ]);
     }
 
+    public function addUser(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        $error = '';
+        $data = $request->getParsedBody();
+
+        $check = $this->dao->isUserEmailExists($data['email']);
+        if (count($check) > 1) {
+            $error = "Email already Exists";
+        } else {
+            if (!$this->dao->insertUser($data)) {
+                $error = "User registration failed";
+            }
+        }
+        return $response->withRedirect('/user/dashboard');
+    }
+
     public function candidateShortlisting(RequestInterface $request, ResponseInterface $response, $args)
     {
         $data['userId'] = $_SESSION['loggedinUser']['id'];
@@ -76,5 +97,12 @@ class UserController extends BaseController
         $data['status'] = $args['status'];
         $this->dao->candidateShortlisting($data);
         return $response->withRedirect('/candidate/profile/' . $args['id']);
+    }
+
+    public function addTechnology(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        $data = $request->getParsedBody();
+        $this->techDao->insertTechnology($data);
+        return $this->smarty->render($response, '');
     }
 }

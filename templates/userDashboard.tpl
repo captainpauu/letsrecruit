@@ -77,7 +77,7 @@
 
 <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
      aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addModalLabel">Enter Details</h5>
@@ -85,11 +85,11 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form id="addUserForm" action="{path_for name='userDashboard'}" method="post" name="addUserForm">
+            <form id="addUserForm" action="{path_for name='addUser'}" method="post" name="addUserForm">
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="col-md-5 t">
-                            <label>User Name</label>
+                            <label>Full Name</label>
                         </div>
                         <div class="form-group col-md-7">
                             <input class="form-control" type="text" name="name"
@@ -99,7 +99,7 @@
                     {literal}
                         <div class="form-row">
                             <div class="col-md-5 t">
-                                <label>User E-mail</label>
+                                <label>E-mail</label>
                             </div>
                             <div class="form-group col-md-7">
                                 <input class="form-control" type="email" name="email"
@@ -108,6 +108,15 @@
                             </div>
                         </div>
                     {/literal}
+                    <div class="form-row">
+                        <div class="col-md-5 t">
+                            <label>Username</label>
+                        </div>
+                        <div class="form-group col-md-7">
+                            <input class="form-control" type="text" name="userName"
+                                   placeholder="Username">
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="col-md-5 t">
                             <label>Password</label>
@@ -131,7 +140,7 @@
                             <label>Technology</label>
                         </div>
                         <div class="form-group col-md-7">
-                            <select class="form-control"  name="jobProfileId">
+                            <select class="form-control" name="technology">
                                 <option value="0">Select...</option>
                                 {foreach $techs as $tech}
                                     <option value="{$tech.id}">{$tech.tech_name}</option>
@@ -141,28 +150,28 @@
                     </div>
                     <div class="form-row">
                         <div class="col-md-5 t">
-                            <label>Interview Panel</label>
+                            <label>Role</label>
                         </div>
                         <div class="form-group col-md-7">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="role" value="1">
-                                <label class="form-check-label">Admin</label>
+                                <label class="form-check-label">1st Round Interviewer</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="role" value="2">
-                                <label class="form-check-label">1st Round Panel</label>
+                                <label class="form-check-label">2st Round Interviewer</label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="role" value="3">
-                                <label class="form-check-label">2st Round Panel</label>
+                                <label class="form-check-label">Admin</label>
                             </div>
                         </div>
                     </div>
                     <input type="text" name="action" value="add" hidden>
                 </div>
                 <div class="modal-footer">
-                    <input class="btn btn-sm btn-primary" type="submit" value="Register">
                     <input class="btn btn-sm btn-secondary" type="reset" data-dismiss="modal" value="Cancel">
+                    <input class="btn btn-sm btn-primary" type="submit" value="Register">
                 </div>
             </form>
         </div>
