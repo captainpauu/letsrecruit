@@ -9,6 +9,8 @@ class BaseController
 {
     protected $smarty;
 
+    protected $user;
+
     const ROLE = [
         1 => '1st Round Panel',
         2 => '2nd Round Panel',
@@ -50,5 +52,8 @@ class BaseController
 
     public function __construct(Smarty $smarty) {
         $this->smarty = $smarty;
+        if (isset($_SESSION['loggedinUser']) && $this->user === NULL) {
+            $this->user = $_SESSION['loggedinUser'];
+        }
     }
 }

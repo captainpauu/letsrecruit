@@ -15,11 +15,6 @@ form .row {
     margin: auto;
 }
 
-form .form-control {
-    background-color: #F2F7FB;
-    font-size: 14px;
-}
-
 .formDivider {
     border-bottom: 2px solid darkgrey;
     margin: 20px;

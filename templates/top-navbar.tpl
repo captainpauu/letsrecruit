@@ -83,7 +83,7 @@
                     </li>
                     <div class="dropdown-divider"></div>
                     <li>
-                        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a href="{path_for name='logout'}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </li>
                 </div>
             </div>

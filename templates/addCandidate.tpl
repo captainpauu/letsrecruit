@@ -2,9 +2,6 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     {include 'header.tpl'}
 
     <title>Candidate Registration Form</title>
@@ -29,7 +26,7 @@
             </div>
             <div class="main-content">
                 <label class="text-danger">{$error}</label>
-                <form action="{path_for name='addCandidate'}" method="post" enctype="multipart/form-data">
+                <form name="candidateRegistrationForm" action="{path_for name='addCandidate'}" method="post" enctype="multipart/form-data">
                     <div class="row col-md-12">
                         <div class="col-md-4">
                             <h5>1. Personal detailes</h5>
@@ -37,31 +34,31 @@
                         <div class="col-md-8">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="fname">First Name</label>
+                                    <label for="fname">First Name</label><span class="error"> *</span>
                                     <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="lname">Last Name</label>
+                                    <label for="lname">Last Name</label><span class="error"> *</span>
                                     <input type="text" class="form-control" id="lname"  name="lname"placeholder="Last Name">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="email">Email</label>
+                                    <label for="email">Email</label><span class="error"> *</span>
                                     <input type="email" class="form-control" id="email" name="email" placeholder="email@id.com">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="mobile">Mobile Number</label>
+                                    <label for="mobile">Mobile Number</label><span class="error"> *</span>
                                     <input type="text" class="form-control" id="mobile" name="mobile" placeholder="9876543210">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="birthDate">Date of Birth</label>
+                                    <label for="birthDate">Date of Birth</label><span class="error"> *</span>
                                     <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="currentCity">Current City</label>
+                                    <label for="currentCity">Current City</label><span class="error"> *</span>
                                     <input type="text" class="form-control" id="currentCity" name="currentCity" placeholder="">
                                 </div>
                             </div>
@@ -117,7 +114,7 @@
                         <div class="col-md-8">
                             <div class="form-row">
                                 <div class="form-group col-md-6" id="jobProfileDropdown">
-                                    <label>Job Profile</label>
+                                    <label>Job Profile</label><span class="error"> *</span>
                                     <select class="form-control"  name="jobProfileId">
                                         <option value="0">Select...</option>
                                         {foreach $jobs as $job}
@@ -132,7 +129,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="experience">Experience</label>
+                                    <label for="experience">Experience</label><span class="error"> *</span>
                                     <input type="text" class="form-control" id="experience" name="experience" placeholder="ex. 1y 3m">
                                 </div>
                                 <div class="form-group col-md-6">
@@ -219,7 +216,7 @@
                         <div class="col-md-8">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="resume">Resume</label>
+                                    <label for="resume">Resume</label><span class="error"> *</span>
                                     <input type="file" class="form-control" id="resume" name="resume"  placeholder="">
                                 </div>
                             </div>

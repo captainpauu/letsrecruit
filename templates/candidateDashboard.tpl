@@ -2,10 +2,6 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     {include 'header.tpl'}
 
     <title>Candidate DashBoard</title>
@@ -39,6 +35,7 @@
                         <th>Notice Period</th>
                         <th>Offer In Hand?</th>
                         <th>Interview Round</th>
+                        <th class="action">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -54,6 +51,10 @@
                                 <td>{$c.notice_period}</td>
                                 <td>{$c.offer_in_hand}</td>
                                 <td></td>
+                                <td class="action">
+                                    <a href="" title="edit"><i class="fas fa-edit"></i></a>
+                                    <a href="" title="delete"><i class="fas fa-trash"></i></a>
+                                </td>
                             </tr>
                         {/foreach}
                     </tbody>

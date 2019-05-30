@@ -2,14 +2,11 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     {include 'header.tpl'}
 
     <title>Candidate Profile</title>
     <link rel="stylesheet" href="/assets/css/candidateProfile.css">
+    <script src="/assets/js/candidateProfile.js"></script>
 </head>
 
 <body>
@@ -241,7 +238,7 @@
                                     <h6>{$schedule.interviewer_name} has rejected interview request.
                                         Interview was scheduled on {$schedule.scheduled_date} at {$schedule.scheduled_time}</h6>
                                 {/if}
-                                <button class="btn btn-light btn-sm" data-toggle="modal"
+                                <button id="shceduleInterviewBtn" class="btn btn-light btn-sm" data-toggle="modal"
                                         data-target="#scheduleModal">Schedule Interview
                                 </button>
                                 <button class="btn btn-success btn-sm">Offer Job</button>
@@ -276,7 +273,7 @@
                                             <td>{$r.scheduled_date} {$r.scheduled_time}</td>
                                             {if $r.round_status == 0}
                                                 {assign var=feedbackId value=$r.interview_id}
-                                                <td><button data-toggle="modal" data-target="#feedbackFormModal"
+                                                <td><button id="feedbackSubmitBtn" data-toggle="modal" data-target="#feedbackFormModal"
                                                        class="btn btn-info btn-sm">Submit Feedback</button></td>
                                                 <td><span class="badge badge-primary">Pending</span></td>
                                             {elseif $r.round_status == 1}
@@ -309,9 +306,9 @@
 
     </div>
 
-    {include 'interviewSchedule.tpl'}
+    {include 'modal/interviewSchedule.tpl'}
 
-    {include 'feedbackForm.tpl'}
+    {include 'modal/feedbackForm.tpl'}
 </div>
 </body>
 

@@ -35,7 +35,7 @@
                 <span>Interviews</span>
             </a>
             <ul class="collapse list-unstyled" id="interviewSubmenu">
-                <li>
+                <li class="hidden">
                     <a href="#">Interview Rounds</a>
                 </li>
                 <li>
@@ -49,7 +49,7 @@
                 <span>Job Openings</span>
             </a>
         </li>
-        <li>
+        <li class="hidden">
             <a href="#">
                 <i class="fas fa-address-book"></i>
                 <span>Contact Us</span>

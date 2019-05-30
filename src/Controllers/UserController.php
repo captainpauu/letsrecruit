@@ -105,4 +105,10 @@ class UserController extends BaseController
         $this->techDao->insertTechnology($data);
         return $this->smarty->render($response, '');
     }
+
+    public function logoutUser(RequestInterface $request, ResponseInterface $response)
+    {
+        session_destroy();
+        return $this->smarty->render($response, 'logout.tpl');
+    }
 }
