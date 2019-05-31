@@ -93,7 +93,7 @@ class InterviewDao
         return $query->execute([':action' => $action, ':id' => $id]);
     }
 
-    public function getAllCandidateRounds($candidateId)
+    public function getAllRoundsOfCandidate($candidateId)
     {
         $stmt = "SELECT *
                     FROM rounds as r

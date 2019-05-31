@@ -17,9 +17,7 @@
                             <label for="scheduledDate">Interview Date</label><span class="error"> *</span>
                         </div>
                         <div class="col-md-7">
-                            <input class="form-control" id="scheduledDate" type="date" name="scheduledDate"
-                                   onchange="checkDate()">
-                            <span id="dateError" class="error"></span>
+                            <input class="form-control" id="scheduledDate" type="date" name="scheduledDate">
                         </div>
                     </div>
                     <div class="form-row">
@@ -36,7 +34,7 @@
                         </div>
                         <div class="col-md-7">
                             <select class="form-control" id="interviewMode" name="interviewMode">
-                                <option value="0">Select...</option>
+                                <option value="">Select...</option>
                                 <option value="1">Face To Face</option>
                                 <option value="2">Skype</option>
                                 <option value="3">Phone Call</option>

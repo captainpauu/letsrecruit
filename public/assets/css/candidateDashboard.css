@@ -6,6 +6,7 @@
     -webkit-box-shadow: 0 2px 4px 0 rgba(43,43,43,0.2);
     box-shadow: 0 2px 4px 0 rgba(43,43,43,0.2)
 }
+
 #content .main-content .table {
-    font-size: 14px;
+    border-bottom: 1px solid #dee2e6;
 }

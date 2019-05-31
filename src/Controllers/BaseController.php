@@ -9,6 +9,8 @@ class BaseController
 {
     protected $smarty;
 
+    protected $user;
+
     const ROLE = [
         1 => '1st Round Panel',
         2 => '2nd Round Panel',
@@ -48,7 +50,16 @@ class BaseController
         3 => 'Rejected'
     ];
 
-    public function __construct(Smarty $smarty) {
+    public function __construct(Smarty $smarty)
+    {
         $this->smarty = $smarty;
+        if (isset($_SESSION['loggedinUser']) && $this->user === null) {
+            $this->user = $_SESSION['loggedinUser'];
+        }
+    }
+
+    public function notAuthorised($request, $response)
+    {
+        return $this->smarty->render($response, 'restricted.tpl');
     }
 }

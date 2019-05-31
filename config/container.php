@@ -1,6 +1,7 @@
 <?php
 
 use Slim\Container;
+use Slim\Csrf\Guard;
 use Slim\Views\Smarty;
 use Slim\Views\SmartyPlugins;
 
@@ -44,6 +45,11 @@ $container['db'] = function (Container $container) {
     $pdo = new PDO($dsn, $settings['username'], $settings['password'],$settings['options']);
 
     return $pdo;
+};
+
+$container['csrf'] = function (Container $container) {
+    $guard = new Guard();
+    return $guard;
 };
 
 // Add dependencies
