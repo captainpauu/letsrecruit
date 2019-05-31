@@ -95,7 +95,8 @@ a:hover {
 }
 
 #sidebar.active .sidebar-header span,
-#sidebar.active ul li a span {
+#sidebar.active ul li a span,
+#sidebar.active #interviewSubmenu {
     display: none;
 }
 

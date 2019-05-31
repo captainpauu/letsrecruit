@@ -45,8 +45,9 @@ class InterviewController extends BaseController
         $candidateId = $args['candidateId'];
         $action = (int)$args['action'];
         $result = $this->dao->updateScheduleStatus($interviewId, $action);
-        if ($result) {
-            $rounds = $this->dao->getAllCandidateRounds($candidateId);
+
+        if ($result && self::INTERVIEW_SCHEDULE_STATUS[$action] === 'Accepted') {
+            $rounds = $this->dao->getAllRoundsOfCandidate($candidateId);
             $roundNum = count($rounds) + 1;
             $this->dao->insertNewRound($interviewId, $roundNum);
         }
@@ -59,7 +60,7 @@ class InterviewController extends BaseController
         $candidateId = $args['candidateId'];
         $data = $request->getParsedBody();
         $result = $this->dao->insertFeedback($interviewId, $data);
-        if($result){
+        if ($result) {
             $this->dao->updateScheduleStatus($interviewId, 0);
         }
         return $response->withRedirect('/candidate/profile/' . $candidateId);

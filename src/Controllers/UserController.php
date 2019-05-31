@@ -65,6 +65,9 @@ class UserController extends BaseController
 
     public function getAllusers(RequestInterface $request, ResponseInterface $response)
     {
+        if (self::ROLE[$this->user['role']] !== 'Admin') {
+            return $this->notAuthorised($request, $response);
+        }
         $allUsers = $this->dao->getAllUsers();
         $allTechs = $this->techDao->getAllTechnologies();
 
@@ -108,7 +111,7 @@ class UserController extends BaseController
 
     public function logoutUser(RequestInterface $request, ResponseInterface $response)
     {
-        session_destroy();
+        unset($_SESSION['loggedinUser']);
         return $this->smarty->render($response, 'logout.tpl');
     }
 }

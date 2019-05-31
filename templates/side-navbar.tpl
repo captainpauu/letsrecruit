@@ -6,29 +6,31 @@
     </div>
 
     <ul class="list-unstyled components">
-        <li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="fas fa-table"></i>
-                <span>Dashboards</span>
-            </a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="{path_for name='candidateDashboard'}">Candidate Dashboard</a>
-                </li>
-                <li>
-                    <a href="{path_for name='userDashboard'}">User Dashboard</a>
-                </li>
-                <li>
-                    <a href="#">Consultancy Dashboard</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="{path_for name='addCandidate'}">
-                <i class="fas fa-user"></i>
-                <span>Add Candidate</span>
-            </a>
-        </li>
+        {if $smarty.session.loggedinUser.role == 3}
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-table"></i>
+                    <span>Dashboards</span>
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="{path_for name='candidateDashboard'}">Candidate Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{path_for name='userDashboard'}">User Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#">Consultancy Dashboard</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{path_for name='addCandidate'}">
+                    <i class="fas fa-user"></i>
+                    <span>Add Candidate</span>
+                </a>
+            </li>
+        {/if}
         <li>
             <a href="#interviewSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="fas fa-copy"></i>

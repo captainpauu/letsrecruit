@@ -33,6 +33,9 @@ class CandidateController extends BaseController
 
     public function getAllCandidates(RequestInterface $request, ResponseInterface $response)
     {
+        if (self::ROLE[$this->user['role']] !== 'Admin') {
+            return $this->notAuthorised($request, $response);
+        }
         $allCandidates = $this->dao->getAllCandidates();
         return $this->smarty->render(
             $response,
@@ -47,14 +50,14 @@ class CandidateController extends BaseController
             $data = $this->getCandidateData($id);
             $allUsers = $this->userDao->getAllUsers();
             $scheduleStatus = $this->interviewDao->currentInterviewStatus($id);
-            $interviewRounds = $this->interviewDao->getAllCandidateRounds($id);
+            $interviewRounds = $this->interviewDao->getAllRoundsOfCandidate($id);
 
             return $this->smarty->render($response, 'candidateProfile.tpl', [
                 'candidate' => $data,
                 'users' => $allUsers,
                 'schedule' => $scheduleStatus,
                 'rounds' => $interviewRounds
-                ]);
+            ]);
 
         } else {
             return false;
@@ -73,6 +76,9 @@ class CandidateController extends BaseController
 
     public function addCandidate(RequestInterface $request, ResponseInterface $response)
     {
+        if (self::ROLE[$this->user['role']] !== 'Admin') {
+            return $this->notAuthorised($request, $response);
+        }
         $allJobs = $this->jobsDao->getAllJobs();
         if ($request->isPost()) {
             $error = '';
@@ -106,7 +112,7 @@ class CandidateController extends BaseController
                 ]);
             }
         } else {
-            return $this->smarty->render($response, 'addCandidate.tpl',['jobs' => $allJobs]);
+            return $this->smarty->render($response, 'addCandidate.tpl', ['jobs' => $allJobs]);
         }
     }
 
