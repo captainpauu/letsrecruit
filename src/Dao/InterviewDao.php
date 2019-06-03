@@ -4,16 +4,13 @@
 namespace App\Dao;
 
 
-class InterviewDao
+class InterviewDao extends BaseDao
 {
-    private $db;
-
-    public function __construct(\PDO $db)
-    {
-        $this->db = $db;
-    }
-
-    public function getAllInterviewsByUser($id)
+    /**
+     * @param $id
+     * @return array
+     */
+    public function getAllInterviewsByUser($id) : array
     {
         $stmt = "SELECT i.id,
                         c.id as candidate_id,

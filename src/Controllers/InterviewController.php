@@ -11,8 +11,16 @@ use Slim\Views\Smarty;
 
 class InterviewController extends BaseController
 {
+    /**
+     * @var InterviewDao
+     */
     protected $dao;
 
+    /**
+     * InterviewController constructor.
+     * @param Smarty $smarty
+     * @param InterviewDao $dao
+     */
     public function __construct(Smarty $smarty, InterviewDao $dao)
     {
         parent::__construct($smarty);

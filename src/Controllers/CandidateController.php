@@ -9,16 +9,37 @@ use App\Dao\JobsDao;
 use App\Dao\UserDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Views\Smarty;
 
 class CandidateController extends BaseController
 {
+    /**
+     * @var CandidateDao
+     */
     protected $dao;
+    /**
+     * @var UserDao
+     */
     protected $userDao;
+    /**
+     * @var JobsDao
+     */
     protected $jobsDao;
+    /**
+     * @var InterviewDao
+     */
     protected $interviewDao;
 
+    /**
+     * CandidateController constructor.
+     * @param Smarty $smarty
+     * @param CandidateDao $dao
+     * @param UserDao $userDao
+     * @param JobsDao $jobsDao
+     * @param InterviewDao $interviewDao
+     */
     public function __construct(
-        $smarty,
+        Smarty $smarty,
         CandidateDao $dao,
         UserDao $userDao,
         JobsDao $jobsDao,
@@ -31,10 +52,15 @@ class CandidateController extends BaseController
         $this->interviewDao = $interviewDao;
     }
 
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @return ResponseInterface
+     */
     public function getAllCandidates(RequestInterface $request, ResponseInterface $response)
     {
         if (self::ROLE[$this->user['role']] !== 'Admin') {
-            return $this->notAuthorised($request, $response);
+            return $this->notAuthorised();
         }
         $allCandidates = $this->dao->getAllCandidates();
         return $this->smarty->render(
@@ -43,6 +69,12 @@ class CandidateController extends BaseController
             ['allCandidates' => $allCandidates]);
     }
 
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param $args
+     * @return bool|ResponseInterface
+     */
     public function viewProfile(RequestInterface $request, ResponseInterface $response, $args)
     {
         $id = $args['id'];
@@ -64,16 +96,28 @@ class CandidateController extends BaseController
         }
     }
 
-    public function getCandidateData($candidateId)
+    /**
+     * @param $candidateId
+     * @return mixed
+     */
+    public function getCandidateData($candidateId) : array
     {
+        $data = [];
         $data = $this->dao->getCandidateById($candidateId);
-        $data['gender'] = self::GENDER[$data['gender']];
-        $data['marital_status'] = self::MARITAL_STATUS[$data['marital_status']];
-        $data['offer_in_hand'] = self::OFFER_IN_HAND[$data['offer_in_hand']];
-        $data['reference'] = self::REFERENCE_TYPE[$data['reference']];
+        if(!empty($data)) {
+            $data['gender'] = self::GENDER[$data['gender']];
+            $data['marital_status'] = self::MARITAL_STATUS[$data['marital_status']];
+            $data['offer_in_hand'] = self::OFFER_IN_HAND[$data['offer_in_hand']];
+            $data['reference'] = self::REFERENCE_TYPE[$data['reference']];
+        }
         return $data;
     }
 
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @return mixed
+     */
     public function addCandidate(RequestInterface $request, ResponseInterface $response)
     {
         if (self::ROLE[$this->user['role']] !== 'Admin') {
@@ -116,7 +160,11 @@ class CandidateController extends BaseController
         }
     }
 
-    public function insertCandidate($data)
+    /**
+     * @param $data
+     * @return bool
+     */
+    public function insertCandidate($data) : bool
     {
         if ((int)$data['reference'] === 0) {
             $data['referredBy'] = '';
@@ -129,7 +177,12 @@ class CandidateController extends BaseController
         return $this->dao->insertCandidate($data);
     }
 
-    public function uploadResume($uploadedFiles, $data)
+    /**
+     * @param $uploadedFiles
+     * @param $data
+     * @return bool
+     */
+    public function uploadResume($uploadedFiles, $data) : bool
     {
         $uploadFile = $uploadedFiles['resume'];
         if ($uploadFile->getError() === UPLOAD_ERR_OK) {

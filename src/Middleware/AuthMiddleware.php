@@ -9,6 +9,12 @@ use Psr\Http\Message\ResponseInterface;
 
 class AuthMiddleware extends Middleware
 {
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param $next
+     * @return ResponseInterface
+     */
     public function __invoke(RequestInterface $request, ResponseInterface $response, $next)
     {
         if(!$this->checkAuth()){
@@ -20,7 +26,10 @@ class AuthMiddleware extends Middleware
         return $response;
     }
 
-    private function checkAuth()
+    /**
+     * @return bool
+     */
+    private function checkAuth() : bool
     {
         return isset($_SESSION['loggedinUser']);
     }

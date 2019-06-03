@@ -2,6 +2,7 @@
 
 {block name=head}
     <link rel="stylesheet" href="/assets/css/candidateDashboard.css">
+    <script src="/assets/js/candidateDashboard.js"></script>
 {/block}
 
 {block name=content}
@@ -38,8 +39,12 @@
                         <td>{$c.offer_in_hand}</td>
                         <td></td>
                         <td class="action">
-                            <a href="" title="edit"><i class="fas fa-edit"></i></a>
-                            <a href="" title="delete"><i class="fas fa-trash"></i></a>
+                            <button class="btn btn-outline-primary btn-sm edit-candidate" title="edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm delete-candidate" title="delete">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 {/foreach}

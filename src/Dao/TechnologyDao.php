@@ -4,15 +4,11 @@
 namespace App\Dao;
 
 
-class TechnologyDao
+class TechnologyDao extends BaseDao
 {
-    protected $db;
-
-    public function __construct(\PDO $db)
-    {
-        $this->db = $db;
-    }
-
+    /**
+     * @return mixed
+     */
     public function getAllTechnologies()
     {
         $stmt = "SELECT 

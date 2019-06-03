@@ -4,15 +4,13 @@
 namespace App\Dao;
 
 
-class UserDao
+class UserDao extends BaseDao
 {
-    protected $db;
-
-    public function __construct(\PDO $db)
-    {
-        $this->db = $db;
-    }
-
+    /**
+     * @param $username
+     * @param $password
+     * @return mixed
+     */
     public function validateUser($username, $password)
     {
         $query = $this->db->prepare("SELECT * FROM users 
@@ -22,7 +20,10 @@ class UserDao
         return $result;
     }
 
-    public function getAllUsers()
+    /**
+     * @return array
+     */
+    public function getAllUsers() : array
     {
         $stmt = "SELECT 
                         u.id,
@@ -38,7 +39,11 @@ class UserDao
         return $result;
     }
 
-    public function candidateShortlisting($data)
+    /**
+     * @param $data
+     * @return bool
+     */
+    public function candidateShortlisting($data) : bool
     {
         $stmt = "INSERT INTO shortlisting(
                          candidate_id,
@@ -67,7 +72,11 @@ class UserDao
         return '';
     }
 
-    public function insertUser($data)
+    /**
+     * @param $data
+     * @return bool
+     */
+    public function insertUser($data) : bool
     {
         $stmt = "INSERT INTO users (
                    name, 
@@ -97,6 +106,10 @@ class UserDao
         return $result;
     }
 
+    /**
+     * @param $email
+     * @return mixed
+     */
     public function isUserEmailExists($email)
     {
         $query = $this->db->prepare("SELECT * FROM users

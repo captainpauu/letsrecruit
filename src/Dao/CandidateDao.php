@@ -4,16 +4,12 @@
 namespace App\Dao;
 
 
-class CandidateDao
+class CandidateDao extends BaseDao
 {
-    protected $db;
-
-    public function __construct(\PDO $db)
-    {
-        $this->db = $db;
-    }
-
-    public function getAllCandidates()
+    /**
+     * @return array
+     */
+    public function getAllCandidates() : array
     {
         $stmt = "SELECT 
                         c.id,
@@ -33,6 +29,10 @@ class CandidateDao
         return $result;
     }
 
+    /**
+     * @param $email
+     * @return mixed
+     */
     public function isCandidateEmailExists($email)
     {
         $query = $this->db->prepare("SELECT * FROM candidates
@@ -41,7 +41,11 @@ class CandidateDao
         return $query->fetch();
     }
 
-    public function insertCandidate($data)
+    /**
+     * @param $data
+     * @return bool
+     */
+    public function insertCandidate($data) : bool
     {
         $stmt = "INSERT INTO candidates(
                        fname, 
@@ -125,7 +129,12 @@ class CandidateDao
         return $result;
     }
 
-    public function insertResumeName($email, $fileName)
+    /**
+     * @param $email
+     * @param $fileName
+     * @return bool
+     */
+    public function insertResumeName($email, $fileName) : bool
     {
         $query = $this->db->prepare("UPDATE candidates 
                                                 SET resume = :fileName 
@@ -133,6 +142,10 @@ class CandidateDao
         return $query->execute([':fileName' => $fileName, ':email' => $email]);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getCandidateById($id)
     {
         $query = $this->db->prepare("SELECT c.*,

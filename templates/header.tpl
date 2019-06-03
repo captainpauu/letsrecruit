@@ -15,5 +15,6 @@
 <script src="/assets/Validate/additional-methods.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/assets/datatables/css/datatables.min.css">
 <script type="text/javascript" charset="utf8" src="/assets/datatables/js/datatables.min.js"></script>
+<script src="/assets/SweetAlert2/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="/assets/css/global.css">
 <script src="/assets/js/global.js"></script>

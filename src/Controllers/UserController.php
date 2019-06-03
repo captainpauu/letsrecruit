@@ -11,9 +11,21 @@ use Psr\Http\Message\ResponseInterface;
 
 class UserController extends BaseController
 {
+    /**
+     * @var UserDao
+     */
     protected $dao;
+    /**
+     * @var TechnologyDao
+     */
     protected $techDao;
 
+    /**
+     * UserController constructor.
+     * @param $smarty
+     * @param UserDao $dao
+     * @param TechnologyDao $techDao
+     */
     public function __construct($smarty, UserDao $dao, TechnologyDao $techDao)
     {
         parent::__construct($smarty);
@@ -40,6 +52,10 @@ class UserController extends BaseController
         }
     }
 
+    /**
+     * @param $data
+     * @return array
+     */
     public function validateUser($data) : array
     {
         $userName = $data['username'];

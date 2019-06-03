@@ -4,16 +4,12 @@
 namespace App\Dao;
 
 
-class JobsDao
+class JobsDao extends BaseDao
 {
-    protected $db;
-
-    public function __construct(\PDO $db)
-    {
-        $this->db = $db;
-    }
-
-    public function getAllJobs()
+    /**
+     * @return array
+     */
+    public function getAllJobs() : array
     {
         $query = $this->db->query('select j.*, t.tech_name from jobs j JOIN technology t on j.job_technology = t.id');
         $result = $query->fetchAll();

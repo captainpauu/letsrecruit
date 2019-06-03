@@ -7,8 +7,14 @@ use Slim\Views\Smarty;
 
 class BaseController
 {
+    /**
+     * @var Smarty
+     */
     protected $smarty;
 
+    /**
+     * @var array
+     */
     protected $user;
 
     const ROLE = [
@@ -50,6 +56,10 @@ class BaseController
         3 => 'Rejected'
     ];
 
+    /**
+     * BaseController constructor.
+     * @param Smarty $smarty
+     */
     public function __construct(Smarty $smarty)
     {
         $this->smarty = $smarty;
@@ -58,6 +68,11 @@ class BaseController
         }
     }
 
+    /**
+     * @param $request
+     * @param $response
+     * @return ResponseInterface
+     */
     public function notAuthorised($request, $response)
     {
         return $this->smarty->render($response, 'restricted.tpl');

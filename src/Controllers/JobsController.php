@@ -12,9 +12,21 @@ use Slim\Views\Smarty;
 
 class JobsController extends BaseController
 {
+    /**
+     * @var JobsDao
+     */
     private $dao;
+    /**
+     * @var TechnologyDao
+     */
     private $techDao;
 
+    /**
+     * JobsController constructor.
+     * @param Smarty $smarty
+     * @param JobsDao $dao
+     * @param TechnologyDao $techDao
+     */
     public function __construct(Smarty $smarty, JobsDao $dao, TechnologyDao $techDao)
     {
         parent::__construct($smarty);

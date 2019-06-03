@@ -10,3 +10,23 @@
 #content .main-content .table {
     border-bottom: 1px solid #dee2e6;
 }
+
+.edit-candidate {
+    color: var(--info);
+    border-color: var(--primary);
+}
+
+.edit-candidate:hover {
+    background-color: var(--info);
+    border-color: var(--primary);
+}
+
+.delete-candidate {
+    color: var(--pink);
+    border-color: var(--red);
+}
+
+.delete-candidate:hover {
+    background-color: var(--pink);
+    border-color: var(--red);
+}
