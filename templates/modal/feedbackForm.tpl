@@ -8,11 +8,10 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form id="feedbackForm"
-                  action="{path_for name='submitFeedback' data = ['id' => {$feedbackId},'candidateId' => {$candidate.id}]}"
-                  method="post"
-                  name="feedbackForm">
+            <form id="feedbackForm" name="feedbackForm">
                 <div class="modal-body">
+                    <input type="hidden" id="candidateId" value="{$candidate.id}">
+                    <input type="hidden" id="feedbackId" value="{$feedbackId}">
                     <div class="form-row">
                         <div class="col-md-3">
                             <label for="feedback">Feedback</label><span class="error"> *</span>
@@ -42,7 +41,7 @@
                 </div>
                 <div class="modal-footer">
                     <input class="btn btn-secondary" type="button" data-dismiss="modal" value="Cancel">
-                    <input class="btn btn-primary" type="submit" value="Submit">
+                    <input class="btn btn-primary" type="submit" id="submitFeedbackBtn" value="Submit">
                 </div>
             </form>
         </div>

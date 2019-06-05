@@ -7,6 +7,7 @@ use App\Dao\CandidateDao;
 use App\Dao\InterviewDao;
 use App\Dao\JobsDao;
 use App\Dao\UserDao;
+use MongoDB\Driver\ReadPreference;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Views\Smarty;
@@ -82,7 +83,12 @@ class CandidateController extends BaseController
             $data = $this->getCandidateData($id);
             $allUsers = $this->userDao->getAllUsers();
             $scheduleStatus = $this->interviewDao->currentInterviewStatus($id);
+            $scheduleStatus['scheduled_date'] = $this->convertDateFormat($scheduleStatus['scheduled_date']);
+
             $interviewRounds = $this->interviewDao->getAllRoundsOfCandidate($id);
+            foreach ($interviewRounds as $key => $round) {
+                $interviewRounds[$key]['scheduled_date'] = $this->convertDateFormat($round['scheduled_date']);
+            }
 
             return $this->smarty->render($response, 'candidateProfile.tpl', [
                 'candidate' => $data,
@@ -105,6 +111,8 @@ class CandidateController extends BaseController
         $data = [];
         $data = $this->dao->getCandidateById($candidateId);
         if(!empty($data)) {
+            $data['birth_date'] = $this->convertDateFormat($data['birth_date'], false);
+            $data['shortlist_date'] = $this->convertDateFormat($data['shortlist_date'], false);
             $data['gender'] = self::GENDER[$data['gender']];
             $data['marital_status'] = self::MARITAL_STATUS[$data['marital_status']];
             $data['offer_in_hand'] = self::OFFER_IN_HAND[$data['offer_in_hand']];
@@ -193,5 +201,15 @@ class CandidateController extends BaseController
             return $this->dao->insertResumeName($data['email'], $newFileName);
         }
         return false;
+    }
+
+    public function deleteCandidate(RequestInterface $request, ResponseInterface $response)
+    {
+        $id = $_POST['candidateId'];
+        $success = false;
+        if ($this->dao->deleteCandidate($id)){
+            $success = true;
+        }
+        return $response->withJson(['success' => $success]);
     }
 }

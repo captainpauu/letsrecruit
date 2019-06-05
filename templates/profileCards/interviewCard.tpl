@@ -24,7 +24,7 @@
         {elseif $schedule.schedule_status == 2}
             <h6>{$schedule.interviewer_name} has accepted interview request.
                 Interview scheduled on {$schedule.scheduled_date}
-                at {$scheduled.schedule_time}</h6>
+                at {$schedule.scheduled_time}</h6>
         {else}
             {if $schedule.schedule_status == 3}
                 <h6>{$schedule.interviewer_name} has rejected interview request.

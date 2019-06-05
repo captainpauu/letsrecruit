@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="main-content">
-            <table id="dataTable" class="table table-bordered table-hover" style="width:100%">
+            <table id="interviewRequestTable" class="table table-bordered table-hover" style="width:100%">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -28,7 +28,9 @@
                 {foreach $interviews as $i}
                     <tr>
                         <td>{$i.id}</td>
-                        <td>{$i.fname} {$i.lname}</td>
+                        <td>
+                            <a href="{path_for name='candidateProfile' data=['id' => {$i.candidate_id}]}">{$i.fname} {$i.lname}</a>
+                        </td>
                         <td>{$i.job_profile}</td>
                         <td>{$i.experience}</td>
                         <td>{$i.scheduled_date} {$i.scheduled_time}</td>

@@ -47,6 +47,11 @@ $app->group('', function () use ($app) {
                 '/profile/{id}',
                 'CandidateController:viewProfile'
             )->setName('candidateProfile');
+
+            $app->post(
+                '/delete',
+                'CandidateController:deleteCandidate'
+            )->setName('deleteCandidate');
         });
 
 
@@ -75,7 +80,7 @@ $app->group('', function () use ($app) {
             $app->get(
                 '/request/{id}/{candidateId}/{action}',
                 'InterviewController:interviewRequestAction'
-            )->setName('interviewRequest');
+            )->setName('requestAction');
 
             $app->get(
                 '/request/dashboard',
@@ -83,7 +88,7 @@ $app->group('', function () use ($app) {
             )->setName('interviewRequest');
 
             $app->post(
-                '/feedback/{id}/{candidateId}',
+                '/submit-feedback',
                 'InterviewController:submitFeedback'
             )->setName('submitFeedback');
 

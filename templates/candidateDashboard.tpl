@@ -42,7 +42,7 @@
                             <button class="btn btn-outline-primary btn-sm edit-candidate" title="edit">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="btn btn-outline-primary btn-sm delete-candidate" title="delete">
+                            <button class="btn btn-outline-primary btn-sm delete-candidate" title="delete" data-deleteId="{$c.id}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>

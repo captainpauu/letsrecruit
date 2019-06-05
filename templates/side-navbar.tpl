@@ -41,7 +41,7 @@
                     <a href="#">Interview Rounds</a>
                 </li>
                 <li>
-                    <a href="#">Interview Requests</a>
+                    <a href="{path_for name='interviewRequest'}">Interview Requests</a>
                 </li>
             </ul>
         </li>

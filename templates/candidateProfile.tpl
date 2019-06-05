@@ -21,10 +21,12 @@
                                    role="tab"
                                    aria-controls="personal" aria-selected="true">Personal Info</a>
                             </li>
+                            {if $smarty.session.loggedinUser.role == 3}
                             <li class="nav-item">
                                 <a class="nav-link" id="work-tab" data-toggle="tab" href="#work" role="tab"
                                    aria-controls="work" aria-selected="false">Work Info</a>
                             </li>
+                            {/if}
                         </ul>
                     </div>
                     <div class="card-block">
@@ -93,6 +95,7 @@
                                 </div>
                                 <!-- end of row -->
                             </div>
+                            {if $smarty.session.loggedinUser.role == 3}
                             <div class="tab-pane fade" id="work" role="tabpanel" aria-labelledby="work-tab">
                                 <div class="row">
                                     <div class="col-lg-12 col-xl-6">
@@ -169,6 +172,7 @@
                                 </div>
                                 <!-- end of row -->
                             </div>
+                            {/if}
                         </div>
                     </div>
                 </div>
@@ -178,9 +182,10 @@
                 <!-- Candidate Shortlist Status -->
                 {include 'profileCards/shortlistCard.tpl'}
 
-                <!-- Interview Schedule status -->
-                {include 'profileCards/interviewCard.tpl'}
-
+                {if $candidate.is_shortlisted == 1 && $smarty.session.loggedinUser.role == 3}
+                    <!-- Interview Schedule status -->
+                    {include 'profileCards/interviewCard.tpl'}
+                {/if}
             </div>
         </div>
 
@@ -190,16 +195,12 @@
         <div id="resume" class="card">
             <div class="card-header">Resume</div>
             <div class="card-block">
-                <iframe src="/assets/resumes/{$candidate.resume}" style="width:100%; height:500px;"
-                        frameborder="0">
+                <iframe src="/assets/resumes/{$candidate.resume}" style="width:100%; height:500px;">
                 </iframe>
             </div>
         </div>
     </div>
     <!-- Interview Schedule form -->
     {include 'modal/interviewSchedule.tpl'}
-
-    <!-- Interview Feedback form -->
-    {include 'modal/feedbackForm.tpl'}
 
 {/block}
