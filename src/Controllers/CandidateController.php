@@ -83,8 +83,9 @@ class CandidateController extends BaseController
             $data = $this->getCandidateData($id);
             $allUsers = $this->userDao->getAllUsers();
             $scheduleStatus = $this->interviewDao->currentInterviewStatus($id);
-            $interviewRounds = $this->interviewDao->getAllRoundsOfCandidate($id);
+            $scheduleStatus['scheduled_date'] = $this->convertDateFormat($scheduleStatus['scheduled_date']);
 
+            $interviewRounds = $this->interviewDao->getAllRoundsOfCandidate($id);
             foreach ($interviewRounds as $key => $round) {
                 $interviewRounds[$key]['scheduled_date'] = $this->convertDateFormat($round['scheduled_date']);
             }

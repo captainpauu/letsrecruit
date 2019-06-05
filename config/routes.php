@@ -80,7 +80,7 @@ $app->group('', function () use ($app) {
             $app->get(
                 '/request/{id}/{candidateId}/{action}',
                 'InterviewController:interviewRequestAction'
-            )->setName('interviewRequest');
+            )->setName('requestAction');
 
             $app->get(
                 '/request/dashboard',

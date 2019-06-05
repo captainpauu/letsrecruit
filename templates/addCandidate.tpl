@@ -13,7 +13,7 @@
         <div class="main-content">
             <label class="text-danger">{$error}</label>
             <form name="candidateRegistrationForm" action="{path_for name='addCandidate'}" method="post"
-                  enctype="multipart/form-data">
+                  enctype="multipart/form-data" autocomplete="off">
                 <div class="row col-md-12">
                     <div class="col-md-4">
                         <h5>1. Personal detailes</h5>

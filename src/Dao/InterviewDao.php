@@ -25,7 +25,8 @@ class InterviewDao extends BaseDao
                   FROM interviews AS i
                   JOIN candidates c on i.candidate_id = c.id
                   JOIN jobs j on c.job_profile_id = j.id
-                  WHERE i.interviewer_id = :id";
+                  WHERE i.interviewer_id = :id
+                  ORDER BY i.scheduled_date DESC";
 
         $query = $this->db->prepare($stmt);
         $query->execute([':id' => $id]);
@@ -92,11 +93,15 @@ class InterviewDao extends BaseDao
 
     public function getAllRoundsOfCandidate($candidateId)
     {
-        $stmt = "SELECT r.*, i.*, u1.name as interviewer_name, u2.name as feedback_by_name
+        $stmt = "SELECT 
+                        r.*, 
+                        i.*, 
+                        u1.name as interviewer_name, 
+                        u2.name as feedback_by_name
                     FROM rounds as r
                     JOIN interviews i on r.interview_id = i.id
                     JOIN users u1 on i.interviewer_id = u1.id
-                    JOIN users u2 on r.feedback_by = u2.id
+                    LEFT JOIN users u2 on r.feedback_by = u2.id
                     WHERE i.candidate_id = :id";
         $query = $this->db->prepare($stmt);
         $query->execute([':id' => $candidateId]);

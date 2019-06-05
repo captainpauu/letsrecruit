@@ -1,0 +1,1862 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+181226  1:53:13	  798 Connect	deploy-et-dev@localhost on dev_etouches2
+		  798 Query	SET NAMES 'utf8'
+		  798 Query	SELECT 
+              ew.status, ew.event_id, ew.site_name, ew.account_id, ew.created, ew.updated, ew.folder_id, ew.account_id, ew.updated_by, ew.created_by, ed.name as event_name, ed.defaultlanguage as default_language
+            FROM
+              ehome_website ew
+              left join eventdata ed on ew.event_id = ed.eventid
+            WHERE 
+              ew.id = '371' AND ew.deleted = 0
+		  798 Query	SELECT u.userid,u.accountid,u.accessid,u.moduleid,u.username,u.password,u.pastpasswords,u.passwordreset,
+                u.email,u.fname,u.lname,u.title,u.city,u.country,u.phone,u.number_tabs,u.tab_layout,u.displaysettings, 
+                u.recently_accessed_menu,u.total_accessed_items,u.item_history,u.usertype,u.demouser,u.defaultlimit,
+                u.reportcolor1,u.reportcolor2,u.report_filter_reset,u.open_source_icons,u.new_interface,u.dateformat, 
+                u.timeformat,u.timezoneid,u.decimal_point,u.thousands_separator,u.userlanguage,u.statuscolors,u.skipwelcomepage,
+                u.summarynewwindow,u.adminreginsamewindow,u.onlyrelevantstatus,u.viewcreditcards,u.View_credit_cards_expiration,u.runrefunds,u.projectprereminders, 
+                u.projectpostreminders,u.bookmarkedreports,u.online_chat,u.billing_contact,u.theme,u.session_planner, u.homeregion, u.is_created_from_saml,
+                u.lastlogin,u.logintimes,
+                a.all_events_folders,a.all_eMarketing_folders,a.all_eSurvey_folders,a.all_users_folders, a.all_image_folders,
+                a.all_document_folders, a.all_Exago_folders, a.all_look_feel_folders, 
+                a.all_widget_folders,
+                a.all_widget_folders AS all_widgets_folders, 
+                a.all_web_site_folders,
+                a.all_web_site_folders AS all_websites_folders,
+                a.all_meetingregistration_folders,
+                ad.sso_enabled, ad.modules as license,m.modules,m.readonly,m.edit_events_with_the_same_profile,
+                m.permissions,ad.session_timeout,u.last_activity,u.disable_bom,u.noReportExport,u.runpendingcards,
+                ad.locked accountLocked, ad.gateway_settings_array, u.zentila_department_id, m.zentila_role_id,
+                u.block_scripts, ad.name as accountname, ad.disable_marketing_email
+            FROM userdata u 
+                INNER JOIN account_accessprofiles a ON u.accessid=a.accessid 
+                INNER JOIN account_moduleprofiles m ON u.moduleid=m.moduleid 
+                LEFT JOIN accountdata ad ON u.accountid=ad.accountid 
+            WHERE u.deleted=0 AND u.userid='24163' AND usertype>='1' AND password='83013d051393891d293c63d415f8fcf59708661ca37fd76e0a3cdcc591017fbf72a695509c321478b7fe451efefa7e91b8f31d6d9c46bcd492315723c947bf6b'
+		  798 Query	SELECT accountid FROM accountdata WHERE deleted=0
+		  798 Query	UPDATE userlogins SET lastactivity=NOW() WHERE userid='24163' AND isnull(logout)
+		  798 Query	UPDATE userdata SET displaysettings='a:45:{s:9:\"accountid\";i:14;s:5:\"users\";a:5:{s:9:\"accountid\";s:2:\"14\";s:8:\"parentid\";s:1:\"0\";s:5:\"types\";s:20:\"Show all event types\";s:4:\"sort\";s:1:\"0\";s:9:\"direction\";s:0:\"\";}s:17:\"eReg/advanced.php\";a:0:{}s:14:\"eReg/hotel.php\";a:0:{}s:28:\"eReg/manage/attendeelist.php\";a:0:{}s:13:\"eReg/fees.php\";a:0:{}s:17:\"eReg/speakers.php\";a:0:{}s:6:\"events\";a:7:{s:8:\"parentid\";s:2:\"26\";s:5:\"types\";s:20:\"Show all event types\";s:9:\"view_type\";s:4:\"list\";s:9:\"rec_count\";s:1:\"0\";s:8:\"cur_page\";s:1:\"0\";s:4:\"sort\";s:4:\"name\";s:9:\"direction\";s:4:\"desc\";}s:15:\"session_planner\";a:2:{i:93167;a:2:{s:4:\"date\";s:10:\"2017-01-16\";s:9:\"conflicts\";s:1:\"1\";}i:93162;a:1:{s:9:\"conflicts\";s:1:\"1\";}}s:41:\"accounts/editors/access_profileeditor.php\";a:0:{}s:51:\"databases/lookandfeel/editors/lookandfeeleditor.php\";a:0:{}s:15:\"eReg/agenda.php\";a:0:{}s:15:\"eVent/index.php\";a:0:{}s:32:\"databases/image/save_handler.php\";a:0:{}s:27:\"accounts/accountdetails.php\";a:0:{}s:14:\"eReg/index.php\";a:0:{}s:32:\"eHome/editors/content_editor.php\";a:0:{}s:30:\"eReg/editors/sessioneditor.php\";a:0:{}s:18:\"accounts/ehome.php\";a:0:{}s:46:\"accounts/otherSettings.php?PDFLanguageSettings\";a:0:{}s:42:\"eReg/advanced.php?Visual/aestheticsettings\";a:0:{}s:26:\"eReg/advanced.php?Redirect\";a:0:{}s:41:\"eReg/advanced.php?Advancedpaymentsettings\";a:0:{}s:48:\"databases/image/save_handler.php?0UploadProblems\";a:0:{}s:59:\"accounts/editors/module_profileeditor.php?ModulePermissions\";a:0:{}s:60:\"accounts/editors/module_profileeditor.php?Generalpermissions\";a:0:{}s:57:\"accounts/editors/module_profileeditor.php?eRegpermissions\";a:0:{}s:60:\"accounts/editors/module_profileeditor.php?eBudgetpermissions\";a:1:{i:12;s:1:\"1\";}s:55:\"accounts/editors/module_profileeditor.php?VenueSourcing\";a:1:{i:17;s:1:\"1\";}s:60:\"accounts/editors/module_profileeditor.php?eMobilepermissions\";a:1:{i:6;s:1:\"1\";}s:7:\"ui-size\";s:5:\"small\";s:26:\"eReg/agenda.php?Agendapage\";a:0:{}s:4:\"tour\";s:1:\"1\";s:17:\"menu-items-opened\";a:3:{i:0;s:9:\"dashboard\";i:1;s:6:\"events\";i:2;s:8:\"websites\";}s:37:\"eReg/advanced.php?Other/miscellaneous\";a:0:{}s:30:\"eReg/hotel.php?Availablehotels\";a:0:{}s:26:\"eVent/goals.php?EventGoals\";a:0:{}s:42:\"eVent/goals.php?EventSpecificCategoryGoals\";a:0:{}s:33:\"eVent/goals.php?CategoryTypeGoals\";a:0:{}s:47:\"accounts/integrations/itn.php?BadgeFieldMapping\";a:0:{}s:64:\"accounts/eregsettings/editors/gateway_editor.php?Gatewaysettings\";a:0:{}s:68:\"accounts/eregsettings/editors/gateway_editor.php?Eventfoldersettings\";a:0:{}s:46:\"eReg/editors/categoryeditor.php?Generaldetails\";a:0:{}s:68:\"accounts/eregsettings/editors/processor_editor.php?Processorsettings\";a:0:{}s:74:\"eReg/editors/speakereditor.php?Thisspeakerisinvolvedinthefollowingsessions\";a:0:{}}' WHERE userid='24163'
+		  799 Connect	deploy-et-dev@localhost on dev_etouches2
+		  799 Query	SET NAMES 'utf8'
+		  798 Query	SELECT a.accountid,a.locked FROM accountdata a WHERE a.accountid = '14'
+		  798 Query	DELETE FROM account_lock_override_audit WHERE user_id = '24163' AND user_session_id = '50kub6csc0k7l27fjm1qnhmvv6'
+		  798 Query	SELECT modules FROM accountdata WHERE accountid='14'
+		  798 Query	SELECT moduleid,modules,permissions FROM account_moduleprofiles WHERE accountid='14' AND moduleid='1'
+		  798 Query	SELECT modules FROM accountdata WHERE accountid = '14'
+		  798 Query	SELECT id, title FROM ehome_page WHERE urlPath = 'home/' and site_id = '371' and isDeleted = 0
+		  798 Query	SELECT id, urlPath, parentId, pageOrder, title, redirectUrl, isDeleted  
+                FROM ehome_page 
+                WHERE site_id = '371' AND isDeleted = 0 
+                ORDER BY pageOrder
+		  798 Query	SELECT item_history from userdata WHERE userid = '24163'
+		  798 Query	UPDATE userdata SET item_history = 'a:17:{s:5:\"w_371\";s:11:\"SiteBuilder\";s:5:\"w_370\";s:11:\"SiteBuilder\";s:5:\"w_369\";s:11:\"SiteBuilder\";s:5:\"w_363\";s:11:\"SiteBuilder\";s:5:\"w_368\";s:11:\"SiteBuilder\";s:5:\"w_364\";s:11:\"SiteBuilder\";s:5:\"w_365\";s:11:\"SiteBuilder\";s:5:\"w_367\";s:11:\"SiteBuilder\";s:5:\"w_366\";s:11:\"SiteBuilder\";s:5:\"w_240\";s:11:\"SiteBuilder\";s:3:\"w_4\";s:11:\"SiteBuilder\";s:5:\"w_358\";s:11:\"SiteBuilder\";s:5:\"w_317\";s:11:\"SiteBuilder\";s:5:\"w_203\";s:11:\"SiteBuilder\";s:5:\"w_357\";s:11:\"SiteBuilder\";s:7:\"e_93185\";s:5:\"eVent\";s:5:\"w_356\";s:11:\"SiteBuilder\";}' WHERE userid = '24163'
+		  798 Query	SELECT * FROM ehome_revision WHERE pageId = '1878'
+		  798 Query	SELECT less_variables_version FROM ehome_website AS w WHERE w.id = '371'
+		  799 Query	SELECT a.name 
+                FROM accountdata a 
+                WHERE 
+                  a.deleted=0 
+                  AND a.accountid = '14'
+		  798 Query	SELECT accountid, name, trialaccount, rfp_version, tap_crowd_access, miif_enabled, modules, available_integrations, site_builder_enabled, whitelabel  FROM accountdata WHERE accountid='14'
+		  798 Query	SELECT gateway_settings_array FROM accountdata WHERE accountid = '14'
+		  798 Query	SELECT available_integrations, integrations FROM accountdata WHERE accountid = '14'
+		  798 Query	SELECT * FROM accountdata WHERE accountid = '14'
+		  798 Query	SELECT * FROM integration_zentila WHERE accountid = '14'
+		  798 Query	SELECT moduleid,modules,permissions FROM account_moduleprofiles WHERE accountid='14' AND moduleid='1'
+		  798 Query	SELECT id, event_id, site_name FROM ehome_website WHERE id IN ('371','370','369','363','368','364')
+		  798 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = ''
+		  798 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = ''
+		  798 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = ''
+		  798 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = ''
+		  798 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = ''
+		  798 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = ''
+		  798 Query	SELECT token FROM eventdata JOIN accountdata USING(accountid) WHERE enable_event_token = 1 AND eventid = '371'
+		  798 Query	SELECT token FROM eventdata JOIN accountdata USING(accountid) WHERE enable_event_token = 1 AND eventid = '370'
+		  798 Query	SELECT token FROM eventdata JOIN accountdata USING(accountid) WHERE enable_event_token = 1 AND eventid = '369'
+		  798 Query	SELECT token FROM eventdata JOIN accountdata USING(accountid) WHERE enable_event_token = 1 AND eventid = '363'
+		  798 Query	SELECT token FROM eventdata JOIN accountdata USING(accountid) WHERE enable_event_token = 1 AND eventid = '368'
+		  798 Query	SELECT token FROM eventdata JOIN accountdata USING(accountid) WHERE enable_event_token = 1 AND eventid = '364'
+		  799 Query	SELECT a.name 
+                FROM accountdata a 
+                WHERE 
+                  a.deleted=0 
+                  AND a.accountid = '14'
+		  798 Query	SELECT accountid, name, trialaccount, rfp_version, tap_crowd_access, miif_enabled, modules, available_integrations, site_builder_enabled, whitelabel  FROM accountdata WHERE accountid='14'
+		  799 Quit	
+		  798 Quit	
+181226  1:53:14	  800 Connect	deploy-et-dev@localhost on dev_etouches2
+		  800 Query	SET time_zone='+00:00'
+		  800 Query	SET NAMES utf8
+		  800 Query	SELECT
+                `name`
+            FROM
+                `ehome_plugin`
+            WHERE
+                `isActive` = 1
+		  800 Query	SELECT id, event_id, account_id, default_page FROM `ehome_website` WHERE id = '371' LIMIT 1
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                `name`
+            FROM
+                `ehome_plugin`
+            WHERE
+                `isActive` = 1
+		  800 Query	SELECT permission FROM `ehome_permission` WHERE `administratorId` = '24163'
+		  800 Query	SELECT * FROM `ehome_page`
+                WHERE urlPath = 'home'
+                  AND site_id = '371'
+                  AND isDeleted = 0 LIMIT 1
+		  800 Query	SELECT * FROM `ehome_page`
+                WHERE urlPath = 'home/'
+                  AND site_id = '371'
+                  AND isDeleted = 0 LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                `name`
+            FROM
+                `ehome_plugin`
+            WHERE
+                `isActive` = 1
+		  800 Query	SELECT * FROM `ehome_page` WHERE `id` = '1876' AND `isDeleted` = '0'  LIMIT 1
+		  800 Query	SELECT * FROM `ehome_page` WHERE `id` = '1876' AND `isDeleted` = '0'  LIMIT 1
+		  800 Query	SELECT * FROM `ehome_page` WHERE `id` = '1876' AND `isDeleted` = '0'  LIMIT 1
+		  800 Query	SELECT * FROM `ehome_page` WHERE `id` = '1876' AND `isDeleted` = '0'  LIMIT 1
+		  800 Query	SELECT * FROM `ehome_revision`
+            WHERE
+                `pageId` = '1878'
+            ORDER BY `createdAt` DESC, `revisionId` DESC
+         LIMIT 1
+		  800 Query	SELECT * FROM `ehome_revision` WHERE `pageId` = '1878' ORDER BY `createdAt` DESC, `revisionId` DESC
+		  800 Query	SELECT * FROM `ehome_language` WHERE  1 ORDER BY `languageOrder`
+		  800 Query	SELECT * FROM `ehome_revision` WHERE `revisionId` = '1620'  LIMIT 1
+		  800 Query	SELECT * FROM `ehome_revision`
+            WHERE
+                `pageId` = '1878' AND
+                `isPublished` = 1
+            ORDER BY `createdAt` DESC, `revisionId` DESC
+         LIMIT 1
+		  800 Query	SELECT
+                `name`
+            FROM
+                `ehome_widget`
+            WHERE
+              `revisionId` = '1620'
+              AND
+              `name` != 'Columns'
+              AND
+              `isDeleted` = 0
+            ORDER BY
+              blockName, `position`
+		  800 Query	SELECT
+                `data`
+            FROM
+                `ehome_widget`
+            WHERE
+              `revisionId` = '1620'
+              AND
+              `name` != 'Columns'
+              AND
+              `isDeleted` = 0
+            ORDER BY
+              blockName, `position`
+		  800 Query	SELECT
+                `name`
+            FROM
+                `ehome_widget`
+            WHERE
+              `revisionId` = '1619'
+              AND
+              `name` != 'Columns'
+              AND
+              `isDeleted` = 0
+            ORDER BY
+              blockName, `position`
+		  800 Query	SELECT
+                `data`
+            FROM
+                `ehome_widget`
+            WHERE
+              `revisionId` = '1619'
+              AND
+              `name` != 'Columns'
+              AND
+              `isDeleted` = 0
+            ORDER BY
+              blockName, `position`
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Connect	deploy-et-dev@localhost on dev_etouches2
+		  801 Query	SET NAMES 'utf8'
+		  801 Query	SELECT
+         * 
+            FROM
+              ehome_page 
+            WHERE 
+              site_id = '371'
+              AND isDeleted = 0
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT * FROM `ehome_plugin` WHERE `isActive` = '1'
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'adminIsAutogenerated'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Config' AND
+                `key` = 'Config.eng.websiteEmail'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Config' AND
+                `key` = 'Config.websiteEmail'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT * FROM `ehome_widget_order` WHERE  1 ORDER BY `priority` ASC
+		  800 Query	SELECT * FROM `ehome_revision` WHERE `pageId` = '1878' ORDER BY `createdAt` DESC, `revisionId` DESC
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Config' AND
+                `key` = 'Colorbox.style'
+         LIMIT 1
+		  800 Query	SELECT * FROM `ehome_website` WHERE id = '371' LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT id, event_id, account_id, default_page FROM `ehome_website` WHERE id = '371' LIMIT 1
+		  800 Query	SELECT prevent_indexing FROM `ehome_website` WHERE id = '371' LIMIT 1
+		  801 Query	SELECT
+          ew.*, ed.defaultlanguage as default_language
+        FROM
+          ehome_website ew
+          left join eventdata ed on ew.event_id = ed.eventid
+        WHERE
+          ew.id = '371' AND ew.deleted = 0
+		  801 Query	SELECT w.id FROM ehome_page p
+                JOIN ehome_revision r ON p.id = r.pageId
+                JOIN ehome_widget w ON r.revisionId = w.revisionId
+                WHERE p.site_id = '371'
+                  AND p.isDeleted = 0
+                  AND p.parentId != 0
+                  AND r.isPublished = 1
+                  AND w.isDeleted = 0
+		  800 Query	SELECT id, event_id, account_id, default_page FROM `ehome_website` WHERE id = '371' LIMIT 1
+		  801 Query	/* cache5000ms */ SELECT DISTINCT fontid, displayname, phpname, familyname, r.accountid restricted, f.webfont, f.buttonfont
+                FROM system_fonts f LEFT JOIN system_fonts_restricted r USING (fontid)
+                WHERE IFNULL(r.accountid,'14') = '14'
+                ORDER BY displayname ASC
+		  801 Query	SELECT webfonts
+                FROM ehome_website
+                WHERE id = '371'
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT *
+            FROM
+                `ehome_widget` as `w` 
+            WHERE
+                `isDeleted` = 0 AND
+                `blockName` = 'main' AND
+                `revisionId` = '1620' AND
+                `languageId` = '0'
+            ORDER BY `position` ASC
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	select 
+            w.custom_css as site_css, 
+            p.custom_css as page_css, 
+            w.template_version,          
+            p.bg_data,
+            w.custom_js as site_js,            
+            p.custom_js as page_js,
+            p.custom_css_class as custom_css_class,
+            p.custom_head_html as page_head_html,
+            p.custom_foot_html as page_footer_html,
+            a.custom_html as account_head_html,
+            a.custom_css as account_custom_css,
+            
+            case 
+              when p.layout is null then 'center'
+              else replace(replace(p.layout, 'twig_', ''), '.php', '')
+            end as layout,
+            
+            case 
+              when p.layout is null then 'twig_center.php' 
+              else p.layout 
+            end as layout_filename
+          from 
+            ehome_website w 
+          join 
+            ehome_page p on w.id = p.site_id
+          left join 
+            account_less_customizer a on a.id = w.theme_id  
+          where w.id = '371' and p.id = '1878'
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = NULL LIMIT 1
+		  800 Query	SELECT * FROM `ehome_page` WHERE id = '1878' LIMIT 1
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = NULL LIMIT 1
+		  801 Query	SELECT unix_timestamp(last_modified) FROM ehome_twig_template WHERE name = 'full-371-base'
+		  801 Query	SELECT unix_timestamp(last_modified) FROM ehome_twig_template WHERE name = 'full-371-head'
+		  801 Query	SELECT unix_timestamp(last_modified) FROM ehome_twig_template WHERE name = 'full-371-body'
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT 
+            
+        `id`,
+        `name`,
+        `title`,
+        `skin`,
+        `data`,
+        `revisionId`,
+        `languageId`,
+        `blockName`,
+        `position`,
+        `isVisible`,
+        `isDeleted`,
+        `createdAt`,
+        `updatedAt`,
+        `deletedAt`,
+        `global`,
+        `parent_id`
+    
+        FROM
+            ehome_widget 
+        WHERE
+            `isDeleted` = 0 AND
+            `blockName` = 'header' AND
+            `revisionId` = '1620' AND
+            `languageId` = '0'
+            ORDER BY `position` ASC
+		  800 Query	SELECT * FROM `ehome_widget` WHERE `id` = '11946'
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT 
+            
+        `id`,
+        `name`,
+        `title`,
+        `skin`,
+        `data`,
+        `revisionId`,
+        `languageId`,
+        `blockName`,
+        `position`,
+        `isVisible`,
+        `isDeleted`,
+        `createdAt`,
+        `updatedAt`,
+        `deletedAt`,
+        `global`,
+        `parent_id`
+    
+        FROM
+            ehome_widget 
+        WHERE
+            `isDeleted` = 0 AND
+            `blockName` = 'container-11946-0-0' AND
+            `revisionId` = '1620' AND
+            `languageId` = '0'
+            ORDER BY `position` ASC
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT
+         * 
+            FROM
+              ehome_page 
+            WHERE 
+              site_id = '371'
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = NULL LIMIT 1
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = NULL LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT unix_timestamp(last_modified) FROM ehome_twig_template WHERE name = 'full-371-primaryMidMenu'
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT
+         * 
+            FROM
+              ehome_page 
+            WHERE 
+              site_id = '371'
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = NULL LIMIT 1
+		  800 Query	SELECT  id, 
+                        account_id, 
+                        event_id, 
+                        site_name, 
+                        status, 
+                        event_id, 
+                        prevent_indexing, 
+                        is_template, 
+                        template_favicon, 
+                        favicon_id, 
+                        favicon_url, 
+                        folder_id, 
+                        default_page, 
+                        html_head, 
+                        html_footer, 
+                        account_template, 
+                        description,  
+                        show_cookie_bar,
+                        webfonts
+                FROM `ehome_website`
+                WHERE id = '371'
+         LIMIT 1
+		  800 Query	SELECT defaultlanguage FROM eventdata WHERE eventid = NULL LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+181226  1:53:15	  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT 
+            e.id, e.account_id, e.user_id, e.widget_name, e.widget_type,
+            e.status,
+            e.created, e.updated, 
+            e.eventid as event_id, 
+            e.website_id,
+            e.parent_id,
+            e.apply_website_styles,
+            t.display_name as type_display_name, 
+            t.short_name as type_short_name,
+            e.specific_change_made,
+            e.folder_id,
+            (CASE WHEN ev.defaultlanguage IS NULL THEN 'eng' ELSE ev.defaultlanguage END) as `language`
+          FROM 
+            ehome_widget_template e 
+          JOIN 
+            ehome_widget_template_type t ON e.widget_type = t.id  
+          LEFT JOIN 
+            eventdata ev ON ev.eventid = e.eventid
+          WHERE e.id = '336' and e.deleted = 0
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT 
+            e.id, e.account_id, e.user_id, e.widget_name, e.widget_type,
+            e.status,
+            e.created, e.updated, 
+            e.eventid as event_id, 
+            e.website_id,
+            e.parent_id,
+            e.apply_website_styles,
+            t.display_name as type_display_name, 
+            t.short_name as type_short_name,
+            e.specific_change_made,
+            e.folder_id,
+            (CASE WHEN ev.defaultlanguage IS NULL THEN 'eng' ELSE ev.defaultlanguage END) as `language`
+          FROM 
+            ehome_widget_template e 
+          JOIN 
+            ehome_widget_template_type t ON e.widget_type = t.id  
+          LEFT JOIN 
+            eventdata ev ON ev.eventid = e.eventid
+          WHERE e.id = '336' and e.deleted = 0
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT 
+            
+        `id`,
+        `name`,
+        `title`,
+        `skin`,
+        `data`,
+        `revisionId`,
+        `languageId`,
+        `blockName`,
+        `position`,
+        `isVisible`,
+        `isDeleted`,
+        `createdAt`,
+        `updatedAt`,
+        `deletedAt`,
+        `global`,
+        `parent_id`
+    
+        FROM
+            ehome_widget 
+        WHERE
+            `isDeleted` = 0 AND
+            `blockName` = 'mainContent' AND
+            `revisionId` = '1620' AND
+            `languageId` = '0'
+            ORDER BY `position` ASC
+		  801 Query	SELECT 
+            e.id, e.account_id, e.user_id, e.widget_name, e.widget_type,
+            e.status,
+            e.created, e.updated, 
+            e.eventid as event_id, 
+            e.website_id,
+            e.parent_id,
+            e.apply_website_styles,
+            t.display_name as type_display_name, 
+            t.short_name as type_short_name,
+            e.specific_change_made,
+            e.folder_id,
+            (CASE WHEN ev.defaultlanguage IS NULL THEN 'eng' ELSE ev.defaultlanguage END) as `language`
+          FROM 
+            ehome_widget_template e 
+          JOIN 
+            ehome_widget_template_type t ON e.widget_type = t.id  
+          LEFT JOIN 
+            eventdata ev ON ev.eventid = e.eventid
+          WHERE e.id = '337' and e.deleted = 0
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT 
+            e.id, e.account_id, e.user_id, e.widget_name, e.widget_type,
+            e.status,
+            e.created, e.updated, 
+            e.eventid as event_id, 
+            e.website_id,
+            e.parent_id,
+            e.apply_website_styles,
+            t.display_name as type_display_name, 
+            t.short_name as type_short_name,
+            e.specific_change_made,
+            e.folder_id,
+            (CASE WHEN ev.defaultlanguage IS NULL THEN 'eng' ELSE ev.defaultlanguage END) as `language`
+          FROM 
+            ehome_widget_template e 
+          JOIN 
+            ehome_widget_template_type t ON e.widget_type = t.id  
+          LEFT JOIN 
+            eventdata ev ON ev.eventid = e.eventid
+          WHERE e.id = '337' and e.deleted = 0
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  801 Query	SELECT 
+            
+        `id`,
+        `name`,
+        `title`,
+        `skin`,
+        `data`,
+        `revisionId`,
+        `languageId`,
+        `blockName`,
+        `position`,
+        `isVisible`,
+        `isDeleted`,
+        `createdAt`,
+        `updatedAt`,
+        `deletedAt`,
+        `global`,
+        `parent_id`
+    
+        FROM
+            ehome_widget 
+        WHERE
+            `isDeleted` = 0 AND
+            `blockName` = 'footer' AND
+            `revisionId` = '1620' AND
+            `languageId` = '0'
+            ORDER BY `position` ASC
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'cacheVersion'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT id, event_id, account_id, default_page FROM `ehome_website` WHERE id = '371' LIMIT 1
+		  800 Query	SELECT * FROM `ehome_page` WHERE id = '1878' LIMIT 1
+		  801 Query	SELECT id, name, title           
+            FROM
+                ehome_widget 
+            where
+                isDeleted = 0 AND
+                blockName not in ('header','container-11946-0-0','mainContent','footer') AND
+                revisionId = '1620' AND
+                languageId = 'eng'
+		  801 Query	SELECT dateformat, timezoneid, timeformat FROM userdata where userid = '24163'
+		  801 Query	select
+              t.id, t.site_id, p.id as page, t.name, t.layout_name, l.custom_layout_name, t.last_modified,
+              case when p.title is null then '' else p.title end as page_name,
+              w.event_id, e.defaultlanguage
+            from
+              ehome_page p
+            join
+              ehome_layout l on p.layout_id = l.id
+            left join
+              ehome_twig_template t on l.layout_name = t.layout_name
+            left join
+              ehome_website w on w.id = p.site_id
+            left join
+              eventdata e on w.event_id = e.eventid
+            where
+              p.id = '1878' and l.site_id = '371' and t.site_id = '371'
+            order by t.last_modified desc
+		  801 Query	SELECT 
+                id, code_id, type, created 
+            FROM 
+                ehome_code_revision 
+            WHERE 
+                code_id IN ('5939','5940','5941','5942') 
+                AND type = 'twig_template'
+            ORDER BY created DESC
+		  801 Query	SELECT
+         * 
+            FROM
+              ehome_page 
+            WHERE 
+              site_id = '371'
+              AND isDeleted = 0
+		  801 Query	select id, code_id, created from ehome_code_revision where type = 'page_less' and code_id = '1878'
+		  801 Query	select id, code_id, created from ehome_code_revision where type = 'global_less' and code_id = '371'
+		  801 Query	select id, code_id, created from ehome_code_revision where type = 'global_js' and code_id = '371'
+		  801 Query	SELECT u.block_scripts 
+            FROM userdata u
+            WHERE u.userid = '24163'
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'cacheVersion'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Config' AND
+                `key` = 'Config.gmapsApiKey'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Ip' AND
+                `key` = 'theme'
+         LIMIT 1
+		  800 Query	SELECT
+                value
+            FROM
+                `ehome_storage`
+            WHERE
+                `plugin` = 'Config' AND
+                `key` = 'Config.automaticCron'
+         LIMIT 1
+		  800 Quit	
+		  801 Quit	
+181226  1:53:18	  802 Connect	deploy-et-dev@localhost on dev_etouches2
+		  802 Query	SET NAMES 'utf8'
+		  803 Connect	deploy-et-dev@localhost on dev_etouches2
+		  803 Query	SET NAMES 'utf8'
+		  802 Query	SELECT u.userid,u.accountid,u.accessid,u.moduleid,u.username,u.password,u.pastpasswords,u.passwordreset,
+                u.email,u.fname,u.lname,u.title,u.city,u.country,u.phone,u.number_tabs,u.tab_layout,u.displaysettings, 
+                u.recently_accessed_menu,u.total_accessed_items,u.item_history,u.usertype,u.demouser,u.defaultlimit,
+                u.reportcolor1,u.reportcolor2,u.report_filter_reset,u.open_source_icons,u.new_interface,u.dateformat, 
+                u.timeformat,u.timezoneid,u.decimal_point,u.thousands_separator,u.userlanguage,u.statuscolors,u.skipwelcomepage,
+                u.summarynewwindow,u.adminreginsamewindow,u.onlyrelevantstatus,u.viewcreditcards,u.View_credit_cards_expiration,u.runrefunds,u.projectprereminders, 
+                u.projectpostreminders,u.bookmarkedreports,u.online_chat,u.billing_contact,u.theme,u.session_planner, u.homeregion, u.is_created_from_saml,
+                u.lastlogin,u.logintimes,
+                a.all_events_folders,a.all_eMarketing_folders,a.all_eSurvey_folders,a.all_users_folders, a.all_image_folders,
+                a.all_document_folders, a.all_Exago_folders, a.all_look_feel_folders, 
+                a.all_widget_folders,
+                a.all_widget_folders AS all_widgets_folders, 
+                a.all_web_site_folders,
+                a.all_web_site_folders AS all_websites_folders,
+                a.all_meetingregistration_folders,
+                ad.sso_enabled, ad.modules as license,m.modules,m.readonly,m.edit_events_with_the_same_profile,
+                m.permissions,ad.session_timeout,u.last_activity,u.disable_bom,u.noReportExport,u.runpendingcards,
+                ad.locked accountLocked, ad.gateway_settings_array, u.zentila_department_id, m.zentila_role_id,
+                u.block_scripts, ad.name as accountname, ad.disable_marketing_email
+            FROM userdata u 
+                INNER JOIN account_accessprofiles a ON u.accessid=a.accessid 
+                INNER JOIN account_moduleprofiles m ON u.moduleid=m.moduleid 
+                LEFT JOIN accountdata ad ON u.accountid=ad.accountid 
+            WHERE u.deleted=0 AND u.userid='24163' AND usertype>='1' AND password='83013d051393891d293c63d415f8fcf59708661ca37fd76e0a3cdcc591017fbf72a695509c321478b7fe451efefa7e91b8f31d6d9c46bcd492315723c947bf6b'
+		  802 Query	SELECT accountid FROM accountdata WHERE deleted=0
+		  802 Query	UPDATE userlogins SET lastactivity=NOW() WHERE userid='24163' AND isnull(logout)
+		  803 Query	SELECT u.userid,u.accountid,u.accessid,u.moduleid,u.username,u.password,u.pastpasswords,u.passwordreset,
+                u.email,u.fname,u.lname,u.title,u.city,u.country,u.phone,u.number_tabs,u.tab_layout,u.displaysettings, 
+                u.recently_accessed_menu,u.total_accessed_items,u.item_history,u.usertype,u.demouser,u.defaultlimit,
+                u.reportcolor1,u.reportcolor2,u.report_filter_reset,u.open_source_icons,u.new_interface,u.dateformat, 
+                u.timeformat,u.timezoneid,u.decimal_point,u.thousands_separator,u.userlanguage,u.statuscolors,u.skipwelcomepage,
+                u.summarynewwindow,u.adminreginsamewindow,u.onlyrelevantstatus,u.viewcreditcards,u.View_credit_cards_expiration,u.runrefunds,u.projectprereminders, 
+                u.projectpostreminders,u.bookmarkedreports,u.online_chat,u.billing_contact,u.theme,u.session_planner, u.homeregion, u.is_created_from_saml,
+                u.lastlogin,u.logintimes,
+                a.all_events_folders,a.all_eMarketing_folders,a.all_eSurvey_folders,a.all_users_folders, a.all_image_folders,
+                a.all_document_folders, a.all_Exago_folders, a.all_look_feel_folders, 
+                a.all_widget_folders,
+                a.all_widget_folders AS all_widgets_folders, 
+                a.all_web_site_folders,
+                a.all_web_site_folders AS all_websites_folders,
+                a.all_meetingregistration_folders,
+                ad.sso_enabled, ad.modules as license,m.modules,m.readonly,m.edit_events_with_the_same_profile,
+                m.permissions,ad.session_timeout,u.last_activity,u.disable_bom,u.noReportExport,u.runpendingcards,
+                ad.locked accountLocked, ad.gateway_settings_array, u.zentila_department_id, m.zentila_role_id,
+                u.block_scripts, ad.name as accountname, ad.disable_marketing_email
+            FROM userdata u 
+                INNER JOIN account_accessprofiles a ON u.accessid=a.accessid 
+                INNER JOIN account_moduleprofiles m ON u.moduleid=m.moduleid 
+                LEFT JOIN accountdata ad ON u.accountid=ad.accountid 
+            WHERE u.deleted=0 AND u.userid='24163' AND usertype>='1' AND password='83013d051393891d293c63d415f8fcf59708661ca37fd76e0a3cdcc591017fbf72a695509c321478b7fe451efefa7e91b8f31d6d9c46bcd492315723c947bf6b'
+		  804 Connect	deploy-et-dev@localhost on dev_etouches2
+		  804 Query	SET NAMES 'utf8'
+		  803 Query	SELECT accountid FROM accountdata WHERE deleted=0
+		  802 Query	SELECT a.accountid,a.locked FROM accountdata a WHERE a.accountid = '14'
+		  802 Query	DELETE FROM account_lock_override_audit WHERE user_id = '24163' AND user_session_id = '50kub6csc0k7l27fjm1qnhmvv6'
+		  803 Query	UPDATE userlogins SET lastactivity=NOW() WHERE userid='24163' AND isnull(logout)
+		  802 Query	SELECT modules FROM accountdata WHERE accountid='14'
+		  802 Query	SELECT moduleid,modules,permissions FROM account_moduleprofiles WHERE accountid='14' AND moduleid='1'
+		  802 Query	SELECT modules FROM accountdata WHERE accountid = '14'
+		  802 Query	SELECT 
+              revisionId, pageId, isPublished, createdAt, bulkId 
+            FROM 
+              ehome_revision
+            WHERE
+              `pageId` = '1878' 
+            ORDER BY 
+              `revisionId` DESC
+            limit 1
+		  805 Connect	deploy-et-dev@localhost on dev_etouches2
+		  805 Query	SET NAMES 'utf8'
+		  803 Query	SELECT a.accountid,a.locked FROM accountdata a WHERE a.accountid = '14'
+		  803 Query	DELETE FROM account_lock_override_audit WHERE user_id = '24163' AND user_session_id = '50kub6csc0k7l27fjm1qnhmvv6'
+		  803 Query	SELECT modules FROM accountdata WHERE accountid='14'
+		  803 Query	SELECT moduleid,modules,permissions FROM account_moduleprofiles WHERE accountid='14' AND moduleid='1'
+		  803 Query	SELECT modules FROM accountdata WHERE accountid = '14'
+		  805 Quit	
+		  803 Quit	
+		  804 Quit	
+		  802 Quit	
+		  806 Connect	deploy-et-dev@localhost on dev_etouches2
+		  806 Query	SET NAMES 'utf8'
+		  806 Query	SELECT u.userid,u.accountid,u.accessid,u.moduleid,u.username,u.password,u.pastpasswords,u.passwordreset,
+                u.email,u.fname,u.lname,u.title,u.city,u.country,u.phone,u.number_tabs,u.tab_layout,u.displaysettings, 
+                u.recently_accessed_menu,u.total_accessed_items,u.item_history,u.usertype,u.demouser,u.defaultlimit,
+                u.reportcolor1,u.reportcolor2,u.report_filter_reset,u.open_source_icons,u.new_interface,u.dateformat, 
+                u.timeformat,u.timezoneid,u.decimal_point,u.thousands_separator,u.userlanguage,u.statuscolors,u.skipwelcomepage,
+                u.summarynewwindow,u.adminreginsamewindow,u.onlyrelevantstatus,u.viewcreditcards,u.View_credit_cards_expiration,u.runrefunds,u.projectprereminders, 
+                u.projectpostreminders,u.bookmarkedreports,u.online_chat,u.billing_contact,u.theme,u.session_planner, u.homeregion, u.is_created_from_saml,
+                u.lastlogin,u.logintimes,
+                a.all_events_folders,a.all_eMarketing_folders,a.all_eSurvey_folders,a.all_users_folders, a.all_image_folders,
+                a.all_document_folders, a.all_Exago_folders, a.all_look_feel_folders, 
+                a.all_widget_folders,
+                a.all_widget_folders AS all_widgets_folders, 
+                a.all_web_site_folders,
+                a.all_web_site_folders AS all_websites_folders,
+                a.all_meetingregistration_folders,
+                ad.sso_enabled, ad.modules as license,m.modules,m.readonly,m.edit_events_with_the_same_profile,
+                m.permissions,ad.session_timeout,u.last_activity,u.disable_bom,u.noReportExport,u.runpendingcards,
+                ad.locked accountLocked, ad.gateway_settings_array, u.zentila_department_id, m.zentila_role_id,
+                u.block_scripts, ad.name as accountname, ad.disable_marketing_email
+            FROM userdata u 
+                INNER JOIN account_accessprofiles a ON u.accessid=a.accessid 
+                INNER JOIN account_moduleprofiles m ON u.moduleid=m.moduleid 
+                LEFT JOIN accountdata ad ON u.accountid=ad.accountid 
+            WHERE u.deleted=0 AND u.userid='24163' AND usertype>='1' AND password='83013d051393891d293c63d415f8fcf59708661ca37fd76e0a3cdcc591017fbf72a695509c321478b7fe451efefa7e91b8f31d6d9c46bcd492315723c947bf6b'
+		  806 Query	SELECT accountid FROM accountdata WHERE deleted=0
+		  806 Query	UPDATE userlogins SET lastactivity=NOW() WHERE userid='24163' AND isnull(logout)
+		  807 Connect	deploy-et-dev@localhost on dev_etouches2
+		  807 Query	SET NAMES 'utf8'
+		  806 Query	SELECT a.accountid,a.locked FROM accountdata a WHERE a.accountid = '14'
+		  806 Query	DELETE FROM account_lock_override_audit WHERE user_id = '24163' AND user_session_id = '50kub6csc0k7l27fjm1qnhmvv6'
+		  806 Query	SELECT modules FROM accountdata WHERE accountid='14'
+		  806 Query	SELECT moduleid,modules,permissions FROM account_moduleprofiles WHERE accountid='14' AND moduleid='1'
+		  806 Query	SELECT modules FROM accountdata WHERE accountid = '14'
+		  806 Query	SELECT * FROM ehome_twig_template 
+          WHERE site_id = '371' AND id = '5939'
+		  807 Quit	
+		  806 Quit	
+181226  1:53:21	  769 Query	SET global general_log = 0
+

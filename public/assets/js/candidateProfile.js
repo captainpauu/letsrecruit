@@ -62,39 +62,41 @@ $(document).ready(function () {
     }
 
     function submitFeedback() {
-        Swal.fire({
-            title: 'Make sure you have given complete feedback',
-            text: "You won't be able to Edit this again!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#ffc107',
-            cancelButtonColor: '#F2F7FB',
-            confirmButtonText: 'Yes, Submit this!'
-        }, function () {
-            $.ajax({
-                type: "post",
-                url: '/interview/submit-feedback',
-                data: {
-                    id: $('#feedbackId').val(),
-                    candidateId: $('#candidateId').val()
-                },
-                success: (response) => {
-                    if (response && !response.error) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        ).then(() => {
-                            window.location.reload();
-                        })
-                    } else {
+        $.when(
+            Swal.fire({
+                title: 'Make sure you have given complete feedback',
+                text: "You won't be able to Edit this again!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ffc107',
+                cancelButtonColor: '#F2F7FB',
+                confirmButtonText: 'Yes, Submit this!'
+            })
+        ).done((value) => {
+            if(value && !value.dismiss) {
+                $.ajax({
+                    type: "post",
+                    url: '/interview/submit-feedback',
+                    data: {
+                        id: $('#feedbackId').val(),
+                    },
+                    success: (response) => {
+                        if (response && !response.error) {
+                            Swal.fire(
+                                'Submitted!',
+                                'success'
+                            ).then(() => {
+                                window.location.reload();
+                            })
+                        } else {
+                            errorAlert();
+                        }
+                    },
+                    error: () => {
                         errorAlert();
                     }
-                },
-                error: function () {
-                    errorAlert();
-                }
-            });
-        });
+                });
+            }
+        })
     }
 });
