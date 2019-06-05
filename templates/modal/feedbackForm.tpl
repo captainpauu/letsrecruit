@@ -8,7 +8,9 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form id="feedbackForm" name="feedbackForm">
+            <form id="feedbackForm"
+                  action="{path_for name='submitFeedback' data = ['id' => {$feedbackId},'candidateId' => {$candidate.id}]}"
+                  method="post" name="feedbackForm">
                 <div class="modal-body">
                     <input type="hidden" id="candidateId" value="{$candidate.id}">
                     <input type="hidden" id="feedbackId" value="{$feedbackId}">

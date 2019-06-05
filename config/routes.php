@@ -88,7 +88,7 @@ $app->group('', function () use ($app) {
             )->setName('interviewRequest');
 
             $app->post(
-                '/submit-feedback',
+                '/feedback/{id}/{candidateId}',
                 'InterviewController:submitFeedback'
             )->setName('submitFeedback');
 

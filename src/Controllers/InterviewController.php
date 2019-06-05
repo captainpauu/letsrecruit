@@ -62,16 +62,17 @@ class InterviewController extends BaseController
         return $response->withRedirect('/interview/request/dashboard');
     }
 
-    public function submitFeedback(RequestInterface $request, ResponseInterface $response)
+    public function submitFeedback(RequestInterface $request, ResponseInterface $response, $args)
     {
         $status = false;
-        $interviewId = $_POST['id'];
+        $interviewId = $args['id'];
+        $candidateId = $args['candidateId'];
         $data = $request->getParsedBody();
         $result = $this->dao->insertFeedback($interviewId, $data);
         if ($result) {
             $status = true;
             $this->dao->updateScheduleStatus($interviewId, 0);
         }
-        return $response->withJson(['success' => $status]);
+        return $response->withRedirect('/candidate/profile/' . $candidateId);
     }
 }
