@@ -71,10 +71,15 @@ class BaseController
     /**
      * @param $request
      * @param $response
-     * @return ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function notAuthorised($request, $response)
     {
         return $this->smarty->render($response, 'restricted.tpl');
+    }
+
+    public function convertDateFormat($date)
+    {
+        return date("jS M, Y", strtotime($date));
     }
 }

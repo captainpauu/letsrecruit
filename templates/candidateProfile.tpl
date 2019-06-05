@@ -190,16 +190,12 @@
         <div id="resume" class="card">
             <div class="card-header">Resume</div>
             <div class="card-block">
-                <iframe src="/assets/resumes/{$candidate.resume}" style="width:100%; height:500px;"
-                        frameborder="0">
+                <iframe src="/assets/resumes/{$candidate.resume}" style="width:100%; height:500px;">
                 </iframe>
             </div>
         </div>
     </div>
     <!-- Interview Schedule form -->
     {include 'modal/interviewSchedule.tpl'}
-
-    <!-- Interview Feedback form -->
-    {include 'modal/feedbackForm.tpl'}
 
 {/block}

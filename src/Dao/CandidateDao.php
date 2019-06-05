@@ -22,7 +22,8 @@ class CandidateDao extends BaseDao
                         c.offer_in_hand,
                         j.name as job_profile
                   FROM candidates AS c
-                  JOIN jobs j on c.job_profile_id = j.id";
+                  JOIN jobs j on c.job_profile_id = j.id
+                  WHERE c.is_deleted = 0";
 
         $query = $this->db->query($stmt);
         $result = $query->fetchAll();
@@ -162,8 +163,11 @@ class CandidateDao extends BaseDao
         return $query->fetch();
     }
 
-    public function deleteCandidate()
+    public function deleteCandidate($id)
     {
-        return '';
+        $query = $this->db->prepare("UPDATE candidates 
+                                                SET is_deleted = 1 
+                                                WHERE id = :id");
+        return $query->execute([':id' => $id]);
     }
 }

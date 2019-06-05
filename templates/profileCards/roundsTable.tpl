@@ -20,12 +20,12 @@
                         {foreach $rounds as $r}
                             <tr>
                                 <td>{$r.round_number}</td>
-                                <td>{$r.name}</td>
-                                <td>{$r.scheduled_date} {$r.scheduled_time}</td>
+                                <td>{$r.interviewer_name}</td>
+                                <td>{$r.scheduled_date} - {$r.scheduled_time}</td>
                                 {if $r.round_status == 0}
                                     {assign var=feedbackId value=$r.interview_id}
                                     <td>
-                                        <button id="feedbackSubmitBtn" data-toggle="modal"
+                                        <button id="feedbackFormBtn" data-toggle="modal"
                                                 data-target="#feedbackFormModal"
                                                 class="btn btn-info btn-sm">Submit Feedback
                                         </button>
@@ -50,3 +50,6 @@
     </div>
     <!-- end of card-block -->
 </div>
+
+<!-- Interview Feedback form -->
+{include '../modal/feedbackForm.tpl'}
