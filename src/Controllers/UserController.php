@@ -125,6 +125,17 @@ class UserController extends BaseController
         return $this->smarty->render($response, '');
     }
 
+    public function offerJob(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        $id = $_POST['id'];
+        $status = false;
+        if($this->dao->offerJob($id)){
+            $status = true;
+        }
+        return $response->withJson(['success' => $status]);
+    }
+
+
     public function logoutUser(RequestInterface $request, ResponseInterface $response)
     {
         unset($_SESSION['loggedinUser']);

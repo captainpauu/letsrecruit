@@ -5,6 +5,8 @@ namespace App\Controllers;
 
 
 use App\Dao\ConsultancyDao;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Slim\Views\Smarty;
 
 class ConsultancyController extends BaseController
@@ -23,5 +25,13 @@ class ConsultancyController extends BaseController
     {
         parent::__construct($smarty);
         $this->dao =$dao;
+    }
+
+    public function getAllConsultancies(RequestInterface $request, ResponseInterface $response)
+    {
+        $allConsults = $this->dao->getAllConsultancies();
+        return $this->smarty->render($response, '', [
+            'consults' => $allConsults,
+        ]);
     }
 }

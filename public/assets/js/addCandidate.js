@@ -60,8 +60,37 @@ $(document).ready(function () {
 
     $('#reference-type input').on('click', (e) => changeReferenceType(e));
 
+    $('#email').on('blur', (e) => checkIfEmailExists(e));
+
+    function checkIfEmailExists(e) {
+        var value = e.target.value;
+        $('button.btn-primary').removeClass('disabled');
+
+        if(value !== '') {
+            $.ajax({
+                type: "post",
+                url: '/candidate/check-email',
+                data: {
+                    email: value
+                },
+                success: (response) => {
+                    if (response.success) {
+                        $('button.btn-primary').removeClass('disabled');
+                    } else {
+                        $('button.btn-primary').addClass('disabled');
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: 'Email exists already. Please enter another Email-id'
+                        });
+                    }
+                }
+            });
+        }
+    }
+
     function changeReferenceType(e) {
-        let value = e.target.value;
+        var value = e.target.value;
 
         if(parseInt(value) === 0){
             $('#consultancyDropdown').removeClass('hidden');

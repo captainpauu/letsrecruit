@@ -52,6 +52,11 @@ $app->group('', function () use ($app) {
                 '/delete',
                 'CandidateController:deleteCandidate'
             )->setName('deleteCandidate');
+
+            $app->post(
+                '/check-email',
+                'CandidateController:isCandidateEmailExists'
+            )->setName('checkEmail');
         });
 
 
@@ -66,6 +71,11 @@ $app->group('', function () use ($app) {
                 '/add',
                 'UserController:addUser'
             )->setName('addUser');
+
+            $app->post(
+                '/offer-job',
+                'UserController:offerJob'
+            )->setName('offerJob');
         });
 
 

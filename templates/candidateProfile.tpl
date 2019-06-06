@@ -182,9 +182,17 @@
                 <!-- Candidate Shortlist Status -->
                 {include 'profileCards/shortlistCard.tpl'}
 
-                {if $candidate.is_shortlisted == 1 && $smarty.session.loggedinUser.role == 3}
-                    <!-- Interview Schedule status -->
-                    {include 'profileCards/interviewCard.tpl'}
+                {if $candidate.job_offered == 1}
+                    <div id="job-offer-card" class="card">
+                        <div class="card-body">
+                            <h3><strong>Job Offered</strong></h3>
+                        </div>
+                    </div>
+                {else}
+                    {if $candidate.is_shortlisted == 1 && $smarty.session.loggedinUser.role == 3}
+                        <!-- Interview Schedule status -->
+                        {include 'profileCards/interviewCard.tpl'}
+                    {/if}
                 {/if}
             </div>
         </div>

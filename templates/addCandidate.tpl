@@ -189,6 +189,9 @@
                                 <label>Consultancy</label>
                                 <select class="form-control" name="consultancyId">
                                     <option value="0">Select...</option>
+                                    {foreach $consults as $consult}
+                                        <option value="{$consult.id}">{$consult.name}</option>
+                                    {/foreach}
                                 </select>
                             </div>
                             <div class="form-group col-md-6 hidden" id="referredBy">

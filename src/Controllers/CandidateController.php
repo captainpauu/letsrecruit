@@ -4,6 +4,7 @@
 namespace App\Controllers;
 
 use App\Dao\CandidateDao;
+use App\Dao\ConsultancyDao;
 use App\Dao\InterviewDao;
 use App\Dao\JobsDao;
 use App\Dao\UserDao;
@@ -30,7 +31,10 @@ class CandidateController extends BaseController
      * @var InterviewDao
      */
     protected $interviewDao;
-
+    /**
+     * @var ConsultancyDao
+     */
+    protected $consultDao;
     /**
      * CandidateController constructor.
      * @param Smarty $smarty
@@ -44,13 +48,15 @@ class CandidateController extends BaseController
         CandidateDao $dao,
         UserDao $userDao,
         JobsDao $jobsDao,
-        InterviewDao $interviewDao
+        InterviewDao $interviewDao,
+        ConsultancyDao $consultDao
     ) {
         parent::__construct($smarty);
         $this->dao = $dao;
         $this->userDao = $userDao;
         $this->jobsDao = $jobsDao;
         $this->interviewDao = $interviewDao;
+        $this->consultDao = $consultDao;
     }
 
     /**
@@ -132,27 +138,23 @@ class CandidateController extends BaseController
             return $this->notAuthorised($request, $response);
         }
         $allJobs = $this->jobsDao->getAllJobs();
+        $allConsults = $this->consultDao->getAllConsultancies();
         if ($request->isPost()) {
             $error = '';
             $status = false;
 
             $data = $request->getParsedBody();
 
-            $check = $this->dao->isCandidateEmailExists($data['email']);
-            if (count($check) > 1) {
-                $error = "Email already Exists";
-            } else {
-                if ($this->insertCandidate($data)) {
+            if ($this->insertCandidate($data)) {
 
-                    $uploadedFiles = $request->getUploadedFiles();
-                    if ($this->uploadResume($uploadedFiles, $data)) {
-                        $status = true;
-                    } else {
-                        $error = "Resume upload failed";
-                    }
+                $uploadedFiles = $request->getUploadedFiles();
+                if ($this->uploadResume($uploadedFiles, $data)) {
+                    $status = true;
                 } else {
-                    $error = "Candidate registration failed";
+                    $error = "Resume upload failed";
                 }
+            } else {
+                $error = "Candidate registration failed";
             }
 
             if ($status) {
@@ -160,12 +162,31 @@ class CandidateController extends BaseController
             } else {
                 return $this->smarty->render($response, 'addCandidate.tpl', [
                     'error' => $error,
-                    'jobs' => $allJobs
+                    'jobs' => $allJobs,
+                    'consults' => $allConsults
                 ]);
             }
         } else {
-            return $this->smarty->render($response, 'addCandidate.tpl', ['jobs' => $allJobs]);
+            return $this->smarty->render($response, 'addCandidate.tpl', [
+                'jobs' => $allJobs,
+                'consults' => $allConsults
+            ]);
         }
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @return mixed
+     */
+    public function isCandidateEmailExists(RequestInterface $request, ResponseInterface $response)
+    {
+        $status = true;
+        $check = $this->dao->isCandidateEmailExists($_POST['email']);
+        if (count($check) > 1) {
+            $status = false;
+        }
+        return $response->withJson(['success' => $status]);
     }
 
     /**

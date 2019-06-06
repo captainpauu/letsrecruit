@@ -67,9 +67,12 @@ class UserDao extends BaseDao
         return $result;
     }
 
-    public function getUserById()
+    public function offerJob($id)
     {
-        return '';
+        $query = $this->db->prepare("UPDATE candidates 
+                                                SET job_offered = 1 
+                                                WHERE id = :id");
+        return $query->execute([':id' => $id]);
     }
 
     /**

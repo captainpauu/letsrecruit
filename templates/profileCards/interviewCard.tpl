@@ -34,7 +34,7 @@
             <button id="shceduleInterviewBtn" class="btn btn-light btn-sm" data-toggle="modal"
                     data-target="#scheduleModal">Schedule Interview
             </button>
-            <button class="btn btn-success btn-sm">Offer Job</button>
+            <button id="offerJobBtn" class="btn btn-success btn-sm" data-id="{$candidate.id}">Offer Job</button>
         {/if}
     </div>
 </div>
