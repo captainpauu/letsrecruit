@@ -24,7 +24,7 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Technology</th>
-                    <th class="action">Action</th>
+                    <th class="action">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,9 +44,9 @@
                         </td>
                         <td>{$u.tech_name}</td>
                         <td class="action">
-                            <a href="">
-                                <i class="fa fa-edit"></i>
-                            </a>
+                            <button class="btn btn-outline-primary btn-sm delete-user" title="delete" data-deleteId="{$u.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 {/foreach}

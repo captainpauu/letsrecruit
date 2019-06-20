@@ -58,6 +58,8 @@ $(document).ready(function () {
         }
     });
 
+    showReferenceField();
+
     $('#reference-type input').on('click', (e) => changeReferenceType(e));
 
     $('#email').on('blur', (e) => checkIfEmailExists(e));
@@ -87,6 +89,19 @@ $(document).ready(function () {
                 }
             });
         }
+    }
+
+    function showReferenceField() {
+            if($('#reference-type input#consult-refer').is(":checked")){
+                $('#consultancyDropdown').removeClass('hidden');
+                $('#referredBy').addClass('hidden');
+            } else if ($('#reference-type input#office-refer').is(":checked")) {
+                $('#referredBy').removeClass('hidden');
+                $('#consultancyDropdown').addClass('hidden');
+            } else {
+                $('#consultancyDropdown').addClass('hidden');
+                $('#referredBy').addClass('hidden');
+            }
     }
 
     function changeReferenceType(e) {

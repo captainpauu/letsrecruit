@@ -24,3 +24,8 @@
     display: inline-block;
     float: right;
 }
+
+.delete-user {
+    color: var(--pink);
+    border-color: var(--red);
+}

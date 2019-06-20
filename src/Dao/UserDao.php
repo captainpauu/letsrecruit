@@ -32,7 +32,8 @@ class UserDao extends BaseDao
                         u.role,
                         t.tech_name
                      FROM users as u 
-                     JOIN technology t on u.technology = t.id";
+                     JOIN technology t on u.technology = t.id
+                     WHERE is_deleted = 0";
 
         $query = $this->db->query($stmt);
         $result = $query->fetchAll();
@@ -126,8 +127,11 @@ class UserDao extends BaseDao
         return '';
     }
 
-    public function deleteUser()
+    public function deleteUser($id)
     {
-        return '';
+        $query = $this->db->prepare("UPDATE users 
+                                                SET is_deleted = 1 
+                                                WHERE id = :id");
+        return $query->execute([':id' => $id]);
     }
 }

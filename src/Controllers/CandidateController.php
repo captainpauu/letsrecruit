@@ -8,7 +8,6 @@ use App\Dao\ConsultancyDao;
 use App\Dao\InterviewDao;
 use App\Dao\JobsDao;
 use App\Dao\UserDao;
-use MongoDB\Driver\ReadPreference;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Views\Smarty;
@@ -114,7 +113,6 @@ class CandidateController extends BaseController
      */
     public function getCandidateData($candidateId) : array
     {
-        $data = [];
         $data = $this->dao->getCandidateById($candidateId);
         if(!empty($data)) {
             $data['birth_date'] = $this->convertDateFormat($data['birth_date'], false);
@@ -138,7 +136,7 @@ class CandidateController extends BaseController
             return $this->notAuthorised($request, $response);
         }
         $allJobs = $this->jobsDao->getAllJobs();
-        $allConsults = $this->consultDao->getAllConsultancies();
+        $allConsultancies = $this->consultDao->getAllConsultancies();
         if ($request->isPost()) {
             $error = '';
             $status = false;
@@ -163,15 +161,52 @@ class CandidateController extends BaseController
                 return $this->smarty->render($response, 'addCandidate.tpl', [
                     'error' => $error,
                     'jobs' => $allJobs,
-                    'consults' => $allConsults
+                    'consultancies' => $allConsultancies
                 ]);
             }
         } else {
             return $this->smarty->render($response, 'addCandidate.tpl', [
                 'jobs' => $allJobs,
-                'consults' => $allConsults
+                'consultancies' => $allConsultancies
             ]);
         }
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param $args
+     * @return ResponseInterface
+     */
+    public function editCandidateForm(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        if (self::ROLE[$this->user['role']] !== 'Admin') {
+            return $this->notAuthorised($request, $response);
+        }
+        $data = $this->dao->getCandidateById($args['id']);
+        $allJobs = $this->jobsDao->getAllJobs();
+        $allConsultancies = $this->consultDao->getAllConsultancies();
+        return $this->smarty->render($response, 'editCandidate.tpl', [
+            'candidate' => $data,
+            'jobs' => $allJobs,
+            'consultancies' => $allConsultancies
+        ]);
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @param $args
+     * @return mixed
+     */
+    public function updateCandidateData(RequestInterface $request, ResponseInterface $response, $args)
+    {
+        $id = $args['id'];
+        $data = $request->getParsedBody();
+        if ($this->dao->updateCandidate($id, $data)){
+            return $response->withRedirect('/candidate/profile/' . $id);
+        }
+        return $response->withRedirect('/candidate/edit/' . $id);
     }
 
     /**
@@ -224,6 +259,11 @@ class CandidateController extends BaseController
         return false;
     }
 
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @return mixed
+     */
     public function deleteCandidate(RequestInterface $request, ResponseInterface $response)
     {
         $id = $_POST['candidateId'];

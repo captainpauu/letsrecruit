@@ -48,6 +48,16 @@ $app->group('', function () use ($app) {
                 'CandidateController:viewProfile'
             )->setName('candidateProfile');
 
+            $app->get(
+                '/edit/{id}',
+                'CandidateController:editCandidateForm'
+            )->setName('editForm');
+
+            $app->post(
+                '/update/{id}',
+                'CandidateController:updateCandidateData'
+            )->setName('updateCandidate');
+
             $app->post(
                 '/delete',
                 'CandidateController:deleteCandidate'
@@ -76,6 +86,16 @@ $app->group('', function () use ($app) {
                 '/offer-job',
                 'UserController:offerJob'
             )->setName('offerJob');
+
+            $app->post(
+                '/check-email',
+                'UserController:isUserEmailExists'
+            )->setName('checkUserEmail');
+
+            $app->post(
+                '/delete',
+                'UserController:deleteUser'
+            )->setName('deleteUser');
         });
 
 
@@ -102,6 +122,15 @@ $app->group('', function () use ($app) {
                 'InterviewController:submitFeedback'
             )->setName('submitFeedback');
 
+        });
+
+
+    $app->group('/consultancy',
+        function () use ($app) {
+            $app->get(
+                '/dashboard',
+                'ConsultancyController:getAllConsultData'
+            )->setName('userDashboard');
         });
 
 

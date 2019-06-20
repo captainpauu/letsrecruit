@@ -13,7 +13,7 @@ $(document).ready(function () {
     }
 
     function deleteCandidate(e) {
-        var id = $(e.currentTarget).data('deleteid');
+        var id = $(e.currentTarget).data('deleteId');
 
         $.when(
             Swal.fire({
@@ -37,7 +37,7 @@ $(document).ready(function () {
                         if (response && !response.error) {
                             Swal.fire(
                                 'Deleted!',
-                                response.id + ' has been deleted successfully.',
+                                'Candidate has been deleted successfully.',
                                 'success'
                             ).then(() => {
                                 window.location.reload();

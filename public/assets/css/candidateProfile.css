@@ -6,6 +6,21 @@
     box-shadow: 0 2px 4px 0 rgba(43,43,43,0.3);
 }
 
+#content .main-header .row {
+	margin: 0;
+	display: block;
+}
+
+#content .main-header h3 {
+	display: inline-block;
+}
+
+#edit-btn {
+	background-color: var(--info);
+	display: inline-block;
+	float: right;
+}
+
 .table-responsive {
 	font-size: 13px;
 	padding: 15px;
@@ -66,7 +81,8 @@
 }
 
 #job-offer-card {
-	background-color: var(--success);
+	background-color: var(--background-dark);
 	margin: 10px 0 0 0;
 	text-align: center;
+    color: var(--text-light);
 }

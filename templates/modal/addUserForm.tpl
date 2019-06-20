@@ -25,7 +25,7 @@
                                 <label>E-mail</label><span class="error"> *</span>
                             </div>
                             <div class="form-group col-md-7">
-                                <input class="form-control" type="email" name="email"
+                                <input class="form-control" type="email" name="email" id="email"
                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                        placeholder="E-mail Id">
                             </div>

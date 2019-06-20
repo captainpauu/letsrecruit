@@ -68,10 +68,14 @@ class UserController extends BaseController
         } else {
             $valid = $this->dao->validateUser($userName, $password);
             if (isset($valid['id'])) {
-                $allTechs = $this->techDao->getAllTechnologies();
-                $_SESSION['loggedinUser'] = $valid;
-                $_SESSION['technologies'] = $allTechs;
-                $status = true;
+                if ($valid['is_deleted'] == 1) {
+                    $message = "Account has been deleted. Please contact your Admin.";
+                } else {
+                    $allTechs = $this->techDao->getAllTechnologies();
+                    $_SESSION['loggedinUser'] = $valid;
+                    $_SESSION['technologies'] = $allTechs;
+                    $status = true;
+                }
             } else {
                 $message = "Invalid Username or password";
             }
@@ -79,7 +83,7 @@ class UserController extends BaseController
         return ['status' => $status, 'message' => $message, 'user' => $valid];
     }
 
-    public function getAllusers(RequestInterface $request, ResponseInterface $response)
+    public function getAllUsers(RequestInterface $request, ResponseInterface $response)
     {
         if (self::ROLE[$this->user['role']] !== 'Admin') {
             return $this->notAuthorised($request, $response);
@@ -93,19 +97,24 @@ class UserController extends BaseController
         ]);
     }
 
+    public function isUserEmailExists(RequestInterface $request, ResponseInterface $response)
+    {
+        $status = true;
+        $check = $this->dao->isUserEmailExists($_POST['email']);
+        if (count($check) > 1) {
+            $status = false;
+        }
+        return $response->withJson(['success' => $status]);
+    }
+
     public function addUser(RequestInterface $request, ResponseInterface $response, $args)
     {
         $error = '';
         $data = $request->getParsedBody();
-
-        $check = $this->dao->isUserEmailExists($data['email']);
-        if (count($check) > 1) {
-            $error = "Email already Exists";
-        } else {
-            if (!$this->dao->insertUser($data)) {
-                $error = "User registration failed";
-            }
+        if (!$this->dao->insertUser($data)) {
+            $error = "User registration failed";
         }
+
         return $response->withRedirect('/user/dashboard');
     }
 
@@ -135,7 +144,26 @@ class UserController extends BaseController
         return $response->withJson(['success' => $status]);
     }
 
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @return mixed
+     */
+    public function deleteUser(RequestInterface $request, ResponseInterface $response)
+    {
+        $id = $_POST['userId'];
+        $success = false;
+        if ($this->dao->deleteUser($id)){
+            $success = true;
+        }
+        return $response->withJson(['success' => $success]);
+    }
 
+    /**
+     * @param RequestInterface $request
+     * @param ResponseInterface $response
+     * @return ResponseInterface
+     */
     public function logoutUser(RequestInterface $request, ResponseInterface $response)
     {
         unset($_SESSION['loggedinUser']);

@@ -22,7 +22,7 @@
                     <th>Notice Period</th>
                     <th>Offer In Hand?</th>
                     <th>Interview Round</th>
-                    <th class="action">Action</th>
+                    <th class="action">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,11 +37,12 @@
                         <td>{$c.expected_ctc}</td>
                         <td>{$c.notice_period}</td>
                         <td>{$c.offer_in_hand}</td>
-                        <td></td>
+                        <td>
+                            {if $c.job_offered == 1}
+                                <h5><span class="badge badge-pill badge-dark">Job Offered</span></h5>
+                            {/if}
+                        </td>
                         <td class="action">
-                            <button class="btn btn-outline-primary btn-sm edit-candidate" title="edit">
-                                <i class="fas fa-edit"></i>
-                            </button>
                             <button class="btn btn-outline-primary btn-sm delete-candidate" title="delete" data-deleteId="{$c.id}">
                                 <i class="fas fa-trash"></i>
                             </button>

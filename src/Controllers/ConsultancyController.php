@@ -27,9 +27,23 @@ class ConsultancyController extends BaseController
         $this->dao =$dao;
     }
 
+    public function getAllConsultData()
+    {
+        $consultancies = $this->dao->getAllConsultancies();
+        $consults = $this->dao->getAllConsults();
+    }
+
     public function getAllConsultancies(RequestInterface $request, ResponseInterface $response)
     {
-        $allConsults = $this->dao->getAllConsultancies();
+        $all = $this->dao->getAllConsultancies();
+        return $this->smarty->render($response, '', [
+            'consultancies' => $all,
+        ]);
+    }
+
+    public function getAllConsults(RequestInterface $request, ResponseInterface $response)
+    {
+        $allConsults = $this->dao->getAllConsults();
         return $this->smarty->render($response, '', [
             'consults' => $allConsults,
         ]);
