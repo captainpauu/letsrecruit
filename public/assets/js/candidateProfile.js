@@ -1,3 +1,52 @@
+function errorAlert() {
+    Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
+    });
+}
+
+function offerJobToCandidate(e) {
+    var id = $(e.currentTarget).data('id');
+    $.when(
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Offer!'
+        })
+    ).done ((value) => {
+        if(value && !value.dismiss) {
+            $.ajax({
+                type: "post",
+                url: '/user/offer-job',
+                data: {
+                    id: id
+                },
+                success: (response) => {
+                    if (response.success) {
+                        Swal.fire(
+                            'Offered!',
+                            'Job has been offered successfully.',
+                            'success'
+                        ).then(() => {
+                            window.location.reload();
+                        })
+                    } else {
+                        errorAlert();
+                    }
+                },
+                error: () => {
+                    errorAlert();
+                }
+            });
+        }
+    });
+}
+
 $(document).ready(function () {
 
     $("form[name='scheduleInterviewForm']").validate({
@@ -50,46 +99,5 @@ $(document).ready(function () {
     });
 
     $('#offerJobBtn').on('click', (e) => offerJobToCandidate(e));
-
-    function offerJobToCandidate(e) {
-        var id = $(e.currentTarget).data('id');
-        $.when(
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, Offer!'
-            })
-        ).done ((value) => {
-            if(value && !value.dismiss) {
-                $.ajax({
-                    type: "post",
-                    url: '/user/offer-job',
-                    data: {
-                        id: id
-                    },
-                    success: (response) => {
-                        if (response.success) {
-                            Swal.fire(
-                                'Offered!',
-                                'Job has been offered successfully.',
-                                'success'
-                            ).then(() => {
-                                window.location.reload();
-                            })
-                        } else {
-                            errorAlert();
-                        }
-                    },
-                    error: () => {
-                        errorAlert();
-                    }
-                });
-            }
-        });
-    }
 
 });

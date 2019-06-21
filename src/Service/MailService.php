@@ -4,21 +4,33 @@
 namespace App\Service;
 
 
-use Slim\App;
 use Slim\Container;
+use Slim\Route;
+use Interop\Container\Exception\ContainerException;
 
+/**
+ * Class MailService
+ * @package App\Service
+ */
 class MailService
 {
+    /**
+     * @var Container
+     */
     private $container;
+    /**
+     * @var Route
+     */
     private $router;
 
     const FROM = 'letsrecruit05.gmail.com';
+
     const HTML_HEADER = "MIME-Version: 1.0" . "\r\n" . "Content-Type: text/html; charset=UTF-8" . "\r\n";
 
     /**
      * MailService constructor.
      * @param Container $container
-     * @throws \Interop\Container\Exception\ContainerException
+     * @throws ContainerException
      */
     public function __construct(Container $container)
     {
@@ -26,21 +38,44 @@ class MailService
         $this->router = $this->container->get('router');
     }
 
-    public function sendMail($to, $subject, $message, $headers = null, $parameters = null)
+    /**
+     * @param string $to
+     * @param string $subject
+     * @param string $message
+     * @param null $headers
+     * @param null $parameters
+     * @return bool
+     */
+    public function sendMail($to, $subject, $message, $headers = null, $parameters = null) : bool
     {
         return mail($to, $subject, $message, $headers, $parameters);
     }
 
-    public function interviewScheduledMail($data)
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public function interviewScheduledMail($data) : bool
     {
         $to = $data['email'];
         $subject = 'Interview Request';
-        $message = 'Interview has been scheduled on ' . $data['scheduled_date'] . ' at ' . $data['scheduled_time'] . ' for ' . $data['job_profile'] . '.';
-        $message .= 'Please login to accept or reject request.';
-        return $this->sendMail($to, $subject, $message);
+
+        $headers = self::HTML_HEADER;
+        $headers .= "From: " . self::FROM . "\r\n";
+
+        $message = '<html><body><div style="padding: 30px;">';
+        $message .= '<p style="font-size: 20px; color: #263544;"><strong>You have got an Interview Request</strong></p>';
+        $message .= '<p style="font-size: 20px">Interview scheduled on <strong>' . $data['scheduled_date'] . ' at ' . $data['scheduled_time'] . '</strong>.</p>';
+        $message .= '<p style="font-size: 15px;">Please <a href="' . $_SERVER["HTTP_HOST"] . '" style="color: #ff595a;">Login Here</a> to accept / reject request.</p>';
+        $message .= '</div></body></html>';
+        return $this->sendMail($to, $subject, $message, $headers);
     }
 
-    public function newUserCredentialsMail($data)
+    /**
+     * @param $data
+     * @return bool
+     */
+    public function newUserCredentialsMail($data) : bool
     {
         $to = $data['email'];
         $subject = 'Account Created';
@@ -53,7 +88,7 @@ class MailService
         $message .= '<p style="font-size: 20px">Please use following credentials to access your account</p>';
         $message .= '<p style="font-size: 18px; font-style: italic">Username:- <strong>' . $data['userName'] . '</strong></p>';
         $message .= '<p style="font-size: 18px; font-style: italic">Password:- <strong>' . $data['password'] . '</strong></p>';
-        $message .= '<p style="font-size: 15px;"><a href="' . $_SERVER["HTTP_HOST"] .'" style="color: #ff595a;">Login Here</a></p>';
+        $message .= '<p style="font-size: 15px;"><a href="' . $_SERVER["HTTP_HOST"] . '" style="color: #ff595a;">Login Here</a></p>';
         $message .= '</div></body></html>';
 
         return $this->sendMail($to, $subject, $message, $headers);

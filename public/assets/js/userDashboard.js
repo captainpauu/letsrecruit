@@ -1,3 +1,81 @@
+function errorAlert() {
+    Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
+    });
+}
+
+function deleteUser(e) {
+    var id = $(e.currentTarget).data('deleteid');
+
+    $.when(
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete!'
+        })
+    ).done ((value) => {
+        if(value && !value.dismiss) {
+            $.ajax({
+                type: "post",
+                url: '/user/delete',
+                data: {
+                    userId: id
+                },
+                success: (response) => {
+                    if (response && !response.error) {
+                        Swal.fire(
+                            'Deleted!',
+                            'User has been deleted successfully.',
+                            'success'
+                        ).then(() => {
+                            window.location.reload();
+                        })
+                    } else {
+                        errorAlert();
+                    }
+                },
+                error: () => {
+                    errorAlert();
+                }
+            });
+        }
+    });
+}
+
+function checkIfEmailExists(e) {
+    var value = e.target.value;
+    $('button.btn-primary').removeClass('disabled');
+
+    if(value !== '') {
+        $.ajax({
+            type: "post",
+            url: '/user/check-email',
+            data: {
+                email: value
+            },
+            success: (response) => {
+                if (response.success) {
+                    $('button.btn-primary').removeClass('disabled');
+                } else {
+                    $('button.btn-primary').addClass('disabled');
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Email exists already. Please enter another Email-id'
+                    });
+                }
+            }
+        });
+    }
+}
+
+
 $(document).ready(function () {
 
     $("form[name='addUserForm']").validate({
@@ -55,82 +133,4 @@ $(document).ready(function () {
     $('.delete-user').on('click', (e) => {
         deleteUser(e);
     });
-
-    function errorAlert() {
-        Swal.fire({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!'
-        });
-    }
-
-    function deleteUser(e) {
-        var id = $(e.currentTarget).data('deleteid');
-
-        $.when(
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete!'
-            })
-        ).done ((value) => {
-            if(value && !value.dismiss) {
-                $.ajax({
-                    type: "post",
-                    url: '/user/delete',
-                    data: {
-                        userId: id
-                    },
-                    success: (response) => {
-                        if (response && !response.error) {
-                            Swal.fire(
-                                'Deleted!',
-                                'User has been deleted successfully.',
-                                'success'
-                            ).then(() => {
-                                window.location.reload();
-                            })
-                        } else {
-                            errorAlert();
-                        }
-                    },
-                    error: () => {
-                        errorAlert();
-                    }
-                });
-            }
-        });
-    }
-
-    function checkIfEmailExists(e) {
-        var value = e.target.value;
-        $('button.btn-primary').removeClass('disabled');
-
-        if(value !== '') {
-            $.ajax({
-                type: "post",
-                url: '/user/check-email',
-                data: {
-                    email: value
-                },
-                success: (response) => {
-                    if (response.success) {
-                        $('button.btn-primary').removeClass('disabled');
-                    } else {
-                        $('button.btn-primary').addClass('disabled');
-                        Swal.fire({
-                            type: 'error',
-                            title: 'Oops...',
-                            text: 'Email exists already. Please enter another Email-id'
-                        });
-                    }
-                }
-            });
-        }
-    }
-
 });
