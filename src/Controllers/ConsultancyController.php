@@ -7,7 +7,8 @@ namespace App\Controllers;
 use App\Dao\ConsultancyDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Slim\Views\Smarty;
+use Slim\Container;
+use Interop\Container\Exception\ContainerException;
 
 class ConsultancyController extends BaseController
 {
@@ -18,12 +19,13 @@ class ConsultancyController extends BaseController
 
     /**
      * ConsultancyController constructor.
-     * @param Smarty $smarty
+     * @param Container $container
      * @param ConsultancyDao $dao
+     * @throws ContainerException
      */
-    public function __construct(Smarty $smarty, ConsultancyDao $dao)
+    public function __construct(Container $container, ConsultancyDao $dao)
     {
-        parent::__construct($smarty);
+        parent::__construct($container);
         $this->dao =$dao;
     }
 

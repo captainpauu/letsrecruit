@@ -2,6 +2,7 @@
 .idea
 /public/templates_c
 /public/assets/bootstrap
+/public/assets/ChartJs
 /public/assets/datatables
 /public/assets/fontawesome
 /public/assets/jQuery
@@ -9,5 +10,3 @@
 /public/assets/Validate
 /public/assets/SweetAlert2
 /public/assets/ViewerJS
-/src/Services
-/src/Vo

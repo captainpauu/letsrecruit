@@ -14,7 +14,7 @@ use App\Dao\ConsultancyDao;
 
 $container['CandidateController'] = function($c) {
     return new CandidateController(
-        $c->get('smarty'),
+        $c,
         $c->get('CandidateDao'),
         $c->get('UserDao'),
         $c->get('JobsDao'),
@@ -31,7 +31,7 @@ $container['CandidateDao'] = function($c) {
 
 $container['UserController'] = function($c) {
     return new UserController(
-        $c->get('smarty'),
+        $c,
         $c->get('UserDao'),
         $c->get('TechnologyDao')
     );
@@ -51,7 +51,7 @@ $container['TechnologyDao'] = function($c) {
 
 $container['JobsController'] = function($c) {
     return new JobsController(
-        $c->get('smarty'),
+        $c,
         $c->get('JobsDao'),
         $c->get('TechnologyDao')
     );
@@ -65,7 +65,7 @@ $container['JobsDao'] = function($c) {
 
 $container['InterviewController'] = function($c) {
     return new InterviewController(
-        $c->get('smarty'),
+        $c,
         $c->get('InterviewDao')
     );
 };
@@ -78,7 +78,7 @@ $container['InterviewDao'] = function($c) {
 
 $container['ConsultancyController'] = function($c) {
     return new ConsultancyController(
-        $c->get('smarty'),
+        $c,
         $c->get('ConsultancyDao')
     );
 };

@@ -7,7 +7,8 @@ namespace App\Controllers;
 use App\Dao\InterviewDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Slim\Views\Smarty;
+use Slim\Container;
+use Interop\Container\Exception\ContainerException;
 
 class InterviewController extends BaseController
 {
@@ -18,12 +19,13 @@ class InterviewController extends BaseController
 
     /**
      * InterviewController constructor.
-     * @param Smarty $smarty
+     * @param Container $container
      * @param InterviewDao $dao
+     * @throws ContainerException
      */
-    public function __construct(Smarty $smarty, InterviewDao $dao)
+    public function __construct(Container $container, InterviewDao $dao)
     {
-        parent::__construct($smarty);
+        parent::__construct($container);
         $this->dao = $dao;
     }
 
