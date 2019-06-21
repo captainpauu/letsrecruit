@@ -8,6 +8,8 @@ use App\Dao\TechnologyDao;
 use App\Dao\UserDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Container;
+use Interop\Container\Exception\ContainerException;
 
 class UserController extends BaseController
 {
@@ -22,13 +24,14 @@ class UserController extends BaseController
 
     /**
      * UserController constructor.
-     * @param $smarty
+     * @param Container $container
      * @param UserDao $dao
      * @param TechnologyDao $techDao
+     * @throws ContainerException
      */
-    public function __construct($smarty, UserDao $dao, TechnologyDao $techDao)
+    public function __construct(Container $container, UserDao $dao, TechnologyDao $techDao)
     {
-        parent::__construct($smarty);
+        parent::__construct($container);
         $this->dao = $dao;
         $this->techDao = $techDao;
     }
@@ -111,8 +114,8 @@ class UserController extends BaseController
     {
         $error = '';
         $data = $request->getParsedBody();
-        if (!$this->dao->insertUser($data)) {
-            $error = "User registration failed";
+        if ($this->dao->insertUser($data)) {
+            $this->mailService->newUserCredentialsMail($data);
         }
 
         return $response->withRedirect('/user/dashboard');

@@ -34,12 +34,12 @@
                         <td>{$u.name}</td>
                         <td>{$u.email}</td>
                         <td>
-                            {if $u.role === 1}
-                                Admin
-                            {elseif $u.role === 2}
+                            {if $u.role == 1}
                                 1st Round Panel
-                            {else}
+                            {elseif $u.role == 2}
                                 2nd Round Panel
+                            {else}
+                                Admin
                             {/if}
                         </td>
                         <td>{$u.tech_name}</td>

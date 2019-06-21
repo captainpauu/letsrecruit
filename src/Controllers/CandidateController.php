@@ -10,6 +10,7 @@ use App\Dao\JobsDao;
 use App\Dao\UserDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\Container;
 use Slim\Views\Smarty;
 
 class CandidateController extends BaseController
@@ -34,23 +35,26 @@ class CandidateController extends BaseController
      * @var ConsultancyDao
      */
     protected $consultDao;
+
     /**
      * CandidateController constructor.
-     * @param Smarty $smarty
+     * @param Container $container
      * @param CandidateDao $dao
      * @param UserDao $userDao
      * @param JobsDao $jobsDao
      * @param InterviewDao $interviewDao
+     * @param ConsultancyDao $consultDao
+     * @throws \Interop\Container\Exception\ContainerException
      */
     public function __construct(
-        Smarty $smarty,
+        Container $container,
         CandidateDao $dao,
         UserDao $userDao,
         JobsDao $jobsDao,
         InterviewDao $interviewDao,
         ConsultancyDao $consultDao
     ) {
-        parent::__construct($smarty);
+        parent::__construct($container);
         $this->dao = $dao;
         $this->userDao = $userDao;
         $this->jobsDao = $jobsDao;

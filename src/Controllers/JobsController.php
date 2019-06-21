@@ -8,7 +8,8 @@ use App\Dao\JobsDao;
 use App\Dao\TechnologyDao;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Slim\Views\Smarty;
+use Slim\Container;
+use Interop\Container\Exception\ContainerException;
 
 class JobsController extends BaseController
 {
@@ -23,13 +24,14 @@ class JobsController extends BaseController
 
     /**
      * JobsController constructor.
-     * @param Smarty $smarty
+     * @param Container $container
      * @param JobsDao $dao
      * @param TechnologyDao $techDao
+     * @throws ContainerException
      */
-    public function __construct(Smarty $smarty, JobsDao $dao, TechnologyDao $techDao)
+    public function __construct(Container $container, JobsDao $dao, TechnologyDao $techDao)
     {
-        parent::__construct($smarty);
+        parent::__construct($container);
         $this->dao = $dao;
         $this->techDao = $techDao;
     }

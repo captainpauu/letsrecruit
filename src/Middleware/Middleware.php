@@ -5,7 +5,6 @@ namespace App\Middleware;
 
 
 use Slim\Container;
-use Slim\Views\Smarty;
 
 class Middleware
 {

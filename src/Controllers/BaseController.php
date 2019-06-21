@@ -3,7 +3,10 @@
 
 namespace App\Controllers;
 
+use App\Service\MailService;
+use Slim\Container;
 use Slim\Views\Smarty;
+use Interop\Container\Exception\ContainerException;
 
 class BaseController
 {
@@ -16,6 +19,11 @@ class BaseController
      * @var array
      */
     protected $user;
+
+    /**
+     * @var MailService
+     */
+    protected $mailService;
 
     const ROLE = [
         1 => '1st Round Panel',
@@ -58,14 +66,16 @@ class BaseController
 
     /**
      * BaseController constructor.
-     * @param Smarty $smarty
+     * @param Container $container
+     * @throws ContainerException
      */
-    public function __construct(Smarty $smarty)
+    public function __construct(Container $container)
     {
-        $this->smarty = $smarty;
+        $this->smarty = $container->get('smarty');
         if (isset($_SESSION['loggedinUser']) && $this->user === null) {
             $this->user = $_SESSION['loggedinUser'];
         }
+        $this->mailService = new MailService($container);
     }
 
     /**
