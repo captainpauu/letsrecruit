@@ -2,6 +2,7 @@
 
 {block name=head}
     <link rel="stylesheet" href="/assets/css/jobOpening.css">
+    <script src="/assets/js/jobOpening.js"></script>
 {/block}
 
 {block name=content}
@@ -36,6 +37,25 @@
                                             </div>
                                         </div>
                                     {/foreach}
+                                </div>
+                                <div>
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link disabled" id="previous-btn" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link numbered" data-number="1" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link numbered active" data-number="2" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link numbered" data-number="3" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" id="next-btn" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

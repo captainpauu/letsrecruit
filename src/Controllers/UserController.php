@@ -65,17 +65,16 @@ class UserController extends BaseController
         $password = $data['password'];
         $status = false;
         $message = '';
-        $valid = [];
         if(empty($userName) && empty($password)){
             $message = "Invalid Username or password";
         } else {
-            $valid = $this->dao->validateUser($userName, $password);
-            if (isset($valid['id'])) {
-                if ($valid['is_deleted'] == 1) {
+            $user = $this->dao->getUser($userName);
+            if (isset($user['id'])) {
+                if ($user['is_deleted'] == 1) {
                     $message = "Account has been deleted. Please contact your Admin.";
-                } else {
+                } elseif(password_verify($password, $user['password'])) {
                     $allTechs = $this->techDao->getAllTechnologies();
-                    $_SESSION['loggedinUser'] = $valid;
+                    $_SESSION['loggedinUser'] = $user;
                     $_SESSION['technologies'] = $allTechs;
                     $status = true;
                 }
@@ -83,7 +82,7 @@ class UserController extends BaseController
                 $message = "Invalid Username or password";
             }
         }
-        return ['status' => $status, 'message' => $message, 'user' => $valid];
+        return ['status' => $status, 'message' => $message, 'user' => $user];
     }
 
     public function getAllUsers(RequestInterface $request, ResponseInterface $response)
@@ -100,6 +99,16 @@ class UserController extends BaseController
         ]);
     }
 
+    public function isUserNameExists(RequestInterface $request, ResponseInterface $response)
+    {
+        $status = true;
+        $check = $this->dao->isUserNameExists($_POST['username']);
+        if (count($check) > 1) {
+            $status = false;
+        }
+        return $response->withJson(['success' => $status]);
+    }
+
     public function isUserEmailExists(RequestInterface $request, ResponseInterface $response)
     {
         $status = true;
@@ -112,8 +121,8 @@ class UserController extends BaseController
 
     public function addUser(RequestInterface $request, ResponseInterface $response, $args)
     {
-        $error = '';
         $data = $request->getParsedBody();
+        $data['password_hash'] = password_hash($data['password'], PASSWORD_DEFAULT);
         if ($this->dao->insertUser($data)) {
             $this->mailService->newUserCredentialsMail($data);
         }

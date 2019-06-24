@@ -75,6 +75,32 @@ function checkIfEmailExists(e) {
     }
 }
 
+function checkIfUserNameExists(e) {
+    var value = e.target.value;
+    $('button.btn-primary').removeClass('disabled');
+
+    if(value !== '') {
+        $.ajax({
+            type: "post",
+            url: '/user/check-user-name',
+            data: {
+                username: value
+            },
+            success: (response) => {
+                if (response.success) {
+                    $('button.btn-primary').removeClass('disabled');
+                } else {
+                    $('button.btn-primary').addClass('disabled');
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Username already used. Please enter another username'
+                    });
+                }
+            }
+        });
+    }
+}
 
 $(document).ready(function () {
 
@@ -125,6 +151,8 @@ $(document).ready(function () {
     });
 
     $('#addUserForm #email').on('blur', (e) => checkIfEmailExists(e));
+
+    $('#addUserForm #username').on('blur', (e) => checkIfUserNameExists(e));
 
     $('#add-user-btn').on('click', (e) => {
         $("form[name='addUserForm']").validate().resetForm();

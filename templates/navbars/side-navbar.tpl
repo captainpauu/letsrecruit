@@ -19,9 +19,6 @@
                     <li>
                         <a href="{path_for name='userDashboard'}">User Dashboard</a>
                     </li>
-                    <li>
-                        <a href="#">Consultancy Dashboard</a>
-                    </li>
                 </ul>
             </li>
             <li>
