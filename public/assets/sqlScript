@@ -1,0 +1,158 @@
+create table if not exists consultancy
+(
+    id         int auto_increment
+        primary key,
+    name       varchar(50)       null,
+    is_deleted tinyint default 0 null
+);
+
+create table if not exists consults
+(
+    id             int auto_increment
+        primary key,
+    name           varchar(50)       null,
+    consultancy_id int               null,
+    mobile_num     varchar(15)       null,
+    is_deleted     tinyint default 0 null,
+    email          varchar(100)      null,
+    constraint consults_email_uindex
+        unique (email),
+    constraint consults_consultancy_id_fk
+        foreign key (consultancy_id) references consultancy (id)
+);
+
+create table if not exists technology
+(
+    id        int auto_increment
+        primary key,
+    tech_name varchar(20) not null
+);
+
+create table if not exists jobs
+(
+    id             int auto_increment
+        primary key,
+    name           varchar(50) default '0' not null,
+    req_experience varchar(10) default '0' null,
+    location       varchar(30)             null,
+    salary         varchar(20)             null,
+    description    text                    null,
+    updated_by     int         default 0   not null,
+    is_deleted     tinyint     default 0   null,
+    job_technology int                     null,
+    constraint jobs_technology_id_fk
+        foreign key (job_technology) references technology (id)
+);
+
+create table if not exists candidates
+(
+    id              int auto_increment
+        primary key,
+    fname           varchar(20)             null,
+    lname           varchar(20)             null,
+    email           varchar(100)            not null,
+    mobile          varchar(15)             null,
+    birth_date      date                    null,
+    gender          tinyint                 null,
+    marital_status  tinyint                 null,
+    current_city    varchar(30)             null,
+    permanent_city  varchar(30)             null,
+    state           varchar(30)             null,
+    zip_code        char(10)                null,
+    experience      varchar(20) default '0' null,
+    current_company varchar(50)             null,
+    current_ctc     float       default 0   null,
+    expected_ctc    float       default 0   null,
+    skills          varchar(50)             null,
+    linkedin        varchar(100)            null,
+    notice_period   char(20)                null,
+    offer_in_hand   tinyint     default 0   null,
+    change_reason   varchar(255)            null,
+    resume          varchar(100)            null,
+    job_offered     tinyint     default 0   null,
+    consult_id      int                     null,
+    referred_by     varchar(40)             null,
+    reference       int         default 0   null,
+    is_deleted      tinyint     default 0   null,
+    job_profile_id  int                     null,
+    constraint candidates_email_uindex
+        unique (email),
+    constraint candidates_jobs_id_fk
+        foreign key (job_profile_id) references jobs (id)
+);
+
+create index candidates_consultancy_id_fk
+    on candidates (consult_id);
+
+create table if not exists users
+(
+    id         int auto_increment
+        primary key,
+    name       varchar(50)       null,
+    email      varchar(100)      not null,
+    user_name  varchar(10)       not null,
+    password   varchar(100)      not null,
+    role       int     default 1 not null,
+    is_deleted tinyint default 0 null,
+    technology int               null,
+    constraint users_email_uindex
+        unique (email),
+    constraint users_technology_id_fk
+        foreign key (technology) references technology (id)
+);
+
+create table if not exists interviews
+(
+    id              int auto_increment
+        primary key,
+    candidate_id    int      default 0                 not null,
+    interviewer_id  int                                null,
+    scheduled_date  date                               null,
+    scheduled_time  time                               null,
+    interview_mode  tinyint  default 0                 not null,
+    scheduled_by    int                                null,
+    schedule_status tinyint  default 0                 null comment '1 : pending,
+2 : accepted,
+3 : rejected',
+    created_date    datetime default CURRENT_TIMESTAMP null,
+    constraint interviews_candidates_id_fk
+        foreign key (candidate_id) references candidates (id),
+    constraint interviews_users_id_fk
+        foreign key (interviewer_id) references users (id),
+    constraint interviews_users_id_fk_2
+        foreign key (scheduled_by) references users (id)
+);
+
+create table if not exists rounds
+(
+    id            int auto_increment
+        primary key,
+    interview_id  int               null,
+    round_number  int               null,
+    round_status  tinyint default 0 null comment 'o : pending,
+1 : selected,
+2 : rejected',
+    feedback      mediumtext        null,
+    feedback_date date              null,
+    feedback_by   int               null,
+    constraint rounds_interviews_id_fk
+        foreign key (interview_id) references interviews (id),
+    constraint rounds_users_id_fk
+        foreign key (feedback_by) references users (id)
+);
+
+create table if not exists shortlisting
+(
+    shortlist_id   int auto_increment
+        primary key,
+    candidate_id   int               not null,
+    user_id        int               not null,
+    is_shortlisted tinyint default 0 not null,
+    shortlist_date date              null,
+    constraint shortlisting_candidates_id_fk
+        foreign key (candidate_id) references candidates (id),
+    constraint shortlisting_users_id_fk
+        foreign key (user_id) references users (id)
+);
+
+
