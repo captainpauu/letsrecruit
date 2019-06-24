@@ -1,5 +1,3 @@
-@import "../fonts/Poppins-Regular.ttf";
-
 :root {
 	--success: #20c997;
 	--primary: #007bff;
@@ -7,9 +5,15 @@
 	--info: #17a2b8;
 	--pink: #ff595a;
 	--text-light: #babfc4;
+    --text-dark: #263544;
 	--background-light: #F2F7FB;
 	--background-dark: #263544;
 
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url("../fonts/Poppins-Regular.ttf");
 }
 
 body {
@@ -33,6 +37,11 @@ body *:focus {
 
 .disabled {
 	opacity: 0.5% !important;
+	pointer-events: none;
+}
+
+.coming-soon {
+	cursor: none;
 	pointer-events: none;
 }
 
@@ -60,6 +69,11 @@ a:hover {
 	padding-left: 5px;
 }
 
+/*
+   ==================
+    Side Nav-bar CSS
+   ==================
+*/
 #sidebar {
 	position: fixed;
 	min-width: 18%;
@@ -172,6 +186,12 @@ a[data-toggle="collapse"] {
 	margin-left: 10px;
 }
 
+/*
+   =================
+    Top Nav-bar CSS
+   =================
+*/
+
 #content {
 	width: calc(100% - 5%);
 	position: absolute;
@@ -236,6 +256,10 @@ a[data-toggle="collapse"] {
 
 #content .dropdown .dropdown-menu.show {
 	transform: scale(1);
+}
+
+#content #profile.dropdown .dropdown-menu {
+    width: 200px;
 }
 
 #content #profile.dropdown .dropdown-menu li:hover{
@@ -332,6 +356,44 @@ a[data-toggle="collapse"] {
 	margin: 20px 10px;
 	padding-top: 10px;
 }
+
+/*
+   ================
+    Pagination CSS
+   ================
+*/
+.pagination {
+    margin-right: 15px;
+    float: right;
+}
+
+.page-item a {
+    color: var(--text-dark);
+    border: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.page-item a.active {
+    color: var(--primary);
+}
+
+.page-item a:hover {
+    color: var(--pink) !important;
+}
+
+.page-item a.disabled {
+    color: var(--text-light);
+    cursor: default;
+
+}
+
+/*
+   =========================
+    Technology Dropdown CSS
+   =========================
+*/
 
 #addTechModal form {
 	padding: 10px;

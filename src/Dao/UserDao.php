@@ -11,11 +11,11 @@ class UserDao extends BaseDao
      * @param $password
      * @return mixed
      */
-    public function validateUser($username, $password)
+    public function getUser($username)
     {
         $query = $this->db->prepare("SELECT * FROM users 
-                                              WHERE user_name = :un AND password = :pwd");
-        $query->execute(array(':un' => $username, ':pwd' => $password));
+                                              WHERE user_name = :un");
+        $query->execute(array(':un' => $username));
         $result = $query->fetch();
         return $result;
     }
@@ -103,7 +103,7 @@ class UserDao extends BaseDao
             ':name' => $data['name'],
             ':email' => $data['email'],
             ':userName' => $data['userName'],
-            ':password' => $data['password'],
+            ':password' => $data['password_hash'],
             ':role' => $data['role'],
             ':technology' => $data['technology']
         ]);
@@ -119,6 +119,14 @@ class UserDao extends BaseDao
         $query = $this->db->prepare("SELECT * FROM users
                                               WHERE email = :em");
         $query->execute([':em' => $email]);
+        return $query->fetch();
+    }
+
+    public function isUserNameExists($username)
+    {
+        $query = $this->db->prepare("SELECT * FROM users
+                                              WHERE user_name = :un");
+        $query->execute([':un' => $username]);
         return $query->fetch();
     }
 

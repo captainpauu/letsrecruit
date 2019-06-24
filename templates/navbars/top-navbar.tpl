@@ -75,11 +75,11 @@
                     {$smarty.session.loggedinUser.name}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-lebelledby="profileDropdown">
-                    <li>
-                        <a href="#"><i class="fas fa-user"></i> Profile</a>
+                    <li class="coming-soon">
+                        <a href="#"><i class="fas fa-user"></i> Profile [coming-soon]</a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                    <li class="coming-soon">
+                        <a href="#"><i class="fas fa-cog"></i> Settings [coming-soon]</a>
                     </li>
                     <div class="dropdown-divider"></div>
                     <li>

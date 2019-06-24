@@ -8,7 +8,8 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form id="addUserForm" action="{path_for name='addUser'}" method="post" name="addUserForm">
+            <form id="addUserForm" action="{path_for name='addUser'}" method="post" name="addUserForm"
+                  autocomplete="off">
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="col-md-5 t">
@@ -16,7 +17,7 @@
                         </div>
                         <div class="form-group col-md-7">
                             <input class="form-control" type="text" name="name"
-                                   placeholder="Full Name">
+                                   placeholder="Full Name" autofocus>
                         </div>
                     </div>
                     {literal}
@@ -37,7 +38,7 @@
                         </div>
                         <div class="form-group col-md-7">
                             <input class="form-control" type="text" name="userName" id="username"
-                                   placeholder="Username">
+                                   placeholder="Username" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-row">
@@ -46,7 +47,7 @@
                         </div>
                         <div class="form-group col-md-7">
                             <input class="form-control" type="password" name="password" id="password"
-                                   placeholder="&#9679;&#9679;&#9679;&#9679;">
+                                   placeholder="&#9679;&#9679;&#9679;&#9679;" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-row">
@@ -55,7 +56,7 @@
                         </div>
                         <div class="form-group col-md-7">
                             <input class="form-control" type="password" name="confirmPassword" id="confirmPassword"
-                                   placeholder="&#9679;&#9679;&#9679;&#9679;">
+                                   placeholder="&#9679;&#9679;&#9679;&#9679;" autocomplete="off">
                         </div>
                     </div>
                     <div class="form-row">

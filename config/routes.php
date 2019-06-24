@@ -93,6 +93,11 @@ $app->group('', function () use ($app) {
             )->setName('checkUserEmail');
 
             $app->post(
+                '/check-user-name',
+                'UserController:isUserNameExists'
+            )->setName('checkUserEmail');
+
+            $app->post(
                 '/delete',
                 'UserController:deleteUser'
             )->setName('deleteUser');

@@ -1,3 +1,4 @@
 /vendor
 .idea
+/node/node_modules
 /public/templates_c

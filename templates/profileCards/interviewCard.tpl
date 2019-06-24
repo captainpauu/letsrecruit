@@ -3,13 +3,13 @@
     {if $schedule.schedule_status == 1}
         bg-secondary">
     <div class="card-header">Interview Round Status</div>
-        {elseif $schedule.schedule_status == 2}
+    {elseif $schedule.schedule_status == 2}
         bg-success">
     <div class="card-header">Interview Round Status</div>
-        {elseif $schedule.schedule_status == 3}
+    {elseif $schedule.schedule_status == 3}
         bg-danger">
     <div class="card-header">Interview Round Status</div>
-        {elseif $schedule.schedule_status == 0}
+    {elseif $schedule.schedule_status == 0}
         bg-secondary">
     <div class="card-header">Schedule Interview</div>
     {/if}
@@ -22,14 +22,14 @@
                 Waiting for interviewers acceptance.
             </h6>
         {elseif $schedule.schedule_status == 2}
-            <h6>{$schedule.interviewer_name} has accepted interview request.
-                Interview scheduled on {$schedule.scheduled_date}
-                at {$schedule.scheduled_time}</h6>
+            <h6><strong>{$schedule.interviewer_name}</strong> has accepted interview request.
+                Interview scheduled on <strong>{$schedule.scheduled_date}
+                    at {$schedule.scheduled_time}</strong></h6>
         {else}
             {if $schedule.schedule_status == 3}
-                <h6>{$schedule.interviewer_name} has rejected interview request.
-                    Interview was scheduled on {$schedule.scheduled_date}
-                    at {$schedule.scheduled_time}</h6>
+                <h6><strong>{$schedule.interviewer_name}</strong> has rejected interview request.
+                    Interview was scheduled on <strong>{$schedule.scheduled_date}
+                        at {$schedule.scheduled_time}</strong></h6>
             {/if}
             <button id="shceduleInterviewBtn" class="btn btn-light btn-sm" data-toggle="modal"
                     data-target="#scheduleModal">Schedule Interview

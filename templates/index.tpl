@@ -8,12 +8,12 @@
 <div class="wrapper">
 
     <!-- Side Navbar -->
-    {include 'side-navbar.tpl'}
+    {include 'navbars/side-navbar.tpl'}
 
     <!-- Page Content -->
     <div id="content">
         <!-- Top Navbar -->
-        {include 'top-navbar.tpl'}
+        {include 'navbars/top-navbar.tpl'}
 
         {block name=content}{/block}
 
