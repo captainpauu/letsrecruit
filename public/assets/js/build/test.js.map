@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../frontend/src/test.es6"],"names":["console","log"],"mappings":";;;;;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA,gCACe;AACbA,WAAQC,GAAR,CAAY,OAAZ;AACA;AAHF;;AAAA;AAAA","file":"test.js","sourcesContent":["new class test {\n\t__construct() {\n\t\tconsole.log('hello');\n\t}\n}\n"]}

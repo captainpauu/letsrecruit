@@ -1,5 +1,3 @@
-@import "../fonts/Poppins-Regular.ttf";
-
 :root {
 	--success: #20c997;
 	--primary: #007bff;
@@ -11,6 +9,11 @@
 	--background-light: #F2F7FB;
 	--background-dark: #263544;
 
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url("../fonts/Poppins-Regular.ttf");
 }
 
 body {
@@ -377,7 +380,7 @@ a[data-toggle="collapse"] {
 }
 
 .page-item a:hover {
-    color: var(--pink);
+    color: var(--pink) !important;
 }
 
 .page-item a.disabled {

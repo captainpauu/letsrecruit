@@ -54,6 +54,6 @@
             </table>
         </div>
     </div>
-    {include 'modal/addUserForm.tpl'}
+    {include 'modal/addUserForm.tpl' nocache}
 
 {/block}

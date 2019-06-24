@@ -93,6 +93,7 @@ class UserController extends BaseController
         $allUsers = $this->dao->getAllUsers();
         $allTechs = $this->techDao->getAllTechnologies();
 
+        //var_Dump($allUsers, $allTechs);exit;
         return $this->smarty->render($response, 'userDashboard.tpl', [
             'users' => $allUsers,
             'techs' => $allTechs

@@ -150,6 +150,7 @@ $(document).ready(function () {
         }
     });
 
+
     $('#addUserForm #email').on('blur', (e) => checkIfEmailExists(e));
 
     $('#addUserForm #username').on('blur', (e) => checkIfUserNameExists(e));
