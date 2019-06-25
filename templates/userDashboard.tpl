@@ -1,7 +1,7 @@
 {extends 'index.tpl'}
 
 {block name=head}
-    <link rel="stylesheet" href="/assets/css/userDashboard.css">
+    <link rel="stylesheet" href="/assets/css/build/user_dashboard.css">
     <script src="/assets/js/userDashboard.js"></script>
 {/block}
 
@@ -44,7 +44,7 @@
                         </td>
                         <td>{$u.tech_name}</td>
                         <td class="action">
-                            <button class="btn btn-outline-primary btn-sm delete-user" title="delete" data-deleteId="{$u.id}">
+                            <button class="btn btn-outline-danger btn-sm delete-user" title="delete" data-deleteId="{$u.id}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>

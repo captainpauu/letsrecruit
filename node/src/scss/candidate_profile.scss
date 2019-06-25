@@ -1,0 +1,81 @@
+@import "../components/variables";
+
+#content .main-header {
+  .row {
+    margin: 0;
+    display: block;
+  }
+
+  h3 {
+    display: inline-block;
+  }
+}
+
+#edit-btn {
+  background-color: $info;
+  display: inline-block;
+  float: right;
+}
+
+.table-responsive {
+  font-size: 14px;
+  padding: 15px;
+}
+
+.table {
+  margin: 0;
+
+  tr {
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  td,
+  th {
+    border-top: none;
+  }
+}
+
+#information {
+  padding: 0;
+
+  .card-header {
+    padding-bottom: 0;
+  }
+
+  #informationTab {
+    border-bottom: none;
+  }
+}
+
+#information, #shortlist-status {
+  margin: 0;
+}
+
+#shortlist-status a {
+  color: #fff;
+  margin: 0 20px;
+
+  &:hover {
+    color: #BABFC4;
+  }
+}
+
+#interview-schedule {
+  margin: 5px 0 0 0;
+}
+
+#interview .badge {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+#scheduleModal .form-row {
+  margin-bottom: 5px;
+}
+
+#job-offer-card {
+  background-color: $background-dark;
+  margin: 10px 0 0 0;
+  text-align: center;
+  color: $text-light;
+}

@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>Logout Page</title>
+    <link rel="icon" href="/assets/images/Aventri-color-logo.webp">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script defer src="/assets/fontawesome/js/solid.js"></script>
     <script defer src="/assets/fontawesome/js/fontawesome.js"></script>
-    <link rel="stylesheet" href="/assets/css/restricted.css">
+    <link rel="stylesheet" href="/assets/css/build/restricted.css">
 </head>
 <body>
 <div class="container col-md-4 justify-content-md-center">

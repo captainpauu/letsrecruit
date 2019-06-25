@@ -1,4 +1,4 @@
-new class pagination {
+new class Pagination {
 
     constructor() {
         this.currentPage = 1;

@@ -147,4 +147,22 @@ class InterviewDao extends BaseDao
             ]);
         return $result;
     }
+
+    /**
+     * @param $candidateId
+     * @return mixed
+     */
+    public function getRoundStatus($candidateId)
+    {
+        $stmt = "SELECT r.round_number,
+                        r.round_status
+                    FROM rounds as r 
+                    JOIN interviews i on r.interview_id = i.id 
+                    WHERE i.candidate_id = :id 
+                    ORDER BY r.id DESC 
+                    LIMIT 1";
+        $query = $this->db->prepare($stmt);
+        $query->execute([':id' => $candidateId]);
+        return $query->fetch();
+    }
 }

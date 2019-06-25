@@ -1,4 +1,4 @@
-new class global {
+new class Global {
     constructor() {
         this.bindEvent();
     }

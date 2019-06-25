@@ -1,0 +1,12 @@
+#content .main-content .table {
+  border-bottom: 1px solid #dee2e6;
+}
+
+tr th,
+tr td {
+  text-align: center;
+}
+
+table.dataTable thead>tr>th {
+  padding-right: 0.75rem !important;
+}

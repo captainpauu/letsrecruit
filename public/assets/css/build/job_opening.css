@@ -1,0 +1,34 @@
+.job-row {
+  Padding: 10px;
+  color: #263544;
+  border-top: 1px solid #babfc4;
+}
+.job-row:hover {
+  background-color: #fafafa;
+}
+.job-row h6 {
+  color: #007bff;
+}
+.job-row p {
+  color: #868e96;
+  margin-top: 5px;
+}
+.job-row:last-child {
+  border-bottom: 1px solid #babfc4;
+}
+
+#jobs-form {
+  margin-left: 0;
+}
+
+.card .card-header {
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.table-responsive {
+  font-size: 14px;
+  padding: 15px;
+}
+
+/*# sourceMappingURL=job_opening.css.map */

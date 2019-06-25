@@ -166,6 +166,18 @@ class CandidateDao extends BaseDao
         return $query->fetch();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getShortlistStatus($id)
+    {
+        $stmt = "SELECT is_shortlisted FROM shortlisting WHERE candidate_id = :id";
+        $query = $this->db->prepare($stmt);
+        $query->execute([':id' => $id]);
+        return $query->fetch();
+    }
+
     public function updateCandidate($id, $data)
     {
         $stmt = "UPDATE candidates

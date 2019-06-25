@@ -1,0 +1,24 @@
+#content .main-content .table {
+  font-size: 14px;
+}
+
+#content .main-header .row {
+  margin: 0;
+  display: block;
+}
+
+#acceptRequest {
+  color: green;
+  font-size: 17px;
+}
+
+#rejectRequest {
+  color: red;
+  font-size: 17px;
+  margin-left: 10px;
+}
+
+#acceptRequest:hover,
+#rejectRequest:hover {
+  text-decoration: none;
+}

@@ -1,0 +1,44 @@
+body {
+  background-color: #263544;
+}
+
+.container {
+  margin-top: 150px;
+}
+
+body .container *:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+form {
+  padding: 30px;
+}
+form label {
+  color: #BABFC4;
+}
+form span {
+  color: #BABFC4;
+  font-size: 14px;
+}
+
+.form-control {
+  background-color: #F2F7FB;
+  font-size: 15px;
+  border: 1px solid #d6d7d8;
+}
+
+input[type=checkbox] {
+  width: 5%;
+  display: inline-block;
+}
+
+#forget_pass {
+  text-align: center;
+}
+#forget_pass a:hover {
+  color: #FF595A;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=login.css.map */

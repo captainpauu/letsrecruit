@@ -1,0 +1,19 @@
+#content .main-content .table {
+  font-size: 14px;
+}
+
+#content .main-header .row {
+  margin: 0;
+  display: block;
+}
+#content .main-header h3 {
+  display: inline-block;
+}
+
+#add-user-btn {
+  background-color: #263544;
+  display: inline-block;
+  float: right;
+}
+
+/*# sourceMappingURL=user_dashboard.css.map */

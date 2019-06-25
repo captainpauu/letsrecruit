@@ -1,0 +1,73 @@
+#content .main-header .row {
+  margin: 0;
+  display: block;
+}
+#content .main-header h3 {
+  display: inline-block;
+}
+
+#edit-btn {
+  background-color: #17a2b8;
+  display: inline-block;
+  float: right;
+}
+
+.table-responsive {
+  font-size: 14px;
+  padding: 15px;
+}
+
+.table {
+  margin: 0;
+}
+.table tr {
+  border-bottom: 1px solid #dee2e6;
+}
+.table td,
+.table th {
+  border-top: none;
+}
+
+#information {
+  padding: 0;
+}
+#information .card-header {
+  padding-bottom: 0;
+}
+#information #informationTab {
+  border-bottom: none;
+}
+
+#information, #shortlist-status {
+  margin: 0;
+}
+
+#shortlist-status a {
+  color: #fff;
+  margin: 0 20px;
+}
+#shortlist-status a:hover {
+  color: #BABFC4;
+}
+
+#interview-schedule {
+  margin: 5px 0 0 0;
+}
+
+#interview .badge {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+#scheduleModal .form-row {
+  margin-bottom: 5px;
+}
+
+#job-offer-card {
+  background-color: #263544;
+  margin: 10px 0 0 0;
+  text-align: center;
+  color: #babfc4;
+}
+
+/*# sourceMappingURL=candidate_profile.css.map */
