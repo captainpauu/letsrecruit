@@ -2,7 +2,7 @@
 
 {block name=head}
     <link rel="stylesheet" href="/assets/css/build/job_opening.css">
-    <script src="/assets/js/build/Pagination.js"></script>
+    <script src="/assets/js/build/JobOpening.js"></script>
 {/block}
 
 {block name=content}

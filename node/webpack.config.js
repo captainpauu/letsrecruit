@@ -11,6 +11,7 @@ module.exports = {
         CandidateDashboard: './src/es6/CandidateDashboard.es6',
         Global: './src/es6/Global.es6',
         Pagination: './src/es6/Pagination.es6',
+        JobOpening: './src/es6/JobOpening.es6',
     },
 
     // the target directory for all output files

@@ -81,10 +81,22 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/es6/Pagination.es6");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/es6/JobOpening.es6");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./src/es6/JobOpening.es6":
+/*!********************************!*\
+  !*** ./src/es6/JobOpening.es6 ***!
+  \********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Pagination */ \"./src/es6/Pagination.es6\");\n\n\nnew class JobOpening {\n    constructor() {\n        this.bindEvents();\n    }\n\n    bindEvents(){\n        $(document).ready(() => {\n            _Pagination__WEBPACK_IMPORTED_MODULE_0__[\"default\"].getPagination({\n                tableId: 'jobs-table',\n                rowClass: 'job-row',\n                maxRows: 5,\n            });\n        });\n    }\n}\n\n//# sourceURL=webpack:///./src/es6/JobOpening.es6?");
+
+/***/ }),
 
 /***/ "./src/es6/Pagination.es6":
 /*!********************************!*\

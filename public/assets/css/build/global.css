@@ -334,7 +334,7 @@ form .btn {
 }
 .pagination .page-item a:hover {
   color: #ff595a !important;
-  background-color: #babfc4;
+  background-color: #ebedee;
 }
 .pagination .page-item a.disabled {
   color: #babfc4;
