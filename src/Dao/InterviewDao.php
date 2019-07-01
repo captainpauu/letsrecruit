@@ -135,7 +135,8 @@ class InterviewDao extends BaseDao
                  SET feedback = :feedback,
                      feedback_date = :today,
                      feedback_by = :feedbackBy,
-                     round_status = :roundStatus
+                     round_status = :roundStatus,
+                     improvement_area = :improveArea
                  WHERE interview_id = :interviewId";
         $query = $this->db->prepare($stmt);
         $result = $query->execute([
@@ -143,8 +144,27 @@ class InterviewDao extends BaseDao
             ':today' => date("Y/m/d"),
             ':feedbackBy' => $_SESSION['loggedinUser']['id'],
             ':roundStatus' => $data['roundStatus'],
+            ':improveArea' => $data['improvement'],
             ':interviewId' => $interviewId
             ]);
         return $result;
+    }
+
+    /**
+     * @param $candidateId
+     * @return mixed
+     */
+    public function getRoundStatus($candidateId)
+    {
+        $stmt = "SELECT r.round_number,
+                        r.round_status
+                    FROM rounds as r 
+                    JOIN interviews i on r.interview_id = i.id 
+                    WHERE i.candidate_id = :id 
+                    ORDER BY r.id DESC 
+                    LIMIT 1";
+        $query = $this->db->prepare($stmt);
+        $query->execute([':id' => $candidateId]);
+        return $query->fetch();
     }
 }

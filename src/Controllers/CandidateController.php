@@ -72,11 +72,44 @@ class CandidateController extends BaseController
         if (self::ROLE[$this->user['role']] !== 'Admin') {
             return $this->notAuthorised();
         }
+        $status = [];
         $allCandidates = $this->dao->getAllCandidates();
+        foreach ($allCandidates as $candidate){
+            $status[$candidate['id']] = $this->getCandidateStatus($candidate['id']);
+        }
         return $this->smarty->render(
             $response,
             'candidateDashboard.tpl',
-            ['allCandidates' => $allCandidates]);
+            ['allCandidates' => $allCandidates, 'status' => $status ]);
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function getCandidateStatus($id)
+    {
+        $status = [];
+        $round = $this->interviewDao->getRoundStatus($id);
+
+        if (empty($round)) {
+            $shortlist = $this->dao->getShortlistStatus($id);
+            $status['round'] = 'Shortlist - ';
+
+            if ($shortlist) {
+                $status['status'] = self::SHORTLIST_STATUS[$shortlist['is_shortlisted']];
+                $status['badge_class'] = $this->getBadgeClass($shortlist['is_shortlisted']);
+            } else {
+                $status['status'] = self::SHORTLIST_STATUS[0];
+                $status['badge_class'] = $this->getBadgeClass(0);
+            }
+
+        } else {
+            $status['round'] = 'Round - ' . $round['round_number'];
+            $status['status'] = self::ROUND_STATUS[$round['round_status']];
+            $status['badge_class'] = $this->getBadgeClass($round['round_status']);
+        }
+        return $status;
     }
 
     /**

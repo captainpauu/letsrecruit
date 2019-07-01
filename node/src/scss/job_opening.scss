@@ -1,0 +1,40 @@
+@import "../components/variables";
+
+.job-row {
+  Padding: 10px;
+  color: $text-dark;
+  border-top: 1px solid $text-light;
+
+  &:hover {
+    background-color: #fafafa;
+  }
+
+  h6 {
+    color: $primary;
+  }
+
+  p {
+    color: #868e96;
+    margin-top: 5px;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid $text-light;
+  }
+}
+
+#jobs-form {
+  margin-left: 0;
+}
+
+.card .card-header {
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.table-responsive {
+  font-size: 14px;
+  padding: 15px;
+}
+
+

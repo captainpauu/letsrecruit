@@ -1,0 +1,36 @@
+body {
+  background-color: #263544;
+}
+
+.container {
+  margin-top: 100px;
+}
+
+.card {
+  background-color: transparent;
+  text-align: center;
+  border: none;
+  color: #BABFC4;
+}
+.card .card-header {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 50px;
+  font-weight: bold;
+  border-bottom: 1px solid #BABFC4;
+}
+.card .card-body .icon {
+  font-size: 150px;
+  color: #FF595A;
+}
+.card .card-body .btn {
+  margin-top: 5px;
+  border: none;
+  color: #fff;
+  background-color: #007bff;
+}
+.card .card-body .btn:hover {
+  color: #fff;
+  background-color: #ff595a;
+}
+
+/*# sourceMappingURL=restricted.css.map */

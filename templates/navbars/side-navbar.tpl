@@ -7,17 +7,23 @@
 
     <ul class="list-unstyled components">
         {if $smarty.session.loggedinUser.role == 3}
+            <li>
+                <a href="">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Admin Dashboard</span>
+                </a>
+            </li>
             <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-table"></i>
-                    <span>Dashboards</span>
+                    <span>Tables</span>
                 </a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
-                        <a href="{path_for name='candidateDashboard'}">Candidate Dashboard</a>
+                        <a href="{path_for name='candidateDashboard'}">All Candidates</a>
                     </li>
                     <li>
-                        <a href="{path_for name='userDashboard'}">User Dashboard</a>
+                        <a href="{path_for name='userDashboard'}">All Users</a>
                     </li>
                 </ul>
             </li>

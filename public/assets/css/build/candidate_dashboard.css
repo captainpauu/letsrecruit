@@ -1,0 +1,10 @@
+#content .main-content .table {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.delete-candidate {
+  color: #ff595a !important;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=candidate_dashboard.css.map */

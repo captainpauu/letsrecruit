@@ -1,0 +1,30 @@
+.pagination {
+  margin-right: 15px;
+  float: right;
+
+  .page-item {
+    a {
+      color: $text-dark;
+      border: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+
+    a.active {
+      color: $primary;
+      background-color: transparent;
+    }
+
+    a:hover {
+      color: $pink !important;
+      background-color: lighten($text-light, 18%);
+    }
+
+    a.disabled {
+      color: $text-light;
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-new class global {
+new class Global {
     constructor() {
         this.bindEvent();
     }
@@ -9,8 +9,6 @@ new class global {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar, #content').toggleClass('active');
             });
-
-            $('#dataTable').DataTable();
 
             $('#interviewRequestTable').DataTable( {
                 "order": [[ 4, "desc" ]]

@@ -1,0 +1,10 @@
+@import "../components/variables";
+
+#content .main-content .table {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.delete-candidate {
+  color: $pink !important;
+  cursor: pointer;
+}

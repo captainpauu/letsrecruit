@@ -25,6 +25,12 @@ class BaseController
      */
     protected $mailService;
 
+    const SHORTLIST_STATUS = [
+        0 => 'Pending',
+        1 => 'Selected',
+        2 => 'Rejected'
+    ];
+
     const ROLE = [
         1 => '1st Round Panel',
         2 => '2nd Round Panel',
@@ -64,6 +70,12 @@ class BaseController
         3 => 'Rejected'
     ];
 
+    const ROUND_STATUS = [
+        0 => 'Pending',
+        1 => 'Selected',
+        2 => 'Rejected'
+    ];
+
     /**
      * BaseController constructor.
      * @param Container $container
@@ -88,8 +100,33 @@ class BaseController
         return $this->smarty->render($response, 'restricted.tpl');
     }
 
+    /**
+     * @param $date
+     * @return false|string
+     */
     public function convertDateFormat($date)
     {
         return date("jS M, Y", strtotime($date));
+    }
+
+    /**
+     * @param $status
+     * @return string
+     */
+    public function getBadgeClass($status) : string
+    {
+        switch ($status) {
+            case 0:
+                return 'badge-primary';
+                break;
+
+            case 1:
+                return 'badge-success';
+                break;
+
+            case 2:
+                return 'badge-danger';
+                break;
+        }
     }
 }

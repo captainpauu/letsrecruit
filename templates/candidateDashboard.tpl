@@ -1,8 +1,8 @@
 {extends 'index.tpl'}
 
 {block name=head}
-    <link rel="stylesheet" href="/assets/css/candidateDashboard.css">
-    <script src="/assets/js/candidateDashboard.js"></script>
+    <link rel="stylesheet" href="/assets/css/build/candidate_dashboard.css">
+    <script src="/assets/js/build/CandidateDashboard.js"></script>
 {/block}
 
 {block name=content}
@@ -11,7 +11,7 @@
             <h3>Candidate Dashboard</h3>
         </div>
         <div class="main-content">
-            <table id="dataTable" class="table table-bordered table-hover" style="width:100%">
+            <table id="candidateTable" class="table table-hover" style="width:100%">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                 {foreach $allCandidates as $c}
-                    <tr>
+                    <tr class="candidate-row">
                         <td>
                             <a href="{path_for name='candidateProfile' data=['id' => {$c.id}]}">{$c.fname} {$c.lname}</a>
                         </td>
@@ -40,12 +40,16 @@
                         <td>
                             {if $c.job_offered == 1}
                                 <h5><span class="badge badge-pill badge-dark">Job Offered</span></h5>
+                            {else}
+                                {$status[$c.id].round}
+                                <span class="badge badge-pill {$status[$c.id].badge_class}">{$status[$c.id].status}</span>
                             {/if}
                         </td>
                         <td class="action">
-                            <button class="btn btn-outline-primary btn-sm delete-candidate" title="delete" data-deleteId="{$c.id}">
+                            <a class="delete-candidate" title="delete"
+                                    data-deleteId="{$c.id}">
                                 <i class="fas fa-trash"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 {/foreach}

@@ -16,16 +16,23 @@
                     <input type="hidden" id="feedbackId" value="{$feedbackId}">
                     <div class="form-row">
                         <div class="col-md-3">
-                            <label for="feedback">Feedback</label><span class="error"> *</span>
+                            <label for="feedback">Feedback</label><span class="error"><strong> *</strong></span>
                         </div>
                         <div class="col-md-9">
-                            <textarea class="form-control" id="feedback" name="feedback" rows="8"></textarea>
-                            <span id="dateError" class="error"></span>
+                            <textarea class="form-control" id="feedback" name="feedback" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-3">
-                            <label for="scheduledDate">Shortlist?</label><span class="error"> *</span>
+                            <label for="improvement">Improvement Area</label>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea class="form-control" id="improvement" name="improvement" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label for="scheduledDate">select for next round?</label><span class="error"><strong> *</strong></span>
                         </div>
                         <div class="col-md-9">
                             <div class="row col-md-12">
@@ -38,6 +45,7 @@
                                     <span>Reject</span>
                                 </div>
                             </div>
+                            <span id="shortlist-error"></span>
                         </div>
                     </div>
                 </div>

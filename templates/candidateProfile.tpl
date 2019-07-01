@@ -1,7 +1,7 @@
 {extends 'index.tpl'}
 
 {block name=head}
-    <link rel="stylesheet" href="/assets/css/candidateProfile.css">
+    <link rel="stylesheet" href="/assets/css/build/candidate_profile.css">
     <script src="/assets/js/candidateProfile.js"></script>
 {/block}
 

@@ -2,6 +2,9 @@
 
 use App\Middleware\AuthMiddleware;
 
+$app->get('/test', function ($req, $res) {
+    return $this->smarty->render($res, 'adminDashboard.tpl');
+})->setName('test');
 
 //$app
 $app->get('/', function ($req, $res) {

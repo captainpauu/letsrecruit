@@ -1,0 +1,28 @@
+@import "../components/variables";
+
+#content .main-content .table {
+  font-size: 14px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+#content .main-header {
+  .row {
+    margin: 0;
+    display: block;
+  }
+
+  h3 {
+    display: inline-block;
+  }
+}
+
+#add-user-btn {
+  background-color: #263544;
+  display: inline-block;
+  float: right;
+}
+
+.delete-user {
+  color: $pink !important;
+  cursor: pointer;
+}
