@@ -7,6 +7,8 @@ new class CandidateDashboard {
 
     bindEvents() {
         $(document).ready(() => {
+            $('#candidateTable').DataTable();
+
             $('.delete-candidate').on('click', (e) => {
                 this.deleteCandidate(e);
             });

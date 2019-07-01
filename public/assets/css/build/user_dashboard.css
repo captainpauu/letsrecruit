@@ -1,5 +1,6 @@
 #content .main-content .table {
   font-size: 14px;
+  border-bottom: 1px solid #dee2e6;
 }
 
 #content .main-header .row {
@@ -14,6 +15,11 @@
   background-color: #263544;
   display: inline-block;
   float: right;
+}
+
+.delete-user {
+  color: #ff595a !important;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=user_dashboard.css.map */

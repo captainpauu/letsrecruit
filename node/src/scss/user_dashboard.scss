@@ -1,5 +1,8 @@
+@import "../components/variables";
+
 #content .main-content .table {
   font-size: 14px;
+  border-bottom: 1px solid #dee2e6;
 }
 
 #content .main-header {
@@ -17,4 +20,9 @@
   background-color: #263544;
   display: inline-block;
   float: right;
+}
+
+.delete-user {
+  color: $pink !important;
+  cursor: pointer;
 }

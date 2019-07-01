@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("new class Global {\n    constructor() {\n        this.bindEvent();\n    }\n\n    bindEvent() {\n        $(document).ready(function () {\n\n            $('#sidebarCollapse').on('click', function () {\n                $('#sidebar, #content').toggleClass('active');\n            });\n\n            $('#dataTable').DataTable();\n\n            $('#interviewRequestTable').DataTable( {\n                \"order\": [[ 4, \"desc\" ]]\n            } );\n        });\n    }\n}\n\n//# sourceURL=webpack:///./src/es6/Global.es6?");
+eval("new class Global {\n    constructor() {\n        this.bindEvent();\n    }\n\n    bindEvent() {\n        $(document).ready(function () {\n\n            $('#sidebarCollapse').on('click', function () {\n                $('#sidebar, #content').toggleClass('active');\n            });\n\n            $('#interviewRequestTable').DataTable( {\n                \"order\": [[ 4, \"desc\" ]]\n            } );\n        });\n    }\n}\n\n//# sourceURL=webpack:///./src/es6/Global.es6?");
 
 /***/ })
 

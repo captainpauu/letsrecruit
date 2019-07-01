@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="main-content">
-            <table id="dataTable" class="table table-bordered table-hover" style="width:100%">
+            <table id="dataTable" class="table table-hover" style="width:100%">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -44,9 +44,9 @@
                         </td>
                         <td>{$u.tech_name}</td>
                         <td class="action">
-                            <button class="btn btn-outline-danger btn-sm delete-user" title="delete" data-deleteId="{$u.id}">
+                            <a class="delete-user" title="delete" data-deleteId="{$u.id}">
                                 <i class="fas fa-trash"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 {/foreach}

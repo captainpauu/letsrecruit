@@ -13,6 +13,7 @@
                             <th>Interview Date</th>
                             <th>Feedback</th>
                             <th>Round Status</th>
+                            <th>Improvement Area</th>
                             <th>Feedback By</th>
                         </tr>
                         </thead>
@@ -38,6 +39,7 @@
                                     <td>{$r.feedback}</td>
                                     <td><span class="badge badge-danger">Rejected</span></td>
                                 {/if}
+                                <td>{$r.improvement_area}</td>
                                 <td>{$r.feedback_by_name}</td>
                             </tr>
                         {/foreach}

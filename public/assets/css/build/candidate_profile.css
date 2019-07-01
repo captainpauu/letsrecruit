@@ -59,7 +59,8 @@
   font-weight: 500;
 }
 
-#scheduleModal .form-row {
+#scheduleModal .form-row,
+#feedbackFormModal .form-row {
   margin-bottom: 5px;
 }
 

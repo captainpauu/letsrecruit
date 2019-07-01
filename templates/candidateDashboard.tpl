@@ -11,7 +11,7 @@
             <h3>Candidate Dashboard</h3>
         </div>
         <div class="main-content">
-            <table id="dataTable" class="table table-hover" style="width:100%">
+            <table id="candidateTable" class="table table-hover" style="width:100%">
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                 {foreach $allCandidates as $c}
-                    <tr>
+                    <tr class="candidate-row">
                         <td>
                             <a href="{path_for name='candidateProfile' data=['id' => {$c.id}]}">{$c.fname} {$c.lname}</a>
                         </td>
@@ -46,10 +46,10 @@
                             {/if}
                         </td>
                         <td class="action">
-                            <button class="btn btn-outline-danger btn-sm delete-candidate" title="delete"
+                            <a class="delete-candidate" title="delete"
                                     data-deleteId="{$c.id}">
                                 <i class="fas fa-trash"></i>
-                            </button>
+                            </a>
                         </td>
                     </tr>
                 {/foreach}

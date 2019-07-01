@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="main-content">
-            <table id="interviewRequestTable" class="table table-bordered table-hover" style="width:100%">
+            <table id="interviewRequestTable" class="table table-hover" style="width:100%">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -47,11 +47,11 @@
                             {if $i.schedule_status == 1}
                                 <a href="/interview/request/{$i.id}/{$i.candidate_id}/2" id="acceptRequest"
                                    title="Accept">
-                                    <i class="fas fa-check-circle"></i>
+                                    <i class="fas fa-user-check"></i>
                                 </a>
                                 <a href="/interview/request/{$i.id}/{$i.candidate_id}/3" id="rejectRequest"
                                    title="Reject">
-                                    <i class="fas fa-times-circle"></i>
+                                    <i class="fas fa-user-times"></i>
                                 </a>
                             {elseif $i.schedule_status == 2}
                                 <span class="badge badge-success">Accepted</span>

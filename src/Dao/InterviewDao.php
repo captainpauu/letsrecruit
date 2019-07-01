@@ -135,7 +135,8 @@ class InterviewDao extends BaseDao
                  SET feedback = :feedback,
                      feedback_date = :today,
                      feedback_by = :feedbackBy,
-                     round_status = :roundStatus
+                     round_status = :roundStatus,
+                     improvement_area = :improveArea
                  WHERE interview_id = :interviewId";
         $query = $this->db->prepare($stmt);
         $result = $query->execute([
@@ -143,6 +144,7 @@ class InterviewDao extends BaseDao
             ':today' => date("Y/m/d"),
             ':feedbackBy' => $_SESSION['loggedinUser']['id'],
             ':roundStatus' => $data['roundStatus'],
+            ':improveArea' => $data['improvement'],
             ':interviewId' => $interviewId
             ]);
         return $result;
