@@ -1,4 +1,4 @@
-@import "../components/variables";
+@import "../includes/variables";
 
 #content .main-header {
   .row {
@@ -44,6 +44,11 @@
 
   #informationTab {
     border-bottom: none;
+  }
+
+  td,
+  th {
+    width: 50%;
   }
 }
 

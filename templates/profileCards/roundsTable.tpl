@@ -33,10 +33,10 @@
                                     </td>
                                     <td><span class="badge badge-primary">Pending</span></td>
                                 {elseif $r.round_status == 1}
-                                    <td>{$r.feedback}</td>
+                                    <td><pre>{$r.feedback}</pre></td>
                                     <td><span class="badge badge-success">Accepted</span></td>
                                 {elseif $r.round_status == 2}
-                                    <td>{$r.feedback}</td>
+                                    <td><pre>{$r.feedback}</pre></td>
                                     <td><span class="badge badge-danger">Rejected</span></td>
                                 {/if}
                                 <td>{$r.improvement_area}</td>

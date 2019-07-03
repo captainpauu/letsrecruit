@@ -47,10 +47,5 @@ $container['db'] = function (Container $container) {
     return $pdo;
 };
 
-$container['csrf'] = function (Container $container) {
-    $guard = new Guard();
-    return $guard;
-};
-
 // Add dependencies
 require __DIR__ . '/dependencies.php';

@@ -1,9 +1,9 @@
-@import "../components/variables";
+@import "../includes/variables";
 
 .job-row {
   Padding: 10px;
   color: $text-dark;
-  border-top: 1px solid $text-light;
+  border-top: 1px solid #dee2e6;
 
   &:hover {
     background-color: #fafafa;
@@ -19,7 +19,7 @@
   }
 
   &:last-child {
-    border-bottom: 1px solid $text-light;
+    border-bottom: 1px solid #dee2e6;
   }
 }
 

@@ -88,6 +88,3 @@ $container['ConsultancyDao'] = function($c) {
         $c->get('db')
     );
 };
-
-//$app->add(new \App\Middleware\CsrfViewMiddleware($container));
-//$app->add($container->get('csrf'));

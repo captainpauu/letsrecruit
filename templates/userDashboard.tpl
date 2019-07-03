@@ -1,7 +1,7 @@
 {extends 'index.tpl'}
 
 {block name=head}
-    <link rel="stylesheet" href="/assets/css/build/user_dashboard.css">
+    <link rel="stylesheet" href="/assets/css/user_dashboard.css">
     <script src="/assets/js/userDashboard.js"></script>
 {/block}
 

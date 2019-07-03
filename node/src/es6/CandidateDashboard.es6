@@ -42,7 +42,8 @@ new class CandidateDashboard {
                     type: "post",
                     url: '/candidate/delete',
                     data: {
-                        candidateId: id
+                        candidateId: id,
+                        csrf_token: $('#csrf_token').val()
                     },
                     success: (response) => {
                         if (response && !response.error) {

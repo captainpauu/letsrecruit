@@ -37,6 +37,10 @@
 #information #informationTab {
   border-bottom: none;
 }
+#information td,
+#information th {
+  width: 50%;
+}
 
 #information, #shortlist-status {
   margin: 0;

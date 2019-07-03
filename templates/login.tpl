@@ -9,11 +9,13 @@
     <link rel="icon" href="/assets/images/Aventri-color-logo.webp">
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/assets/css/build/login.css">
+    <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 <body>
 <div class="container col-md-3 justify-content-md-center">
     <form action="{path_for name='login'}" method="post">
+        <input type="hidden" name="{$smarty.session.csrf_name}" value="{$smarty.session.csrf_token}">
+
         <label class="text-danger">{$errorMsg}</label>
         <div class="form-group">
             <input class="form-control" type="text" name="username" placeholder="Enter your username"/>

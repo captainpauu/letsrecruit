@@ -179,7 +179,8 @@ class UserController extends BaseController
      */
     public function logoutUser(RequestInterface $request, ResponseInterface $response)
     {
-        unset($_SESSION['loggedinUser']);
+        session_unset();
+        session_destroy();
         return $this->smarty->render($response, 'logout.tpl');
     }
 }

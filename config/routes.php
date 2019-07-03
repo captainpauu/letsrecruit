@@ -1,12 +1,12 @@
 <?php
 
 use App\Middleware\AuthMiddleware;
+use App\Middleware\CsrfViewMiddleware;
 
 $app->get('/test', function ($req, $res) {
     return $this->smarty->render($res, 'adminDashboard.tpl');
 })->setName('test');
 
-//$app
 $app->get('/', function ($req, $res) {
     return $res->withRedirect('/login');
 })->setName('index');
@@ -16,7 +16,7 @@ $app->map(
     ['GET', 'POST'],
     '/login',
     'UserController:loginUser'
-)->setName('login');
+)->setName('login')->add(new CsrfViewMiddleware($container));
 
 
 $app->map(
@@ -164,4 +164,5 @@ $app->group('', function () use ($app) {
         'UserController:addTechnology'
     )->setName('addTech');*/
 
-})->add(new AuthMiddleware($container));
+})->add(new CsrfViewMiddleware($container))
+    ->add(new AuthMiddleware($container));
