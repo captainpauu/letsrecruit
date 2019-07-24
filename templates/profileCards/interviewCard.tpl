@@ -31,7 +31,7 @@
                     Interview was scheduled on <strong>{$schedule.scheduled_date}
                         at {$schedule.scheduled_time}</strong></h6>
             {/if}
-            <button id="shceduleInterviewBtn" class="btn btn-light btn-sm" data-toggle="modal"
+            <button id="scheduleInterviewBtn" class="btn btn-light btn-sm" data-toggle="modal"
                     data-target="#scheduleModal">Schedule Interview
             </button>
             <button id="offerJobBtn" class="btn btn-success btn-sm" data-id="{$candidate.id}">Offer Job</button>

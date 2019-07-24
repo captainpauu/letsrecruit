@@ -1,7 +1,7 @@
 {extends 'index.tpl'}
 
 {block name=head}
-    <script src="/assets/js/addCandidate.js"></script>
+    <script src="/assets/js/build/AddCandidate.js"></script>
 {/block}
 
 {block name=content}

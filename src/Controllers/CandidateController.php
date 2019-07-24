@@ -70,7 +70,7 @@ class CandidateController extends BaseController
     public function getAllCandidates(RequestInterface $request, ResponseInterface $response)
     {
         if (self::ROLE[$this->user['role']] !== 'Admin') {
-            return $this->notAuthorised();
+            return $this->notAuthorised($request, $response);
         }
         $status = [];
         $allCandidates = $this->dao->getAllCandidates();

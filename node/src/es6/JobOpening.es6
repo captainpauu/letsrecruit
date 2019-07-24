@@ -14,4 +14,6 @@ new class JobOpening {
             });
         });
     }
+
+
 }
