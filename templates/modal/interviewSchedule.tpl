@@ -11,6 +11,7 @@
             <form id="scheduleInterviewForm"
                   action="{path_for name='scheduleInterview' data = ['candidateId' => {$candidate.id}]}" method="post"
                   name="scheduleInterviewForm">
+                <input type="hidden" name="{$smarty.session.csrf_name}" value="{$smarty.session.csrf_token}">
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="col-md-5 t">

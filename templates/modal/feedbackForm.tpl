@@ -11,6 +11,7 @@
             <form id="feedbackForm"
                   action="{path_for name='submitFeedback' data = ['id' => {$feedbackId},'candidateId' => {$candidate.id}]}"
                   method="post" name="feedbackForm">
+                <input type="hidden" name="{$smarty.session.csrf_name}" value="{$smarty.session.csrf_token}">
                 <div class="modal-body">
                     <input type="hidden" id="candidateId" value="{$candidate.id}">
                     <input type="hidden" id="feedbackId" value="{$feedbackId}">

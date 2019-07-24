@@ -1,7 +1,7 @@
 .job-row {
   Padding: 10px;
   color: #263544;
-  border-top: 1px solid #babfc4;
+  border-top: 1px solid #dee2e6;
 }
 .job-row:hover {
   background-color: #fafafa;
@@ -14,7 +14,7 @@
   margin-top: 5px;
 }
 .job-row:last-child {
-  border-bottom: 1px solid #babfc4;
+  border-bottom: 1px solid #dee2e6;
 }
 
 #jobs-form {

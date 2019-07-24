@@ -1,7 +1,7 @@
 {extends 'index.tpl'}
 
 {block name=head}
-    <script src="/assets/js/addCandidate.js"></script>
+    <script src="/assets/js/build/AddCandidate.js"></script>
 {/block}
 
 {block name=content}
@@ -13,6 +13,7 @@
             <label class="text-danger">{$error}</label>
             <form name="candidateRegistrationForm" action="{path_for name='addCandidate'}" method="post"
                   enctype="multipart/form-data" autocomplete="off">
+                <input type="hidden" name="{$smarty.session.csrf_name}" value="{$smarty.session.csrf_token}">
                 <div class="row col-md-12">
                     <div class="col-md-4">
                         <h5>1. Personal details</h5>

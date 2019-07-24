@@ -11,7 +11,7 @@
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     <script defer src="/assets/fontawesome/js/solid.js"></script>
     <script defer src="/assets/fontawesome/js/fontawesome.js"></script>
-    <link rel="stylesheet" href="/assets/css/build/restricted.css">
+    <link rel="stylesheet" href="/assets/css/restricted.css">
 </head>
 <body>
 <div class="container col-md-4 justify-content-md-center">

@@ -1,7 +1,7 @@
 {extends 'index.tpl'}
 
 {block name=head}
-    <link rel="stylesheet" href="/assets/css/build/interview_request.css">
+    <link rel="stylesheet" href="/assets/css/interview_request.css">
 {/block}
 
 {block name=content}

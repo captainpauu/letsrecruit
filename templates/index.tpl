@@ -6,6 +6,7 @@
 </head>
 <body>
 <div class="wrapper">
+    <input type="hidden" id="{$smarty.session.csrf_name}" name="{$smarty.session.csrf_name}" value="{$smarty.session.csrf_token}">
 
     <!-- Side Navbar -->
     {include 'navbars/side-navbar.tpl'}
